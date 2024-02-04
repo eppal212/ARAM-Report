@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		121A56DF2B6F6496006ED02D /* HomeBgView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56DE2B6F6496006ED02D /* HomeBgView.swift */; };
 		121A56E02B6F7A20006ED02D /* home_bg.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121A56DC2B6F5F52006ED02D /* home_bg.mp4 */; };
+		121A56E32B6FB2DA006ED02D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */; };
+		121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */; };
 		12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220A2B6E6A4900244152 /* AppDelegate.swift */; };
 		12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220C2B6E6A4900244152 /* SceneDelegate.swift */; };
 		12CD220F2B6E6A4900244152 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220E2B6E6A4900244152 /* MainViewController.swift */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		121A56DC2B6F5F52006ED02D /* home_bg.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = home_bg.mp4; sourceTree = "<group>"; };
 		121A56DE2B6F6496006ED02D /* HomeBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBgView.swift; sourceTree = "<group>"; };
+		121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		12CD22072B6E6A4800244152 /* AaramReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CD220A2B6E6A4900244152 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CD220C2B6E6A4900244152 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		121A56E12B6FB2A3006ED02D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */,
+				121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		12CD21FE2B6E6A4800244152 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +99,7 @@
 		12CD22092B6E6A4800244152 /* AaramReport */ = {
 			isa = PBXGroup;
 			children = (
+				121A56E12B6FB2A3006ED02D /* Extensions */,
 				12CD220A2B6E6A4900244152 /* AppDelegate.swift */,
 				12CD220C2B6E6A4900244152 /* SceneDelegate.swift */,
 				121A56D92B6F5CB0006ED02D /* View */,
@@ -171,6 +185,8 @@
 			files = (
 				121A56DF2B6F6496006ED02D /* HomeBgView.swift in Sources */,
 				12CD220F2B6E6A4900244152 /* MainViewController.swift in Sources */,
+				121A56E32B6FB2DA006ED02D /* UILabel+Extension.swift in Sources */,
+				121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */,
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
 			);

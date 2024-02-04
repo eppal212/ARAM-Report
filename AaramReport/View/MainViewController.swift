@@ -8,11 +8,18 @@
 import UIKit
 
 class MainViewController: UIViewController {
+
+    @IBOutlet weak var topTitleLabel: UILabel!
+    @IBOutlet weak var bottomTitleLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        initView()
     }
 
-
+    func initView() {
+        topTitleLabel.setAutoKerning()
+        bottomTitleLabel.setAutoKerning()
+    }
 }
 
