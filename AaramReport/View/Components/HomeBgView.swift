@@ -20,6 +20,7 @@ class HomeBgView: UIView {
     @IBInspectable var videoExtension: String = "mp4"
 
     let playerLayer = AVPlayerLayer() // 동영상을 재생할 레이어
+    var playerLooper: AVPlayerLooper? // 동영상 반복 (이곳에 선언 안 하면 동작 안 함)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +45,7 @@ class HomeBgView: UIView {
         let queuePlayer = AVQueuePlayer(playerItem: playerItem)
         playerLayer.player = queuePlayer
         self.layer.addSublayer(playerLayer)
-        _ = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
+        playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem)
         queuePlayer.play()
 
         // Dim 세팅
