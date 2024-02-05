@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
 
     func initView() {
         topTitleLabel.setAutoKerning()
-        bottomTitleLabel.setAutoKerning()
+        bottomTitleLabel.setAutoKerning(minusValue: 10)
     }
 }
 
