@@ -1,45 +1,73 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Toast
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var topTitleLabel: UILabel!
-    @IBOutlet weak var bottomTitleLabel: UILabel!
+    @IBOutlet weak var nickRememberButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var serverButton: UIButton!
+    @IBOutlet weak var nicknameInput: UITextField!
+    @IBOutlet weak var tagInput: UITextField!
 
-    let server = BehaviorRelay<String>(value: "")
-    let nickname = BehaviorRelay<String>(value: "")
-    let tag = BehaviorRelay<String>(value: "")
+    let server = BehaviorRelay<String>(value: "KR")
+    let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initView()
-        initBind()
+
+        // Label UI 조정
+        titleLabel.setAutoKerning()
+        subtitleLabel.setAutoKerning(minusValue: 10)
+
+        // 기억중인 닉네임 세팅
+        if UserDefaults.standard.string(forKey: Const.useNickRememberKey) == "Y" {
+            nicknameInput.text = UserDefaults.standard.string(forKey: Const.savedNicknameKey) ?? ""
+            tagInput.text = UserDefaults.standard.string(forKey: Const.savedTagKey) ?? ""
+        }
+
+        server.bind(to: serverButton.rx.title()).disposed(by: disposeBag) // 서버 선택 바인드
     }
 
-    func initView() {
-        topTitleLabel.setAutoKerning()
-        bottomTitleLabel.setAutoKerning(minusValue: 10)
-    }
+    // 최근 검색 닉네임 기억 on/off 처리
+    @IBAction func onClickSave(_ sender: UIButton) {
+        // 여부 저장
+        let useNickRemember = UserDefaults.standard.string(forKey: Const.useNickRememberKey) == "Y"
+        UserDefaults.standard.set(useNickRemember ? "N" : "Y", forKey: Const.useNickRememberKey)
 
-    func initBind() {
-        // 서버 선택 바인드
-        // 닉네이 & 태그 입력 바인드
-    }
-
-    // 최근 검색 닉네임 저장 on/off 처리
-    func toggleSave() {
-
+        // 취소선 반영
+        if let attributeText = nickRememberButton.titleLabel?.attributedText {
+            let attr = NSMutableAttributedString(attributedString: attributeText)
+            if useNickRemember {
+                attr.addAttribute(.strikethroughStyle,
+                                  value: NSUnderlineStyle.single.rawValue,
+                                  range: NSMakeRange(0, attr.length))
+            } else {
+                attr.removeAttribute(.strikethroughStyle, range: NSMakeRange(0, attr.length))
+            }
+            nickRememberButton.setAttributedTitle(attr, for: .normal)
+        }
     }
 
     // 라이엇 홈페이지로 이동
-    func onClickRiotApi() {
-
+    @IBAction func onClickRiotApi(_ sender: UIButton) {
+        guard let url = URL(string: Const.riotApi) else {return }
+        UIApplication.shared.open(url)
     }
 
     // 검색 버튼 클릭
-    func onClickSearch() {
+    @IBAction func onClickSearch(_ sender: UIButton) {
+        if let nickname =  nicknameInput.text, !nickname.isEmpty, let tag = tagInput.text, !tag.isEmpty {
+            // TODO: 검색 로직
 
+            // 검색 닉네임 저장
+            UserDefaults.standard.set(nickname, forKey: Const.savedNicknameKey)
+            UserDefaults.standard.set(tag, forKey: Const.savedTagKey)
+        } else {
+            self.view.makeToast("닉네임과 태그를 입력해주세요.")
+        }
     }
 }
 

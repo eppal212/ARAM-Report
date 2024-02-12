@@ -1,8 +1,14 @@
-//
-//  constants.swift
-//  AaramReport
-//
-//  Created by OBeris on 2/12/24.
-//
+struct Const {
+    // Key
+    static let useNickRememberKey = "UseNickRememberKey"
+    static let savedNicknameKey = "SavedNicknameKey"
+    static let savedTagKey = "SavedTagKey"
 
-import Foundation
+    // Url
+    static let riotApi = "https://developer.riotgames.com/"
+}
+
+//enum asdf {
+//    case a = 0
+//    case b = 1
+//}

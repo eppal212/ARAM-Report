@@ -1,6 +1,9 @@
 import UIKit
 import AVFoundation
 
+// TODO: 백그라운드 갔다오면 동영상 멈추는 이슈 수정
+// TODO: 동영상 속도 좀 느리게
+
 @IBDesignable
 class HomeBgView: UIView {
     private let ovelayDim = UIView()

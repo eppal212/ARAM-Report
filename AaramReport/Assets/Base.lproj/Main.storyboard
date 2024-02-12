@@ -36,6 +36,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="닉네임 기억">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onClickSave:" destination="27E-Bq-jd3" eventType="touchUpInside" id="Bd7-Ji-GX2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRk-Mc-dKs">
                                 <rect key="frame" x="344" y="59" width="86" height="33.333333333333343"/>
@@ -44,6 +47,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Riot API">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onClickRiotApi:" destination="27E-Bq-jd3" eventType="touchUpInside" id="KVb-OE-0Ho"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="칼바람나락" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qU-T5-x92">
                                 <rect key="frame" x="77.666666666666686" y="239" width="275" height="61"/>
@@ -115,6 +121,9 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="S E A R C H"/>
+                                        <connections>
+                                            <action selector="onClickSearch:" destination="27E-Bq-jd3" eventType="touchUpInside" id="Vd7-Cf-j3D"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="」" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDs-bF-9R5">
                                         <rect key="frame" x="256.66666666666663" y="0.0" width="10" height="36"/>
@@ -151,8 +160,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomTitleLabel" destination="oTO-Us-JFC" id="fp8-hm-WLl"/>
-                        <outlet property="topTitleLabel" destination="0qU-T5-x92" id="5hN-cF-KGy"/>
+                        <outlet property="nickRememberButton" destination="ooG-C4-0Jf" id="Fub-Ca-O9d"/>
+                        <outlet property="nicknameInput" destination="eJI-Cy-1XO" id="4kd-nR-3es"/>
+                        <outlet property="serverButton" destination="8aq-pl-hhG" id="sfS-bO-2eI"/>
+                        <outlet property="subtitleLabel" destination="oTO-Us-JFC" id="fp8-hm-WLl"/>
+                        <outlet property="tagInput" destination="GP9-mh-SR0" id="SFe-UC-RWY"/>
+                        <outlet property="titleLabel" destination="0qU-T5-x92" id="5hN-cF-KGy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gtm-QR-v9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
