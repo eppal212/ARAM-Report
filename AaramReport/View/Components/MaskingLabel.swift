@@ -1,9 +1,3 @@
-//
-//  MaskingLabel.swift
-//  AaramReport
-//
-//  Created by OBeris on 2/5/24.
-//
 //  https://stackoverflow.com/questions/39140306/masking-uiview-uiimageview-to-cutout-transparent-text
 
 import UIKit

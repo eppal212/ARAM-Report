@@ -1,10 +1,3 @@
-//
-//  HomeBgView.swift
-//  AaramReport
-//
-//  Created by OBeris on 2/4/24.
-//
-
 import UIKit
 import AVFoundation
 

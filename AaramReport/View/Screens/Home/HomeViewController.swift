@@ -1,10 +1,3 @@
-//
-//  MainViewController.swift
-//  AaramReport
-//
-//  Created by OBeris on 2/3/24.
-//
-
 import UIKit
 import RxSwift
 import RxCocoa

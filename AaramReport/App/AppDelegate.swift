@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  AaramReport
-//
-//  Created by OBeris on 2/3/24.
-//
-
 import UIKit
 
 @main
