@@ -11,7 +11,6 @@
 		121A56E02B6F7A20006ED02D /* home_bg.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121A56DC2B6F5F52006ED02D /* home_bg.mp4 */; };
 		121A56E32B6FB2DA006ED02D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */; };
 		121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */; };
-		129AA4062B790D1400F8FE62 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4052B790D1400F8FE62 /* MainViewModel.swift */; };
 		129AA4092B790F3F00F8FE62 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA4082B790F3F00F8FE62 /* RxBlocking */; };
 		129AA40B2B790F3F00F8FE62 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA40A2B790F3F00F8FE62 /* RxBlocking-Dynamic */; };
 		129AA40D2B790F3F00F8FE62 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA40C2B790F3F00F8FE62 /* RxCocoa */; };
@@ -20,7 +19,7 @@
 		12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */; };
 		12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220A2B6E6A4900244152 /* AppDelegate.swift */; };
 		12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220C2B6E6A4900244152 /* SceneDelegate.swift */; };
-		12CD220F2B6E6A4900244152 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220E2B6E6A4900244152 /* MainViewController.swift */; };
+		12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220E2B6E6A4900244152 /* HomeViewController.swift */; };
 		12CD22122B6E6A4900244152 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CD22102B6E6A4900244152 /* Main.storyboard */; };
 		12CD22142B6E6A4B00244152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12CD22132B6E6A4B00244152 /* Assets.xcassets */; };
 		12CD22172B6E6A4B00244152 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12CD22152B6E6A4B00244152 /* LaunchScreen.storyboard */; };
@@ -31,12 +30,11 @@
 		121A56DE2B6F6496006ED02D /* HomeBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBgView.swift; sourceTree = "<group>"; };
 		121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
-		129AA4052B790D1400F8FE62 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskingLabel.swift; sourceTree = "<group>"; };
 		12CD22072B6E6A4800244152 /* AaramReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CD220A2B6E6A4900244152 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CD220C2B6E6A4900244152 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		12CD220E2B6E6A4900244152 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		12CD220E2B6E6A4900244152 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		12CD22112B6E6A4900244152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12CD22132B6E6A4B00244152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12CD22162B6E6A4B00244152 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,8 +96,7 @@
 		129AA4042B790CF800F8FE62 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				12CD220E2B6E6A4900244152 /* MainViewController.swift */,
-				129AA4052B790D1400F8FE62 /* MainViewModel.swift */,
+				12CD220E2B6E6A4900244152 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -140,6 +137,29 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		129AA4162B79CA5300F8FE62 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				129AA4182B79CAB000F8FE62 /* API */,
+				129AA4172B79CA7F00F8FE62 /* Model */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		129AA4172B79CA7F00F8FE62 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		129AA4182B79CAB000F8FE62 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		12CD21FE2B6E6A4800244152 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +179,7 @@
 		12CD22092B6E6A4800244152 /* AaramReport */ = {
 			isa = PBXGroup;
 			children = (
+				129AA4162B79CA5300F8FE62 /* Service */,
 				129AA4152B79C9DF00F8FE62 /* Assets */,
 				129AA4132B79C94B00F8FE62 /* App */,
 				129AA4122B79C91500F8FE62 /* Utils */,
@@ -250,13 +271,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				121A56DF2B6F6496006ED02D /* HomeBgView.swift in Sources */,
-				12CD220F2B6E6A4900244152 /* MainViewController.swift in Sources */,
+				12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */,
 				121A56E32B6FB2DA006ED02D /* UILabel+Extension.swift in Sources */,
 				121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */,
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
-				129AA4062B790D1400F8FE62 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
