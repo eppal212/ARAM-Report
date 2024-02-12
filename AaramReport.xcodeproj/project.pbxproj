@@ -16,6 +16,8 @@
 		129AA40D2B790F3F00F8FE62 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA40C2B790F3F00F8FE62 /* RxCocoa */; };
 		129AA40F2B790F3F00F8FE62 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA40E2B790F3F00F8FE62 /* RxCocoa-Dynamic */; };
 		129AA4112B790F3F00F8FE62 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA4102B790F3F00F8FE62 /* RxRelay */; };
+		129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4192B7A3E6400F8FE62 /* Constants.swift */; };
+		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
 		12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */; };
 		12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220A2B6E6A4900244152 /* AppDelegate.swift */; };
 		12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220C2B6E6A4900244152 /* SceneDelegate.swift */; };
@@ -30,6 +32,7 @@
 		121A56DE2B6F6496006ED02D /* HomeBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBgView.swift; sourceTree = "<group>"; };
 		121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskingLabel.swift; sourceTree = "<group>"; };
 		12CD22072B6E6A4800244152 /* AaramReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CD220A2B6E6A4900244152 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */,
 				129AA4112B790F3F00F8FE62 /* RxRelay in Frameworks */,
 				129AA40F2B790F3F00F8FE62 /* RxCocoa-Dynamic in Frameworks */,
 				129AA40D2B790F3F00F8FE62 /* RxCocoa in Frameworks */,
@@ -60,8 +64,8 @@
 		121A56D92B6F5CB0006ED02D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */,
 				129AA4142B79C98200F8FE62 /* Screens */,
-				121A56DD2B6F6480006ED02D /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -73,15 +77,6 @@
 				121A56DC2B6F5F52006ED02D /* home_bg.mp4 */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		121A56DD2B6F6480006ED02D /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				121A56DE2B6F6496006ED02D /* HomeBgView.swift */,
-				12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		121A56E12B6FB2A3006ED02D /* Extensions */ = {
@@ -97,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				12CD220E2B6E6A4900244152 /* HomeViewController.swift */,
+				121A56DE2B6F6496006ED02D /* HomeBgView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -105,18 +101,9 @@
 			isa = PBXGroup;
 			children = (
 				121A56E12B6FB2A3006ED02D /* Extensions */,
+				129AA4192B7A3E6400F8FE62 /* Constants.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		129AA4132B79C94B00F8FE62 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				12CD220A2B6E6A4900244152 /* AppDelegate.swift */,
-				12CD220C2B6E6A4900244152 /* SceneDelegate.swift */,
-				12CD22182B6E6A4B00244152 /* Info.plist */,
-			);
-			path = App;
 			sourceTree = "<group>";
 		};
 		129AA4142B79C98200F8FE62 /* Screens */ = {
@@ -179,9 +166,11 @@
 		12CD22092B6E6A4800244152 /* AaramReport */ = {
 			isa = PBXGroup;
 			children = (
-				129AA4162B79CA5300F8FE62 /* Service */,
+				12CD22182B6E6A4B00244152 /* Info.plist */,
+				12CD220A2B6E6A4900244152 /* AppDelegate.swift */,
+				12CD220C2B6E6A4900244152 /* SceneDelegate.swift */,
 				129AA4152B79C9DF00F8FE62 /* Assets */,
-				129AA4132B79C94B00F8FE62 /* App */,
+				129AA4162B79CA5300F8FE62 /* Service */,
 				129AA4122B79C91500F8FE62 /* Utils */,
 				121A56D92B6F5CB0006ED02D /* View */,
 			);
@@ -210,6 +199,7 @@
 				129AA40C2B790F3F00F8FE62 /* RxCocoa */,
 				129AA40E2B790F3F00F8FE62 /* RxCocoa-Dynamic */,
 				129AA4102B790F3F00F8FE62 /* RxRelay */,
+				129AA41C2B7A57BD00F8FE62 /* Toast */,
 			);
 			productName = AaramReport;
 			productReference = 12CD22072B6E6A4800244152 /* AaramReport.app */;
@@ -241,6 +231,7 @@
 			mainGroup = 12CD21FE2B6E6A4800244152;
 			packageReferences = (
 				129AA4072B790F3F00F8FE62 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 12CD22082B6E6A4800244152 /* Products */;
 			projectDirPath = "";
@@ -277,6 +268,7 @@
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
+				129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +501,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -536,6 +536,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 129AA4072B790F3F00F8FE62 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxRelay;
+		};
+		129AA41C2B7A57BD00F8FE62 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
