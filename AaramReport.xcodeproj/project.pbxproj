@@ -18,6 +18,7 @@
 		129AA4112B790F3F00F8FE62 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA4102B790F3F00F8FE62 /* RxRelay */; };
 		129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4192B7A3E6400F8FE62 /* Constants.swift */; };
 		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
+		129AA4202B7A5E9100F8FE62 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41F2B7A5E9100F8FE62 /* FloatingPanel */; };
 		12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */; };
 		12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220A2B6E6A4900244152 /* AppDelegate.swift */; };
 		12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220C2B6E6A4900244152 /* SceneDelegate.swift */; };
@@ -54,6 +55,7 @@
 				129AA40F2B790F3F00F8FE62 /* RxCocoa-Dynamic in Frameworks */,
 				129AA40D2B790F3F00F8FE62 /* RxCocoa in Frameworks */,
 				129AA4092B790F3F00F8FE62 /* RxBlocking in Frameworks */,
+				129AA4202B7A5E9100F8FE62 /* FloatingPanel in Frameworks */,
 				129AA40B2B790F3F00F8FE62 /* RxBlocking-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +202,7 @@
 				129AA40E2B790F3F00F8FE62 /* RxCocoa-Dynamic */,
 				129AA4102B790F3F00F8FE62 /* RxRelay */,
 				129AA41C2B7A57BD00F8FE62 /* Toast */,
+				129AA41F2B7A5E9100F8FE62 /* FloatingPanel */,
 			);
 			productName = AaramReport;
 			productReference = 12CD22072B6E6A4800244152 /* AaramReport.app */;
@@ -232,6 +235,7 @@
 			packageReferences = (
 				129AA4072B790F3F00F8FE62 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				129AA41E2B7A5E9100F8FE62 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 12CD22082B6E6A4800244152 /* Products */;
 			projectDirPath = "";
@@ -509,6 +513,14 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		129AA41E2B7A5E9100F8FE62 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -541,6 +553,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		129AA41F2B7A5E9100F8FE62 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 129AA41E2B7A5E9100F8FE62 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
