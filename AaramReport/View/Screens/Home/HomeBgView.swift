@@ -20,12 +20,12 @@ class HomeBgView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initView()
+        setupUI()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        initView()
+        setupUI()
     }
 
     override func layoutSubviews() {
@@ -34,7 +34,7 @@ class HomeBgView: UIView {
     }
 
     // UI 초기화
-    private func initView() {
+    private func setupUI() {
         // 동영상 세팅
         guard let videoFile = Bundle.main.url(forResource: videoName, withExtension: videoExtension) else { return }
         let playerItem = AVPlayerItem(url: videoFile)
