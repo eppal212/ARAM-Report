@@ -8,12 +8,12 @@ class MaskingLabel: UILabel {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initLabel()
+        initLayout()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        initLabel()
+        initLayout()
     }
 
     override func drawText(in rect: CGRect) {
@@ -30,7 +30,7 @@ class MaskingLabel: UILabel {
         context.restoreGState()
     }
 
-    private func initLabel() {
+    private func initLayout() {
         // Label을 마스킹 하기 전에 background는 투명이어야 함. 그러므로 background를 미리 백업해둠.
         originalBackgroundColor = backgroundColor
         backgroundColor = .clear

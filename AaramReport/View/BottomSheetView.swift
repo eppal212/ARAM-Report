@@ -2,6 +2,7 @@ import UIKit
 import FloatingPanel
 
 class BottomSheetView: FloatingPanelController {
+    
     init(contentVC: UIViewController) {
         super.init(delegate: nil)
 

@@ -6,6 +6,7 @@ import AVFoundation
 
 @IBDesignable
 class HomeBgView: UIView {
+
     private let ovelayDim = UIView()
     @IBInspectable var overlayOpacity: CGFloat = 0 { // 동영상 위에 오버레이 되는 Dim 투명도
         didSet {
@@ -20,12 +21,12 @@ class HomeBgView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
+        initLayout()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupUI()
+        initLayout()
     }
 
     override func layoutSubviews() {
@@ -34,7 +35,7 @@ class HomeBgView: UIView {
     }
 
     // UI 초기화
-    private func setupUI() {
+    private func initLayout() {
         // 동영상 세팅
         guard let videoFile = Bundle.main.url(forResource: videoName, withExtension: videoExtension) else { return }
         let playerItem = AVPlayerItem(url: videoFile)
