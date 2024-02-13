@@ -68,20 +68,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rs2-HX-M5r">
-                                <rect key="frame" x="72.666666666666686" y="358.33333333333331" width="285" height="38"/>
+                                <rect key="frame" x="75.333333333333343" y="358.33333333333331" width="279.33333333333326" height="38"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aq-pl-hhG">
-                                        <rect key="frame" x="0.0" y="0.0" width="58.666666666666664" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="53" height="38"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-10" maxY="0.0"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="서버">
+                                        <buttonConfiguration key="configuration" style="plain" title="KR">
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="onClickServer:" destination="27E-Bq-jd3" eventType="touchUpInside" id="HAp-48-G1Y"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJI-Cy-1XO">
-                                        <rect key="frame" x="63.666666666666686" y="0.0" width="150" height="38"/>
+                                        <rect key="frame" x="58" y="0.0" width="150" height="38"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="7fr-8t-NG0"/>
@@ -90,13 +93,13 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M55-wV-9sL">
-                                        <rect key="frame" x="218.66666666666663" y="0.0" width="11.333333333333343" height="38"/>
+                                        <rect key="frame" x="213" y="0.0" width="11.333333333333343" height="38"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GP9-mh-SR0">
-                                        <rect key="frame" x="235" y="0.0" width="50" height="38"/>
+                                        <rect key="frame" x="229.33333333333337" y="0.0" width="50" height="38"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Apj-9q-eoZ"/>
@@ -171,6 +174,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gtm-QR-v9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="752" y="-675"/>
+        </scene>
+        <!--Server Select Bottom Sheet-->
+        <scene sceneID="9cd-L8-PZZ">
+            <objects>
+                <viewController storyboardIdentifier="ServerSelectBottomSheet" id="jla-E2-qST" customClass="ServerSelectBottomSheet" customModule="AaramReport" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VLn-4d-Bvb">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eDB-qb-E28">
+                                <rect key="frame" x="0.0" y="59" width="430" height="839"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RiotServerCell" id="qCG-Rs-XHP">
+                                        <rect key="frame" x="0.0" y="50" width="430" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qCG-Rs-XHP" id="6q4-aK-2Lu">
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jla-E2-qST" id="Hac-91-jCj"/>
+                                    <outlet property="delegate" destination="jla-E2-qST" id="RWu-3L-wxn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YHy-qx-4tz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YHy-qx-4tz" firstAttribute="trailing" secondItem="eDB-qb-E28" secondAttribute="trailing" id="Ns2-lt-aA9"/>
+                            <constraint firstItem="eDB-qb-E28" firstAttribute="leading" secondItem="YHy-qx-4tz" secondAttribute="leading" id="kPp-98-r4l"/>
+                            <constraint firstItem="eDB-qb-E28" firstAttribute="top" secondItem="YHy-qx-4tz" secondAttribute="top" id="tAR-XG-uhI"/>
+                            <constraint firstItem="YHy-qx-4tz" firstAttribute="bottom" secondItem="eDB-qb-E28" secondAttribute="bottom" id="yje-44-yup"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="eDB-qb-E28" id="4yX-ky-9Z1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w98-Ae-dem" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="751" y="21"/>
         </scene>
     </scenes>
     <designables>

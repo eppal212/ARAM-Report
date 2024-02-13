@@ -52,10 +52,22 @@ class HomeViewController: UIViewController {
         UIApplication.shared.open(url)
     }
 
+    // 서버 선택 버튼 클릭
+    @IBAction func onClickServer(_ sender: UIButton) {
+        guard let contentVC = storyboard?.instantiateViewController(identifier: "ServerSelectBottomSheet", creator: { creater in
+            let viewController = ServerSelectBottomSheet(onClickServer: { [weak self] serverName in
+                self?.serverButton.setTitle(serverName, for: .normal)
+            }, coder: creater)
+            return viewController
+        }) as? ServerSelectBottomSheet else { return }
+        self.present(BottomSheetView(contentVC: contentVC), animated: true)
+    }
+
     // 검색 버튼 클릭
     @IBAction func onClickSearch(_ sender: UIButton) {
         if let nickname =  nicknameInput.text, !nickname.isEmpty, let tag = tagInput.text, !tag.isEmpty {
             // TODO: 검색 로직
+            // 어카운트1 한 다음에 서머너4
 
             // 검색 닉네임 저장
             UserDefaults.standard.set(nickname, forKey: Const.savedNicknameKey)
