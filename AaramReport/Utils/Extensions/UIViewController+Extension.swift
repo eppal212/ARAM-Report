@@ -1,8 +1,13 @@
-//
-//  UIViewController+Extension.swift
-//  AaramReport
-//
-//  Created by OBeris on 2/13/24.
-//
+import UIKit
 
-import Foundation
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

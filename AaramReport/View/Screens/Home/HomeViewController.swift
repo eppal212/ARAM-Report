@@ -1,7 +1,6 @@
 import UIKit
-import RxSwift
-import RxCocoa
 import Toast
+import FloatingPanel
 
 class HomeViewController: UIViewController {
 
@@ -12,11 +11,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var nicknameInput: UITextField!
     @IBOutlet weak var tagInput: UITextField!
 
-    let server = BehaviorRelay<String>(value: "KR")
-    let disposeBag = DisposeBag()
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
 
         // Label UI 조정
         titleLabel.setAutoKerning()
@@ -27,8 +24,6 @@ class HomeViewController: UIViewController {
             nicknameInput.text = UserDefaults.standard.string(forKey: Const.savedNicknameKey) ?? ""
             tagInput.text = UserDefaults.standard.string(forKey: Const.savedTagKey) ?? ""
         }
-
-        server.bind(to: serverButton.rx.title()).disposed(by: disposeBag) // 서버 선택 바인드
     }
 
     // 최근 검색 닉네임 기억 on/off 처리
