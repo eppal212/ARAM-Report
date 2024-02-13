@@ -26,6 +26,10 @@
 		12C8EA4A2B7B78920008F402 /* RiotServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA492B7B78920008F402 /* RiotServer.swift */; };
 		12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */; };
 		12C8EA4E2B7B83F50008F402 /* ServerSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA4D2B7B83F50008F402 /* ServerSelectCell.swift */; };
+		12C8EA512B7BBD8E0008F402 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA502B7BBD8E0008F402 /* SDWebImage */; };
+		12C8EA532B7BBD8E0008F402 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA522B7BBD8E0008F402 /* SDWebImageMapKit */; };
+		12C8EA562B7BBDA50008F402 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA552B7BBDA50008F402 /* Alamofire */; };
+		12C8EA592B7BBEA90008F402 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA582B7BBEA90008F402 /* SDWebImageSVGCoder */; };
 		12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220A2B6E6A4900244152 /* AppDelegate.swift */; };
 		12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220C2B6E6A4900244152 /* SceneDelegate.swift */; };
 		12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220E2B6E6A4900244152 /* HomeViewController.swift */; };
@@ -62,9 +66,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12C8EA592B7BBEA90008F402 /* SDWebImageSVGCoder in Frameworks */,
 				129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */,
+				12C8EA532B7BBD8E0008F402 /* SDWebImageMapKit in Frameworks */,
 				129AA4112B790F3F00F8FE62 /* RxRelay in Frameworks */,
+				12C8EA512B7BBD8E0008F402 /* SDWebImage in Frameworks */,
 				129AA40F2B790F3F00F8FE62 /* RxCocoa-Dynamic in Frameworks */,
+				12C8EA562B7BBDA50008F402 /* Alamofire in Frameworks */,
 				129AA40D2B790F3F00F8FE62 /* RxCocoa in Frameworks */,
 				129AA4092B790F3F00F8FE62 /* RxBlocking in Frameworks */,
 				12C8EA402B7B48040008F402 /* FloatingPanel in Frameworks */,
@@ -78,9 +86,9 @@
 		121A56D92B6F5CB0006ED02D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				12C8EA432B7B53010008F402 /* BottomSheetView.swift */,
 				12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */,
 				129AA4142B79C98200F8FE62 /* Screens */,
-				12C8EA432B7B53010008F402 /* BottomSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +221,10 @@
 				129AA4102B790F3F00F8FE62 /* RxRelay */,
 				129AA41C2B7A57BD00F8FE62 /* Toast */,
 				12C8EA3F2B7B48040008F402 /* FloatingPanel */,
+				12C8EA502B7BBD8E0008F402 /* SDWebImage */,
+				12C8EA522B7BBD8E0008F402 /* SDWebImageMapKit */,
+				12C8EA552B7BBDA50008F402 /* Alamofire */,
+				12C8EA582B7BBEA90008F402 /* SDWebImageSVGCoder */,
 			);
 			productName = AaramReport;
 			productReference = 12CD22072B6E6A4800244152 /* AaramReport.app */;
@@ -246,6 +258,9 @@
 				129AA4072B790F3F00F8FE62 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				12C8EA3E2B7B48040008F402 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				12C8EA4F2B7BBD8E0008F402 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				12C8EA542B7BBDA50008F402 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				12C8EA572B7BBEA90008F402 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
 			);
 			productRefGroup = 12CD22082B6E6A4800244152 /* Products */;
 			projectDirPath = "";
@@ -537,6 +552,30 @@
 				minimumVersion = 2.8.1;
 			};
 		};
+		12C8EA4F2B7BBD8E0008F402 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.18.11;
+			};
+		};
+		12C8EA542B7BBDA50008F402 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		12C8EA572B7BBEA90008F402 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSVGCoder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -574,6 +613,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 12C8EA3E2B7B48040008F402 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		12C8EA502B7BBD8E0008F402 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12C8EA4F2B7BBD8E0008F402 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		12C8EA522B7BBD8E0008F402 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12C8EA4F2B7BBD8E0008F402 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		12C8EA552B7BBDA50008F402 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12C8EA542B7BBDA50008F402 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		12C8EA582B7BBEA90008F402 /* SDWebImageSVGCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12C8EA572B7BBEA90008F402 /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
+			productName = SDWebImageSVGCoder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
