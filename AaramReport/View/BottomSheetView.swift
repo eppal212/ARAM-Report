@@ -2,11 +2,23 @@ import UIKit
 import FloatingPanel
 
 class BottomSheetView: FloatingPanelController {
-    
-    init(contentVC: UIViewController) {
-        super.init(delegate: nil)
 
-        self.set(contentViewController: contentVC)
+    init() {
+        super.init(delegate: nil)
+        initLayout()
+    }
+
+    convenience init(contentVC: UIViewController, layout: FloatingPanelLayout) {
+        self.init()
+        setContentVC(contentVC: contentVC, layout: layout)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        initLayout()
+    }
+
+    private func initLayout() {
         self.isRemovalInteractionEnabled = true
         self.backdropView.dismissalTapGestureRecognizer.isEnabled = true
         self.backdropView.backgroundColor = .black
@@ -15,26 +27,12 @@ class BottomSheetView: FloatingPanelController {
 
         let appearance = SurfaceAppearance()
         appearance.cornerRadius = 16
+        appearance.backgroundColor = UIColor(white: 0, alpha: 0.5)
         self.surfaceView.appearance = appearance
-
-        let panelLayout = TouchBlockIntrinsicPanelLayout()
-        self.layout = panelLayout
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-}
-
-class TouchBlockIntrinsicPanelLayout: FloatingPanelBottomLayout {
-    override var initialState: FloatingPanelState { .tip }
-    override var anchors: [FloatingPanelState : FloatingPanelLayoutAnchoring] {
-        return [
-            .tip: FloatingPanelLayoutAnchor(absoluteInset: 300, edge: .bottom, referenceGuide: .safeArea)
-        ]
-    }
-
-    override func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
-        0.5
+    func setContentVC(contentVC: UIViewController, layout: FloatingPanelLayout) {
+        self.set(contentViewController: contentVC)
+        self.layout = layout
     }
 }

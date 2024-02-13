@@ -13,11 +13,16 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initLayout()
+    }
+
+    private func initLayout() {
         self.hideKeyboardWhenTappedAround()
 
         // Label UI 조정
         titleLabel.setAutoKerning()
         subtitleLabel.setAutoKerning(minusValue: 10)
+        serverButton.configuration?.contentInsets = .zero
 
         // 기억중인 닉네임 세팅
         if UserDefaults.standard.string(forKey: Const.useNickRememberKey) == "Y" {
@@ -54,13 +59,16 @@ class HomeViewController: UIViewController {
 
     // 서버 선택 버튼 클릭
     @IBAction func onClickServer(_ sender: UIButton) {
+        let bottomSheet = BottomSheetView()
         guard let contentVC = storyboard?.instantiateViewController(identifier: "ServerSelectBottomSheet", creator: { creater in
-            let viewController = ServerSelectBottomSheet(onClickServer: { [weak self] serverName in
+            let viewController = ServerSelectBottomSheet(coder: creater) { [weak self] serverName in
                 self?.serverButton.setTitle(serverName, for: .normal)
-            }, coder: creater)
+                bottomSheet.dismiss(animated: true)
+            }
             return viewController
         }) as? ServerSelectBottomSheet else { return }
-        self.present(BottomSheetView(contentVC: contentVC), animated: true)
+        bottomSheet.setContentVC(contentVC: contentVC, layout: contentVC)
+        self.present(bottomSheet, animated: true)
     }
 
     // 검색 버튼 클릭
