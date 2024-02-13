@@ -6,10 +6,11 @@ struct RiotServer {
     let url: String
 }
 
-let RiotServerList: [RiotServer] = [
-    RiotServer(id: "KR", name: "Korea", url: "https://s-lol-web.op.gg/assets/images/regions/01-icon-icon-kr.svg"),
-    RiotServer(id: "NA1", name: "North America", url: "https://s-lol-web.op.gg/assets/images/regions/01-icon-icon-na.svg"), ]
-
+extension RiotServer {
+    static let data: [RiotServer] = [
+        RiotServer(id: "KR", name: "Korea", url: "https://s-lol-web.op.gg/assets/images/regions/01-icon-icon-kr.svg"),
+        RiotServer(id: "NA1", name: "North America", url: "https://s-lol-web.op.gg/assets/images/regions/01-icon-icon-na.svg"), ]
+}
 
 //let ServerList: [String: String] = [{"id": "KR", "name": "Korea",  "url": "https://s-lol-web.op.gg/assets/images/regions/01-icon-icon-kr.svg"},
 //                                    {"id": "NA1", "name": "North America", "url": "https://s-lol-web.op.gg/assets/images/regions/01-icon-icon-na.svg"},

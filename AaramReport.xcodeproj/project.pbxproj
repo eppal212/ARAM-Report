@@ -23,8 +23,9 @@
 		12C8EA3B2B7B118E0008F402 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 12C8EA3A2B7B118E0008F402 /* loading.json */; };
 		12C8EA402B7B48040008F402 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA3F2B7B48040008F402 /* FloatingPanel */; };
 		12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA432B7B53010008F402 /* BottomSheetView.swift */; };
-		12C8EA4A2B7B78920008F402 /* ServerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA492B7B78920008F402 /* ServerList.swift */; };
+		12C8EA4A2B7B78920008F402 /* RiotServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA492B7B78920008F402 /* RiotServer.swift */; };
 		12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */; };
+		12C8EA4E2B7B83F50008F402 /* ServerSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA4D2B7B83F50008F402 /* ServerSelectCell.swift */; };
 		12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220A2B6E6A4900244152 /* AppDelegate.swift */; };
 		12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220C2B6E6A4900244152 /* SceneDelegate.swift */; };
 		12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220E2B6E6A4900244152 /* HomeViewController.swift */; };
@@ -43,8 +44,9 @@
 		12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskingLabel.swift; sourceTree = "<group>"; };
 		12C8EA3A2B7B118E0008F402 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		12C8EA432B7B53010008F402 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
-		12C8EA492B7B78920008F402 /* ServerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerList.swift; sourceTree = "<group>"; };
+		12C8EA492B7B78920008F402 /* RiotServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotServer.swift; sourceTree = "<group>"; };
 		12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		12C8EA4D2B7B83F50008F402 /* ServerSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectCell.swift; sourceTree = "<group>"; };
 		12CD22072B6E6A4800244152 /* AaramReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CD220A2B6E6A4900244152 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CD220C2B6E6A4900244152 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				12CD220E2B6E6A4900244152 /* HomeViewController.swift */,
 				121A56DE2B6F6496006ED02D /* HomeBgView.swift */,
 				129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */,
+				12C8EA4D2B7B83F50008F402 /* ServerSelectCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -142,7 +145,7 @@
 		129AA4172B79CA7F00F8FE62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				12C8EA492B7B78920008F402 /* ServerList.swift */,
+				12C8EA492B7B78920008F402 /* RiotServer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,7 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */,
-				12C8EA4A2B7B78920008F402 /* ServerList.swift in Sources */,
+				12C8EA4A2B7B78920008F402 /* RiotServer.swift in Sources */,
 				121A56DF2B6F6496006ED02D /* HomeBgView.swift in Sources */,
 				12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */,
 				129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */,
@@ -285,6 +288,7 @@
 				12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
 				129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */,
+				12C8EA4E2B7B83F50008F402 /* ServerSelectCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -419,7 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
