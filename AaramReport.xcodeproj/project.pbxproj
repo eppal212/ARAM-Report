@@ -18,8 +18,13 @@
 		129AA4112B790F3F00F8FE62 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA4102B790F3F00F8FE62 /* RxRelay */; };
 		129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4192B7A3E6400F8FE62 /* Constants.swift */; };
 		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
-		129AA4202B7A5E9100F8FE62 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41F2B7A5E9100F8FE62 /* FloatingPanel */; };
+		129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */; };
 		12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */; };
+		12C8EA3B2B7B118E0008F402 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 12C8EA3A2B7B118E0008F402 /* loading.json */; };
+		12C8EA402B7B48040008F402 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA3F2B7B48040008F402 /* FloatingPanel */; };
+		12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA432B7B53010008F402 /* BottomSheetView.swift */; };
+		12C8EA4A2B7B78920008F402 /* ServerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA492B7B78920008F402 /* ServerList.swift */; };
+		12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */; };
 		12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220A2B6E6A4900244152 /* AppDelegate.swift */; };
 		12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220C2B6E6A4900244152 /* SceneDelegate.swift */; };
 		12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD220E2B6E6A4900244152 /* HomeViewController.swift */; };
@@ -34,7 +39,12 @@
 		121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectBottomSheet.swift; sourceTree = "<group>"; };
 		12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskingLabel.swift; sourceTree = "<group>"; };
+		12C8EA3A2B7B118E0008F402 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		12C8EA432B7B53010008F402 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		12C8EA492B7B78920008F402 /* ServerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerList.swift; sourceTree = "<group>"; };
+		12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		12CD22072B6E6A4800244152 /* AaramReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AaramReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CD220A2B6E6A4900244152 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12CD220C2B6E6A4900244152 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +65,7 @@
 				129AA40F2B790F3F00F8FE62 /* RxCocoa-Dynamic in Frameworks */,
 				129AA40D2B790F3F00F8FE62 /* RxCocoa in Frameworks */,
 				129AA4092B790F3F00F8FE62 /* RxBlocking in Frameworks */,
-				129AA4202B7A5E9100F8FE62 /* FloatingPanel in Frameworks */,
+				12C8EA402B7B48040008F402 /* FloatingPanel in Frameworks */,
 				129AA40B2B790F3F00F8FE62 /* RxBlocking-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,6 +78,7 @@
 			children = (
 				12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */,
 				129AA4142B79C98200F8FE62 /* Screens */,
+				12C8EA432B7B53010008F402 /* BottomSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -75,8 +86,9 @@
 		121A56DB2B6F5F43006ED02D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				12CD22132B6E6A4B00244152 /* Assets.xcassets */,
+				12C8EA3A2B7B118E0008F402 /* loading.json */,
 				121A56DC2B6F5F52006ED02D /* home_bg.mp4 */,
+				12CD22132B6E6A4B00244152 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -86,6 +98,7 @@
 			children = (
 				121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */,
 				121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */,
+				12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -95,6 +108,7 @@
 			children = (
 				12CD220E2B6E6A4900244152 /* HomeViewController.swift */,
 				121A56DE2B6F6496006ED02D /* HomeBgView.swift */,
+				129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -116,16 +130,6 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		129AA4152B79C9DF00F8FE62 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				12CD22102B6E6A4900244152 /* Main.storyboard */,
-				12CD22152B6E6A4B00244152 /* LaunchScreen.storyboard */,
-				121A56DB2B6F5F43006ED02D /* Resources */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
 		129AA4162B79CA5300F8FE62 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +142,7 @@
 		129AA4172B79CA7F00F8FE62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				12C8EA492B7B78920008F402 /* ServerList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,7 +176,9 @@
 				12CD22182B6E6A4B00244152 /* Info.plist */,
 				12CD220A2B6E6A4900244152 /* AppDelegate.swift */,
 				12CD220C2B6E6A4900244152 /* SceneDelegate.swift */,
-				129AA4152B79C9DF00F8FE62 /* Assets */,
+				12CD22152B6E6A4B00244152 /* LaunchScreen.storyboard */,
+				12CD22102B6E6A4900244152 /* Main.storyboard */,
+				121A56DB2B6F5F43006ED02D /* Resources */,
 				129AA4162B79CA5300F8FE62 /* Service */,
 				129AA4122B79C91500F8FE62 /* Utils */,
 				121A56D92B6F5CB0006ED02D /* View */,
@@ -202,7 +209,7 @@
 				129AA40E2B790F3F00F8FE62 /* RxCocoa-Dynamic */,
 				129AA4102B790F3F00F8FE62 /* RxRelay */,
 				129AA41C2B7A57BD00F8FE62 /* Toast */,
-				129AA41F2B7A5E9100F8FE62 /* FloatingPanel */,
+				12C8EA3F2B7B48040008F402 /* FloatingPanel */,
 			);
 			productName = AaramReport;
 			productReference = 12CD22072B6E6A4800244152 /* AaramReport.app */;
@@ -235,7 +242,7 @@
 			packageReferences = (
 				129AA4072B790F3F00F8FE62 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
-				129AA41E2B7A5E9100F8FE62 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				12C8EA3E2B7B48040008F402 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = 12CD22082B6E6A4800244152 /* Products */;
 			projectDirPath = "";
@@ -255,6 +262,7 @@
 				12CD22172B6E6A4B00244152 /* LaunchScreen.storyboard in Resources */,
 				12CD22142B6E6A4B00244152 /* Assets.xcassets in Resources */,
 				12CD22122B6E6A4900244152 /* Main.storyboard in Resources */,
+				12C8EA3B2B7B118E0008F402 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,12 +273,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */,
+				12C8EA4A2B7B78920008F402 /* ServerList.swift in Sources */,
 				121A56DF2B6F6496006ED02D /* HomeBgView.swift in Sources */,
 				12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */,
+				129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */,
 				121A56E32B6FB2DA006ED02D /* UILabel+Extension.swift in Sources */,
 				121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */,
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
+				12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
 				129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */,
 			);
@@ -513,7 +525,7 @@
 				minimumVersion = 5.1.0;
 			};
 		};
-		129AA41E2B7A5E9100F8FE62 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+		12C8EA3E2B7B48040008F402 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scenee/FloatingPanel";
 			requirement = {
@@ -554,9 +566,9 @@
 			package = 129AA41B2B7A57BC00F8FE62 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
 		};
-		129AA41F2B7A5E9100F8FE62 /* FloatingPanel */ = {
+		12C8EA3F2B7B48040008F402 /* FloatingPanel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 129AA41E2B7A5E9100F8FE62 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			package = 12C8EA3E2B7B48040008F402 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
 		};
 /* End XCSwiftPackageProductDependency section */
