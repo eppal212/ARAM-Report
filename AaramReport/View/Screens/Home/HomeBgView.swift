@@ -1,8 +1,6 @@
 import UIKit
+import RxSwift
 import AVFoundation
-
-// TODO: 백그라운드 갔다오면 동영상 멈추는 이슈 수정
-// TODO: 동영상 속도 좀 느리게
 
 @IBDesignable
 class HomeBgView: UIView {
@@ -19,14 +17,18 @@ class HomeBgView: UIView {
     private let playerLayer = AVPlayerLayer() // 동영상을 재생할 레이어
     private var playerLooper: AVPlayerLooper? // 동영상 반복 (이곳에 선언 안 하면 동작 안 함)
 
+    private var disposeBag = DisposeBag()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initLayout()
+        initBinding()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         initLayout()
+        initBinding()
     }
 
     override func layoutSubviews() {
@@ -55,5 +57,19 @@ class HomeBgView: UIView {
             ovelayDim.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             ovelayDim.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
             ovelayDim.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0)])
+    }
+
+    // 백/포그라운드 전환시 동영상 처리
+    private func initBinding() {
+        NotificationCenter.default.rx.notification(UIApplication.willResignActiveNotification)
+            .subscribe(onNext: { [weak self] _ in
+                self?.playerLayer.player?.pause()
+            })
+            .disposed(by: disposeBag)
+        NotificationCenter.default.rx.notification(UIApplication.didBecomeActiveNotification)
+            .subscribe(onNext: { [weak self] _ in
+                self?.playerLayer.player?.play()
+            })
+            .disposed(by: disposeBag)
     }
 }
