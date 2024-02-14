@@ -9,13 +9,13 @@ class ServerSelectBottomSheet: UIViewController {
     @IBOutlet weak var collectionViewLeading: NSLayoutConstraint!
     @IBOutlet weak var collectionViewTrailing: NSLayoutConstraint!
 
-    private var selectHandler: ((String) -> Void)? // 셀 클릭 이벤트
+    private var selectHandler: ((RiotServer) -> Void)? // 셀 클릭 이벤트
 
     private let columnCount = 3 // 열 갯수
     private let cellSpacing = 10 // 셀 간격
     private let cellHeight = 60 // 셀 높이
 
-    init?(coder: NSCoder, onClickServer: @escaping (String) -> Void) {
+    init?(coder: NSCoder, onClickServer: @escaping (RiotServer) -> Void) {
         super.init(coder: coder)
         selectHandler = onClickServer
     }
@@ -39,15 +39,14 @@ extension ServerSelectBottomSheet: UICollectionViewDataSource, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ServerSelectCell", for: indexPath)
-        if let serverSelectCell = cell as? ServerSelectCell {
-            serverSelectCell.nameLabel?.text = RiotServer.data[indexPath.row].code
-            serverSelectCell.imageView.sd_setImage(with: URL(string: RiotServer.data[indexPath.row].url))
+        if let cell = cell as? ServerSelectCell {
+            cell.data = RiotServer.data[indexPath.row]
         }
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectHandler?(RiotServer.data[indexPath.row].code)
+        selectHandler?(RiotServer.data[indexPath.row])
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
