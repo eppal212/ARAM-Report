@@ -94,8 +94,16 @@ class HomeViewController: UIViewController {
     // 검색 버튼 클릭
     @IBAction func onClickSearch(_ sender: UIButton) {
         if let nickname =  nicknameInput.text, !nickname.isEmpty, let tag = tagInput.text, !tag.isEmpty {
-            // TODO: 검색 로직
-            // 어카운트1 한 다음에 서머너4
+
+            // 계정 확인
+            ApiClient.default.getAccount(gameName: nickname, tagLine: tag).subscribe(onNext: { account in
+                // MatchListViewController로 이동
+                guard let matchListVC = self.storyboard?.instantiateViewController(withIdentifier: "MatchListViewController") as? MatchListViewController else { return }
+                matchListVC.setAccountData(accountData: account)
+                self.navigationController?.pushViewController(matchListVC, animated: true)
+            }, onError: { _ in
+                self.view.makeToast("올바른 서버, 닉네임, 태그를 입력해 주세요.")
+            }).disposed(by: disposeBag)
 
             // 검색 닉네임 저장
             UserDefaults.standard.set(nickname, forKey: Const.savedNicknameKey)
@@ -105,4 +113,3 @@ class HomeViewController: UIViewController {
         }
     }
 }
-
