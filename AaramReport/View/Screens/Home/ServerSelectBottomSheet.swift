@@ -68,4 +68,6 @@ extension ServerSelectBottomSheet: FloatingPanelLayout {
     var anchors: [FloatingPanel.FloatingPanelState : FloatingPanel.FloatingPanelLayoutAnchoring] {
         [ .tip: FloatingPanelLayoutAnchor(absoluteInset: 410, edge: .bottom, referenceGuide: .safeArea) ]
     }
+
+    func backdropAlpha(for state: FloatingPanelState) -> CGFloat { 0.25 }
 }

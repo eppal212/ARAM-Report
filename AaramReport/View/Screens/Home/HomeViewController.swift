@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     }
 
     private func initLayout() {
-        self.hideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround() // 백그라운드 터치시 키보드 닫기
 
         // Label UI 조정
         titleLabel.setAutoKerning()
