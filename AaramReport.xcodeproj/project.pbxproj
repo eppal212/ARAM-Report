@@ -20,6 +20,10 @@
 		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
 		129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */; };
 		12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */; };
+		12BEBFA92B7CCEE10000BC0B /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFA22B7CCEE00000BC0B /* ApiClient.swift */; };
+		12BEBFAA2B7CCEE10000BC0B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFA32B7CCEE00000BC0B /* ApiService.swift */; };
+		12BEBFB02B7CEC6F0000BC0B /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFAF2B7CEC6F0000BC0B /* ErrorResponse.swift */; };
+		12BEBFB22B7CF7350000BC0B /* AccountDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB12B7CF7350000BC0B /* AccountDto.swift */; };
 		12C8EA3B2B7B118E0008F402 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 12C8EA3A2B7B118E0008F402 /* loading.json */; };
 		12C8EA402B7B48040008F402 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA3F2B7B48040008F402 /* FloatingPanel */; };
 		12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA432B7B53010008F402 /* BottomSheetView.swift */; };
@@ -46,6 +50,10 @@
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectBottomSheet.swift; sourceTree = "<group>"; };
 		12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskingLabel.swift; sourceTree = "<group>"; };
+		12BEBFA22B7CCEE00000BC0B /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		12BEBFA32B7CCEE00000BC0B /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		12BEBFAF2B7CEC6F0000BC0B /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		12BEBFB12B7CF7350000BC0B /* AccountDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDto.swift; sourceTree = "<group>"; };
 		12C8EA3A2B7B118E0008F402 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		12C8EA432B7B53010008F402 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		12C8EA492B7B78920008F402 /* RiotServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotServer.swift; sourceTree = "<group>"; };
@@ -154,6 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				12C8EA492B7B78920008F402 /* RiotServer.swift */,
+				12BEBFAF2B7CEC6F0000BC0B /* ErrorResponse.swift */,
+				12BEBFB12B7CF7350000BC0B /* AccountDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +171,8 @@
 		129AA4182B79CAB000F8FE62 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				12BEBFA32B7CCEE00000BC0B /* ApiService.swift */,
+				12BEBFA22B7CCEE00000BC0B /* ApiClient.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -297,6 +309,9 @@
 				12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */,
 				129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */,
 				121A56E32B6FB2DA006ED02D /* UILabel+Extension.swift in Sources */,
+				12BEBFAA2B7CCEE10000BC0B /* ApiService.swift in Sources */,
+				12BEBFB22B7CF7350000BC0B /* AccountDto.swift in Sources */,
+				12BEBFB02B7CEC6F0000BC0B /* ErrorResponse.swift in Sources */,
 				121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */,
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
@@ -304,6 +319,7 @@
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
 				129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */,
 				12C8EA4E2B7B83F50008F402 /* ServerSelectCell.swift in Sources */,
+				12BEBFA92B7CCEE10000BC0B /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

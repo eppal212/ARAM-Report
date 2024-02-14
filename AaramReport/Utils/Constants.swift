@@ -1,4 +1,7 @@
 struct Const {
+    // API
+    static let riotUrl = "https://asia.api.riotgames.com/riot/"
+
     // Key
     static let useNickRememberKey = "UseNickRememberKey"
     static let savedNicknameKey = "SavedNicknameKey"
