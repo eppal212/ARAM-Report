@@ -1,7 +1,12 @@
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
+import SDWebImage
 
 class MatchListViewController: UIViewController {
+    @IBOutlet weak var scrollView: UIScrollView! // 화면을 꽉채우는 스크롤뷰
+
     // 상단 탭 바
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerNick: UILabel!
@@ -15,7 +20,11 @@ class MatchListViewController: UIViewController {
     @IBOutlet weak var profileTag: UILabel!
     @IBOutlet weak var profileLevel: UILabel!
 
+    @IBOutlet weak var tableView: UITableView! // 테이블뷰
+
     private let viewModel = MatchListViewModel()
+    
+    private let disposeBag = DisposeBag()
 
     // MARK: - Override & Init
     override func viewDidLoad() {
@@ -27,11 +36,19 @@ class MatchListViewController: UIViewController {
     }
 
     private func initLayout() {
-
+        profileImage.layer.cornerRadius = 16
     }
 
     private func initBinding() {
-
+        // 상단 프로필 파트
+        viewModel.profileRelay.subscribe({ [weak self] iconId in
+            self?.profileImage.sd_setImage(with: URL(string: Const.profileIcon + "\(iconId.element ?? 0).jpg"))
+        }).disposed(by: disposeBag)
+        viewModel.nickRelay.bind(to: headerNick.rx.text).disposed(by: disposeBag)
+        viewModel.nickRelay.bind(to: profileNick.rx.text).disposed(by: disposeBag)
+        viewModel.tagRelay.map({"#\($0)"}).bind(to: headerTag.rx.text).disposed(by: disposeBag)
+        viewModel.tagRelay.map({"#\($0)"}).bind(to: profileTag.rx.text).disposed(by: disposeBag)
+        viewModel.levelRelay.bind(to: profileLevel.rx.text).disposed(by: disposeBag)
     }
 
     // 이동 전 호출되는 기본값 세팅 함수
