@@ -19,6 +19,7 @@
 		129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4192B7A3E6400F8FE62 /* Constants.swift */; };
 		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
 		129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */; };
+		12A66F172B7E24B6001FDC45 /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12A66F162B7E24B6001FDC45 /* Key.plist */; };
 		12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */; };
 		12BEBFA92B7CCEE10000BC0B /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFA22B7CCEE00000BC0B /* ApiClient.swift */; };
 		12BEBFAA2B7CCEE10000BC0B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFA32B7CCEE00000BC0B /* ApiService.swift */; };
@@ -26,6 +27,7 @@
 		12BEBFB22B7CF7350000BC0B /* AccountDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB12B7CF7350000BC0B /* AccountDto.swift */; };
 		12BEBFB52B7CFF230000BC0B /* MatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB42B7CFF230000BC0B /* MatchListViewController.swift */; };
 		12BEBFB72B7CFF350000BC0B /* MatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB62B7CFF350000BC0B /* MatchListViewModel.swift */; };
+		12BEBFB92B7D094B0000BC0B /* SummonerDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB82B7D094B0000BC0B /* SummonerDto.swift */; };
 		12C8EA3B2B7B118E0008F402 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 12C8EA3A2B7B118E0008F402 /* loading.json */; };
 		12C8EA402B7B48040008F402 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA3F2B7B48040008F402 /* FloatingPanel */; };
 		12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA432B7B53010008F402 /* BottomSheetView.swift */; };
@@ -51,6 +53,7 @@
 		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectBottomSheet.swift; sourceTree = "<group>"; };
+		12A66F162B7E24B6001FDC45 /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
 		12B1E0C92B711E0500D48EE0 /* MaskingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskingLabel.swift; sourceTree = "<group>"; };
 		12BEBFA22B7CCEE00000BC0B /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		12BEBFA32B7CCEE00000BC0B /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		12BEBFB12B7CF7350000BC0B /* AccountDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDto.swift; sourceTree = "<group>"; };
 		12BEBFB42B7CFF230000BC0B /* MatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListViewController.swift; sourceTree = "<group>"; };
 		12BEBFB62B7CFF350000BC0B /* MatchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListViewModel.swift; sourceTree = "<group>"; };
+		12BEBFB82B7D094B0000BC0B /* SummonerDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerDto.swift; sourceTree = "<group>"; };
 		12C8EA3A2B7B118E0008F402 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		12C8EA432B7B53010008F402 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		12C8EA492B7B78920008F402 /* RiotServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotServer.swift; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				12C8EA492B7B78920008F402 /* RiotServer.swift */,
 				12BEBFAF2B7CEC6F0000BC0B /* ErrorResponse.swift */,
 				12BEBFB12B7CF7350000BC0B /* AccountDto.swift */,
+				12BEBFB82B7D094B0000BC0B /* SummonerDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				12CD22182B6E6A4B00244152 /* Info.plist */,
+				12A66F162B7E24B6001FDC45 /* Key.plist */,
 				12CD220A2B6E6A4900244152 /* AppDelegate.swift */,
 				12CD220C2B6E6A4900244152 /* SceneDelegate.swift */,
 				12CD22152B6E6A4B00244152 /* LaunchScreen.storyboard */,
@@ -304,6 +310,7 @@
 			files = (
 				121A56E02B6F7A20006ED02D /* home_bg.mp4 in Resources */,
 				12CD22172B6E6A4B00244152 /* LaunchScreen.storyboard in Resources */,
+				12A66F172B7E24B6001FDC45 /* Key.plist in Resources */,
 				12CD22142B6E6A4B00244152 /* Assets.xcassets in Resources */,
 				12CD22122B6E6A4900244152 /* Main.storyboard in Resources */,
 				12C8EA3B2B7B118E0008F402 /* loading.json in Resources */,
@@ -318,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */,
+				12BEBFB92B7D094B0000BC0B /* SummonerDto.swift in Sources */,
 				12C8EA4A2B7B78920008F402 /* RiotServer.swift in Sources */,
 				121A56DF2B6F6496006ED02D /* HomeBgView.swift in Sources */,
 				12CD220F2B6E6A4900244152 /* HomeViewController.swift in Sources */,

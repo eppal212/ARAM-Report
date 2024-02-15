@@ -1,6 +1,6 @@
 struct Const {
     // API
-    static let riotUrl = "https://asia.api.riotgames.com/riot/"
+    static let riotUrl = "api.riotgames.com/"
 
     // Key
     static let useNickRememberKey = "UseNickRememberKey"
@@ -10,8 +10,3 @@ struct Const {
     // Url
     static let riotApi = "https://developer.riotgames.com/"
 }
-
-//enum asdf {
-//    case a = 0
-//    case b = 1
-//}

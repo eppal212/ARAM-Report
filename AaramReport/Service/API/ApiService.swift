@@ -2,29 +2,37 @@ import Foundation
 import RxSwift
 import Alamofire
 
+enum PrefixPath {
+    case none
+    case lol
+    case asia
+    case server(RiotServerId)
+
+    func getValue() -> String {
+        switch self {
+        case .none: return ""
+        case .lol: return "lol."
+        case .asia: return "asia."
+        case .server(let id): return id.rawValue.lowercased()
+        }
+    }
+}
+
 struct ApiRequest {
-    var method: HTTPMethod!
+    var method: HTTPMethod = .get
+    var prefix: PrefixPath = .none
     var path: String = ""
+    var pathParam: [String]?
     var parameters: [String: Any]?
     var encoding: ParameterEncoding = URLEncoding.queryString // JSONEncoding.default
     var header: HTTPHeaders {
         ["Content-Type": "application/json; charset=utf-8",
-         "X-Riot-Token": "RGAPI-8210e3e5-57fa-4a7e-830c-3858b69038b4"]
+         "X-Riot-Token": "RGAPI-8210e3e5-57fa-4a7e-830c-3858b69038b4"] // TODO: 숨겨야 함
     }
 }
 
-//    {
-//        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
-//        "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
-//        "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-//        "Origin": "https://developer.riotgames.com",
-//        "X-Riot-Token": "RGAPI-8210e3e5-57fa-4a7e-830c-3858b69038b4"
-//    }
-
 
 class ApiService {
-    private var baseUrl: URL? = URL(string: Const.riotUrl)
-
     var session: Session = {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.headers = .default
@@ -35,10 +43,16 @@ class ApiService {
     }()
 
     func request<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
-        guard let url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
+        let baseUrl: URL? = URL(string: "http://" + apiRequest.prefix.getValue() + Const.riotUrl)
+
+        guard var url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
             print("URL creation is failed: \(apiRequest.path)")
             let error = ErrorResponse(message: "URL creation is failed", path: apiRequest.path)
             return Observable.error(error)
+        }
+
+        for param in apiRequest.pathParam ?? [] {
+            url.appendPathComponent(param)
         }
 
         return Observable<T>.create { observer in

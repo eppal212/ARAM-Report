@@ -7,10 +7,26 @@ class ApiClient: ApiService {
         return ApiClient()
     }()
 
+    // 계정 정보 조회
+    // https://developer.riotgames.com/apis#account-v1/GET_getByRiotId
     func getAccount(gameName: String, tagLine: String) -> Observable<AccountDto> {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
-        apiRequest.path = "account/v1/accounts/by-riot-id/\(gameName)/\(tagLine)"
+        apiRequest.prefix = .asia
+        apiRequest.path = "riot/account/v1/accounts/by-riot-id"
+        apiRequest.pathParam = [gameName, tagLine]
+
+        return self.request(apiRequest: apiRequest)
+    }
+
+    // 소환사 정보 조회
+    // https://developer.riotgames.com/apis#summoner-v4/GET_getByPUUID
+    func getSummoner(server: RiotServer, puuid: String) -> Observable<AccountDto> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.prefix = .server(server.id)
+        apiRequest.path = "lol/summoner/v4/summoners/by-puuid"
+        apiRequest.pathParam = [puuid]
 
         return self.request(apiRequest: apiRequest)
     }

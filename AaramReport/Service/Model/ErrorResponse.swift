@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ErrorStatusCode: Int {
+enum ErrorStatusCode: Int {
     case badRequest = 400
     case unauthorized = 401 // Riot Key 오류
     case forbidden = 403
