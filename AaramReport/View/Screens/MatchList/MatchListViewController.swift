@@ -8,10 +8,12 @@ class MatchListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.getSummoner()
     }
 
-    func setAccountData(accountData: AccountDto) {
+    func setAccountData(accountData: AccountDto, server: RiotServer?) {
         viewModel.account = accountData
+        viewModel.server = server
     }
 
     @IBAction func onClickBack(_ sender: UIButton) {
