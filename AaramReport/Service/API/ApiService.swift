@@ -13,7 +13,7 @@ enum PrefixPath {
         case .none: return ""
         case .lol: return "lol."
         case .asia: return "asia."
-        case .server(let id): return id.rawValue.lowercased()
+        case .server(let id): return "\(id.rawValue.lowercased())."
         }
     }
 }
@@ -27,7 +27,7 @@ struct ApiRequest {
     var encoding: ParameterEncoding = URLEncoding.queryString // JSONEncoding.default
     var header: HTTPHeaders {
         ["Content-Type": "application/json; charset=utf-8",
-         "X-Riot-Token": "RGAPI-8210e3e5-57fa-4a7e-830c-3858b69038b4"] // TODO: 숨겨야 함
+         "X-Riot-Token": Bundle.main.RIOT_API_KEY]
     }
 }
 
@@ -43,7 +43,7 @@ class ApiService {
     }()
 
     func request<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
-        let baseUrl: URL? = URL(string: "http://" + apiRequest.prefix.getValue() + Const.riotUrl)
+        let baseUrl: URL? = URL(string: "https://" + apiRequest.prefix.getValue() + Const.riotUrl)
 
         guard var url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
             print("URL creation is failed: \(apiRequest.path)")
@@ -55,17 +55,17 @@ class ApiService {
             url.appendPathComponent(param)
         }
 
-        return Observable<T>.create { observer in
-            let dataRequest = self.session.request(url,
-                                                   method: apiRequest.method,
-                                                   parameters: apiRequest.parameters,
-                                                   encoding: apiRequest.encoding,
-                                                   headers: apiRequest.header)
+        return Observable<T>.create { [weak self] observer in
+            let dataRequest = self?.session.request(url,
+                                                    method: apiRequest.method,
+                                                    parameters: apiRequest.parameters,
+                                                    encoding: apiRequest.encoding,
+                                                    headers: apiRequest.header)
                 .validate()
                 .responseData { response in
                     switch response.result {
                     case .success(let data):
-                        print("request \"\(apiRequest.path)\" success: \(String(decoding: data, as: UTF8.self))")
+                        print("request \"\(url.absoluteString)\" success: \(String(decoding: data, as: UTF8.self))")
 
                         do {
                             let model: T = try JSONDecoder().decode(T.self, from: data)
@@ -76,7 +76,7 @@ class ApiService {
                         }
 
                     case .failure(let error):
-                        print("request fail \"\(apiRequest.path)\" error: \(error) params: \(String(describing: apiRequest.parameters))")
+                        print("request fail \"\(url.absoluteString)\" error: \(error) params: \(String(describing: apiRequest.parameters))")
 
                         if let data = response.data {
                             do {
@@ -94,7 +94,7 @@ class ApiService {
                     observer.onCompleted()
                 }
 
-            return Disposables.create { dataRequest.cancel() }
+            return Disposables.create { dataRequest?.cancel() }
         }
     }
 }

@@ -21,10 +21,10 @@ class ApiClient: ApiService {
 
     // 소환사 정보 조회
     // https://developer.riotgames.com/apis#summoner-v4/GET_getByPUUID
-    func getSummoner(server: RiotServer, puuid: String) -> Observable<AccountDto> {
+    func getSummoner(serverId: RiotServerId, puuid: String) -> Observable<SummonerDto> {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
-        apiRequest.prefix = .server(server.id)
+        apiRequest.prefix = .server(serverId)
         apiRequest.path = "lol/summoner/v4/summoners/by-puuid"
         apiRequest.pathParam = [puuid]
 
