@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
 
     private let rememberNickRelay = PublishRelay<Bool>() // 닉네임 기억 여부 Relay
     private let serverRelay = BehaviorRelay<RiotServer>(value: RiotServer.data[0]) // 검색 서버 Relay
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,14 +79,18 @@ class HomeViewController: UIViewController {
     // 서버 선택 버튼 클릭
     @IBAction func onClickServer(_ sender: UIButton) {
         let bottomSheet = BottomSheetView()
+
         guard let contentVC = storyboard?.instantiateViewController(identifier: "ServerSelectBottomSheet", creator: { creater in
+
             let viewController = ServerSelectBottomSheet(coder: creater) { [weak self] server in
                 // 서버 Item 선택 이벤트
                 self?.serverRelay.accept(server)
                 bottomSheet.dismiss(animated: true)
             }
             return viewController
+
         }) as? ServerSelectBottomSheet else { return }
+
         bottomSheet.setContentVC(contentVC: contentVC, layout: contentVC)
         self.present(bottomSheet, animated: true)
     }
@@ -97,10 +101,12 @@ class HomeViewController: UIViewController {
         if let nickname =  nicknameInput.text, !nickname.isEmpty, let tag = tagInput.text, !tag.isEmpty {
             // 계정 확인
             ApiClient.default.getAccount(gameName: nickname, tagLine: tag).subscribe(onNext: { [weak self] account in
+
                 // MatchListViewController로 이동
                 guard let matchListVC = self?.storyboard?.instantiateViewController(withIdentifier: "MatchListViewController") as? MatchListViewController else { return }
                 matchListVC.setAccountData(accountData: account, server: self?.serverRelay.value)
                 self?.navigationController?.pushViewController(matchListVC, animated: true)
+
             }, onError: { [weak self] _ in
                 self?.view.makeToast("올바른 서버, 닉네임, 태그를 입력해 주세요.")
             }).disposed(by: disposeBag)

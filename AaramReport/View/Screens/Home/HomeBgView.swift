@@ -15,9 +15,9 @@ class HomeBgView: UIView {
     @IBInspectable var videoExtension: String = "mp4"
 
     private let playerLayer = AVPlayerLayer() // 동영상을 재생할 레이어
-    private var playerLooper: AVPlayerLooper? // 동영상 반복 (이곳에 선언 안 하면 동작 안 함)
+    private var playerLooper: AVPlayerLooper? // 동영상 반복
 
-    private var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
