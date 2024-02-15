@@ -93,8 +93,8 @@ class HomeViewController: UIViewController {
 
     // 검색 버튼 클릭
     @IBAction func onClickSearch(_ sender: UIButton) {
+        // 입력 정보 확인
         if let nickname =  nicknameInput.text, !nickname.isEmpty, let tag = tagInput.text, !tag.isEmpty {
-
             // 계정 확인
             ApiClient.default.getAccount(gameName: nickname, tagLine: tag).subscribe(onNext: { account in
                 // MatchListViewController로 이동
