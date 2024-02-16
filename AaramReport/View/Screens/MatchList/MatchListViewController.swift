@@ -37,6 +37,15 @@ class MatchListViewController: UIViewController {
 
     private func initLayout() {
         profileImage.layer.cornerRadius = 16
+
+        // TableView
+        viewModel.matchListRelay
+            .filter({ [weak self] data in
+                data.count == self?.viewModel.matchListCount
+            })
+            .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { index, item, cell in
+            // TODO: cell 처리
+        }.disposed(by: disposeBag)
     }
 
     private func initBinding() {
