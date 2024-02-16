@@ -19,6 +19,9 @@
 		129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4192B7A3E6400F8FE62 /* Constants.swift */; };
 		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
 		129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */; };
+		12A0B77E2B7F1753008FDA9C /* MatchDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B77D2B7F1753008FDA9C /* MatchDto.swift */; };
+		12A0B7802B7F2437008FDA9C /* CurrentGameInto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B77F2B7F2437008FDA9C /* CurrentGameInto.swift */; };
+		12A0B7822B7F30C8008FDA9C /* LeagueEntryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B7812B7F30C8008FDA9C /* LeagueEntryDto.swift */; };
 		12A66F172B7E24B6001FDC45 /* Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12A66F162B7E24B6001FDC45 /* Key.plist */; };
 		12A66F192B7E2A8F001FDC45 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A66F182B7E2A8F001FDC45 /* Bundle+Extension.swift */; };
 		12A66F1B2B7E31C3001FDC45 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A66F1A2B7E31C3001FDC45 /* Log.swift */; };
@@ -55,6 +58,9 @@
 		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectBottomSheet.swift; sourceTree = "<group>"; };
+		12A0B77D2B7F1753008FDA9C /* MatchDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDto.swift; sourceTree = "<group>"; };
+		12A0B77F2B7F2437008FDA9C /* CurrentGameInto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameInto.swift; sourceTree = "<group>"; };
+		12A0B7812B7F30C8008FDA9C /* LeagueEntryDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryDto.swift; sourceTree = "<group>"; };
 		12A66F162B7E24B6001FDC45 /* Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Key.plist; sourceTree = "<group>"; };
 		12A66F182B7E2A8F001FDC45 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		12A66F1A2B7E31C3001FDC45 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -180,6 +186,9 @@
 				12BEBFAF2B7CEC6F0000BC0B /* ErrorResponse.swift */,
 				12BEBFB12B7CF7350000BC0B /* AccountDto.swift */,
 				12BEBFB82B7D094B0000BC0B /* SummonerDto.swift */,
+				12A0B77D2B7F1753008FDA9C /* MatchDto.swift */,
+				12A0B77F2B7F2437008FDA9C /* CurrentGameInto.swift */,
+				12A0B7812B7F30C8008FDA9C /* LeagueEntryDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,6 +342,7 @@
 				12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */,
 				12A66F192B7E2A8F001FDC45 /* Bundle+Extension.swift in Sources */,
 				12A66F1B2B7E31C3001FDC45 /* Log.swift in Sources */,
+				12A0B7802B7F2437008FDA9C /* CurrentGameInto.swift in Sources */,
 				12BEBFB92B7D094B0000BC0B /* SummonerDto.swift in Sources */,
 				12C8EA4A2B7B78920008F402 /* RiotServer.swift in Sources */,
 				121A56DF2B6F6496006ED02D /* HomeBgView.swift in Sources */,
@@ -347,9 +357,11 @@
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12BEBFB72B7CFF350000BC0B /* MatchListViewModel.swift in Sources */,
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
+				12A0B77E2B7F1753008FDA9C /* MatchDto.swift in Sources */,
 				12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
 				129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */,
+				12A0B7822B7F30C8008FDA9C /* LeagueEntryDto.swift in Sources */,
 				12C8EA4E2B7B83F50008F402 /* ServerSelectCell.swift in Sources */,
 				12BEBFA92B7CCEE10000BC0B /* ApiClient.swift in Sources */,
 			);

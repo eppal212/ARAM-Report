@@ -31,61 +31,52 @@ class ApiClient: ApiService {
         return self.request(apiRequest: apiRequest)
     }
 
-//    func getBlockUsers(pageNo: Int, pageSize: Int, type: String? = nil) -> Observable<PagedManagedUser> {
-//        var apiRequest = ApiRequest()
-//        apiRequest.method = .get
-//        apiRequest.path = "/api/users/block-users"
-//        apiRequest.header = ApiRequestHeader.auth
-//        apiRequest.encoding = URLEncoding.queryString
-//        apiRequest.parameters = ["page": pageNo, "size": pageSize]
-//
-//        if let type = type {
-//            apiRequest.parameters?["type"] = type
-//        }
-//
-//        return self.request(apiRequest: apiRequest, loaderType: .page)
-//    }
-//
-//    func addBlockUser(id: Int) -> Observable<ManagedUser> {
-//        var apiRequest = ApiRequest()
-//        apiRequest.method = .post
-//        apiRequest.path = "/api/users/block-users"
-//        apiRequest.header = ApiRequestHeader.auth
-//        apiRequest.parameters = ["targetId": id]
-//
-//        return self.request(apiRequest: apiRequest, loaderType: .page)
-//    }
-//
-//    func deleteBlockUser(id: Int) -> Observable<DefaultResponse> {
-//        var apiRequest = ApiRequest()
-//        apiRequest.method = .delete
-//        apiRequest.path = "/api/users/block-users/\(id)"
-//        apiRequest.header = ApiRequestHeader.auth
-//
-//        return self.request(apiRequest: apiRequest, loaderType: .page)
-//    }
-//
-//    func updateAccountInfo(email: String? = nil,
-//                                  isChangedPassword: Bool = false,
-//                                  password: String? = nil) -> Observable<User> {
-//        var apiRequest = ApiRequest()
-//        apiRequest.method = .patch
-//        apiRequest.path = "/api/users/my-account"
-//        apiRequest.header = ApiRequestHeader.auth
-//        apiRequest.parameters = [
-//            "changePassword": isChangedPassword
-//        ]
-////        apiRequest.parameters = try? request.asDictionary()
-//
-//        if let email = email {
-//            apiRequest.parameters?["email"] = email
-//        }
-//        if isChangedPassword,
-//            let password = password,
-//            let authorized = Utils.createAuthorizedData(authorizingField: password, salt: NetworkConst.passwordSalt) {
-//            apiRequest.parameters?["password"] = authorized
-//        }
-//
-//        return self.request(apiRequest: apiRequest, loaderType: .page)
-//    }
+    // 매치 목록 조회
+    // https://developer.riotgames.com/apis#match-v5/GET_getMatchIdsByPUUID
+    func getMatchList(puuid: String) -> Observable<[String]> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.prefix = .asia
+        apiRequest.path = "lol/match/v5/matches/by-puuid"
+        apiRequest.pathParam = [puuid, "ids"]
+        apiRequest.parameters = ["queueId": 450, "count": 20]
+
+        return self.request(apiRequest: apiRequest)
+    }
+
+    // 매치 상세 조회
+    // https://developer.riotgames.com/apis#match-v5/GET_getMatch
+    func getMatchDetail(matchId: String) -> Observable<MatchDto> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.prefix = .asia
+        apiRequest.path = "lol/match/v5/matches"
+        apiRequest.pathParam = [matchId]
+
+        return self.request(apiRequest: apiRequest)
+    }
+
+    // 진행중인 게임 조회
+    // https://developer.riotgames.com/apis#spectator-v4/GET_getCurrentGameInfoBySummoner
+    func getCurrentGame(serverId: RiotServerId, encryptedSummonerId: String) -> Observable<CurrentGameInfo> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.prefix = .server(serverId)
+        apiRequest.path = "lol/spectator/v4/active-games/by-summoner"
+        apiRequest.pathParam = [encryptedSummonerId]
+
+        return self.request(apiRequest: apiRequest)
+    }
+
+    // 소환사 티어 조회
+    // https://developer.riotgames.com/apis#league-v4/GET_getLeagueEntriesForSummoner
+    func getSummonerTier(serverId: RiotServerId, encryptedSummonerId: String) -> Observable<LeagueEntryDto> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.prefix = .server(serverId)
+        apiRequest.path = "ol/league/v4/entries/by-summoner"
+        apiRequest.pathParam = [encryptedSummonerId]
+
+        return self.request(apiRequest: apiRequest)
+    }
 }
