@@ -74,8 +74,20 @@ class ApiClient: ApiService {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
         apiRequest.prefix = .server(serverId)
-        apiRequest.path = "ol/league/v4/entries/by-summoner"
+        apiRequest.path = "lol/league/v4/entries/by-summoner"
         apiRequest.pathParam = [encryptedSummonerId]
+
+        return self.request(apiRequest: apiRequest)
+    }
+
+    // 챔피언별 숙련도 조회
+    // https://developer.riotgames.com/apis#champion-mastery-v4/GET_getAllChampionMasteriesByPUUID
+    func getSummonerTier(serverId: RiotServerId, puuid: String) -> Observable<ChampionMasteryDto> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.prefix = .server(serverId)
+        apiRequest.path = "lol/champion-mastery/v4/champion-masteries/by-puuid"
+        apiRequest.pathParam = [puuid]
 
         return self.request(apiRequest: apiRequest)
     }
