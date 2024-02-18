@@ -141,6 +141,19 @@ struct ParticipantDto: Codable {
     var win: Bool?
 }
 
+// 소환사 주문
+enum Spell: Int {
+    case SummonerBarrier = 21 // 방어막
+    case SummonerBoost = 1 // 정화
+    case SummonerDot = 14 // 점화
+    case SummonerExhaust = 3 // 탈진
+    case SummonerFlash = 4 // 점멸
+    case SummonerHaste = 6 // 유체화
+    case SummonerHeal = 7 // 회복
+    case SummonerMana = 13 // 총명
+    case SummonerSnowball = 32 // 눈덩이
+}
+
 // 룬 정보
 struct PerksDto: Codable {
     var statPerks: PerkStatsDto?

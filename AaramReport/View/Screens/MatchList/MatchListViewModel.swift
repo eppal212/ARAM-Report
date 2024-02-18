@@ -19,7 +19,7 @@ class MatchListViewModel {
     let levelRelay = PublishRelay<String>()
 
     // 매치 목록 부분
-    let matchListCount = 5
+    let matchListCount = 3
     let matchListRelay = BehaviorRelay<[MatchDto]>(value: [])
 
     private let disposeBag = DisposeBag()
@@ -69,10 +69,3 @@ class MatchListViewModel {
         // TODO:
     }
 }
-
-// https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/ 아이템
-// https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/rankedcrests/ 랭크 이미지
-// https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/data/spells/icons2d/ 스펠
-// https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/ 챔피언 아이콘
-// https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/ 챔피언 일러스트
-// https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/ 룬
