@@ -64,10 +64,10 @@ class MatchListCell: UITableViewCell {
             badgeArray.append("퍼블")
         }
         switch matchData?.largestMultiKill {
-        case 1: badgeArray.append("더블킬")
-        case 2: badgeArray.append("트리플킬")
-        case 3: badgeArray.append("쿼드라킬")
-        case 4: badgeArray.append("펜타킬")
+        case 2: badgeArray.append("더블킬")
+        case 3: badgeArray.append("트리플킬")
+        case 4: badgeArray.append("쿼드라킬")
+        case 5: badgeArray.append("펜타킬")
         default: break
         }
         if data?.info?.participants?.sorted(by: { $0.totalDamageDealt ?? 0 > $1.totalDamageDealt ?? 0}).first?.puuid == puuid {
@@ -77,11 +77,11 @@ class MatchListCell: UITableViewCell {
         badgeView.subviews.forEach { $0.removeFromSuperview() }
         for badge in badgeArray {
             let badgeLabel = UILabel()
+            badgeView.addArrangedSubview(badgeLabel)
             badgeLabel.text = badge
             badgeLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 10.0)
             badgeLabel.textAlignment = .center
             badgeLabel.textColor = .white
-            badgeView.addSubview(badgeLabel)
         }
     }
 
@@ -90,7 +90,7 @@ class MatchListCell: UITableViewCell {
         // 시간 변수 확인
         var endStamp = data?.info?.gameEndTimestamp
         endStamp = endStamp == nil ? data?.info?.gameDuration : (endStamp ?? 0) / 1000
-        guard let endTime = endStamp, var startTime = data?.info?.gameStartTimestamp else {
+        guard let endTime = endStamp, let startTime = data?.info?.gameStartTimestamp else {
             dateLabel.text = ""
             timeLabel.text = ""
             return
