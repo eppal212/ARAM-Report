@@ -20,6 +20,8 @@
 		129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4192B7A3E6400F8FE62 /* Constants.swift */; };
 		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
 		129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */; };
+		12A02B8D2B831D8A002BE599 /* DataDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B8C2B831D8A002BE599 /* DataDragon.swift */; };
+		12A02B902B8325E7002BE599 /* SpellMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */; };
 		12A0B77E2B7F1753008FDA9C /* MatchDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B77D2B7F1753008FDA9C /* MatchDto.swift */; };
 		12A0B7802B7F2437008FDA9C /* CurrentGameInto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B77F2B7F2437008FDA9C /* CurrentGameInto.swift */; };
 		12A0B7822B7F30C8008FDA9C /* LeagueEntryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A0B7812B7F30C8008FDA9C /* LeagueEntryDto.swift */; };
@@ -61,6 +63,8 @@
 		129A42D02B824047007B8DF0 /* MatchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListCell.swift; sourceTree = "<group>"; };
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectBottomSheet.swift; sourceTree = "<group>"; };
+		12A02B8C2B831D8A002BE599 /* DataDragon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDragon.swift; sourceTree = "<group>"; };
+		12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellMetadata.swift; sourceTree = "<group>"; };
 		12A0B77D2B7F1753008FDA9C /* MatchDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDto.swift; sourceTree = "<group>"; };
 		12A0B77F2B7F2437008FDA9C /* CurrentGameInto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameInto.swift; sourceTree = "<group>"; };
 		12A0B7812B7F30C8008FDA9C /* LeagueEntryDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueEntryDto.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		129AA4172B79CA7F00F8FE62 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				12A02B8E2B83239A002BE599 /* DataDragon */,
 				12C8EA492B7B78920008F402 /* RiotServer.swift */,
 				12BEBFAF2B7CEC6F0000BC0B /* ErrorResponse.swift */,
 				12BEBFB12B7CF7350000BC0B /* AccountDto.swift */,
@@ -203,8 +208,17 @@
 			children = (
 				12BEBFA32B7CCEE00000BC0B /* ApiService.swift */,
 				12BEBFA22B7CCEE00000BC0B /* ApiClient.swift */,
+				12A02B8C2B831D8A002BE599 /* DataDragon.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		12A02B8E2B83239A002BE599 /* DataDragon */ = {
+			isa = PBXGroup;
+			children = (
+				12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */,
+			);
+			path = DataDragon;
 			sourceTree = "<group>";
 		};
 		12BEBFB32B7CFEEC0000BC0B /* MatchList */ = {
@@ -361,11 +375,13 @@
 				12BEBFB52B7CFF230000BC0B /* MatchListViewController.swift in Sources */,
 				12BEBFB02B7CEC6F0000BC0B /* ErrorResponse.swift in Sources */,
 				121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */,
+				12A02B8D2B831D8A002BE599 /* DataDragon.swift in Sources */,
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12A0B7842B7F3669008FDA9C /* ChampionMasteryDto.swift in Sources */,
 				12BEBFB72B7CFF350000BC0B /* MatchListViewModel.swift in Sources */,
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
 				12A0B77E2B7F1753008FDA9C /* MatchDto.swift in Sources */,
+				12A02B902B8325E7002BE599 /* SpellMetadata.swift in Sources */,
 				12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
 				129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */,

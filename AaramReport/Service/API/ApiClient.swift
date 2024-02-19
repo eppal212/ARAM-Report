@@ -7,6 +7,7 @@ class ApiClient: ApiService {
         return ApiClient()
     }()
 
+    // MARK: - RIOT API
     // 계정 정보 조회
     // https://developer.riotgames.com/apis#account-v1/GET_getByRiotId
     func getAccount(gameName: String, tagLine: String) -> Observable<AccountDto> {
@@ -16,7 +17,7 @@ class ApiClient: ApiService {
         apiRequest.path = "riot/account/v1/accounts/by-riot-id"
         apiRequest.pathParam = [gameName, tagLine]
 
-        return self.request(apiRequest: apiRequest)
+        return self.riotApi(apiRequest: apiRequest)
     }
 
     // 소환사 정보 조회
@@ -28,7 +29,7 @@ class ApiClient: ApiService {
         apiRequest.path = "lol/summoner/v4/summoners/by-puuid"
         apiRequest.pathParam = [puuid]
 
-        return self.request(apiRequest: apiRequest)
+        return self.riotApi(apiRequest: apiRequest)
     }
 
     // 매치 목록 조회
@@ -41,7 +42,7 @@ class ApiClient: ApiService {
         apiRequest.pathParam = [puuid, "ids"]
         apiRequest.parameters = ["queueId": 450, "count": count]
 
-        return self.request(apiRequest: apiRequest)
+        return self.riotApi(apiRequest: apiRequest)
     }
 
     // 매치 상세 조회
@@ -53,7 +54,7 @@ class ApiClient: ApiService {
         apiRequest.path = "lol/match/v5/matches"
         apiRequest.pathParam = [matchId]
 
-        return self.request(apiRequest: apiRequest)
+        return self.riotApi(apiRequest: apiRequest)
     }
 
     // 진행중인 게임 조회
@@ -65,7 +66,7 @@ class ApiClient: ApiService {
         apiRequest.path = "lol/spectator/v4/active-games/by-summoner"
         apiRequest.pathParam = [encryptedSummonerId]
 
-        return self.request(apiRequest: apiRequest)
+        return self.riotApi(apiRequest: apiRequest)
     }
 
     // 소환사 티어 조회
@@ -77,7 +78,7 @@ class ApiClient: ApiService {
         apiRequest.path = "lol/league/v4/entries/by-summoner"
         apiRequest.pathParam = [encryptedSummonerId]
 
-        return self.request(apiRequest: apiRequest)
+        return self.riotApi(apiRequest: apiRequest)
     }
 
     // 챔피언별 숙련도 조회
@@ -89,6 +90,27 @@ class ApiClient: ApiService {
         apiRequest.path = "lol/champion-mastery/v4/champion-masteries/by-puuid"
         apiRequest.pathParam = [puuid]
 
-        return self.request(apiRequest: apiRequest)
+        return self.riotApi(apiRequest: apiRequest)
+    }
+
+    // MARK: - Data Dragon
+    // 최신 버전 획득
+    // https://ddragon.leagueoflegends.com/api/versions.json
+    func getVersion() -> Observable<[String]> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.path = "api/versions.json"
+
+        return self.dataDragon(apiRequest: apiRequest)
+    }
+
+    // 소환사 주문 데이터 확인
+    // https://ddragon.leagueoflegends.com/cdn/14.3.1/data/ko_KR/summoner.json
+    func getSpellMetadata(version: String) -> Observable<SpellMetadata> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.path = "cdn/\(version)/data/ko_KR/summoner.json"
+
+        return self.dataDragon(apiRequest: apiRequest)
     }
 }

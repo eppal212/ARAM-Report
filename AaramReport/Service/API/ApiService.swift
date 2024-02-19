@@ -42,7 +42,7 @@ class ApiService {
         return Session(configuration: configuration)
     }()
 
-    func request<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
+    func riotApi<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
         let baseUrl: URL? = URL(string: "https://" + apiRequest.prefix.getValue() + Const.riotUrl)
 
         guard var url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
@@ -55,6 +55,22 @@ class ApiService {
             url.appendPathComponent(param)
         }
 
+        return request(apiRequest: apiRequest, url: url)
+    }
+
+    func dataDragon<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
+        let baseUrl: URL? = URL(string: Const.dataDragon)
+
+        guard var url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
+            print("URL creation is failed: \(apiRequest.path)")
+            let error = ErrorResponse(message: "URL creation is failed", path: apiRequest.path)
+            return Observable.error(error)
+        }
+
+        return request(apiRequest: apiRequest, url: url)
+    }
+
+    private func request<T: Codable>(apiRequest: ApiRequest, url: URL) -> Observable<T>  {
         return Observable<T>.create { [weak self] observer in
             let dataRequest = self?.session.request(url,
                                                     method: apiRequest.method,
@@ -71,7 +87,7 @@ class ApiService {
                             let model: T = try JSONDecoder().decode(T.self, from: data)
                             observer.onNext(model)
                         } catch let error {
-                            print("decoding error!")
+                            print("decoding error!: \(error)")
                             observer.onError(error)
                         }
 
