@@ -41,7 +41,7 @@ class MatchListCell: UITableViewCell {
         kdaLabel.text = "\(matchData.kills ?? 0) / \(matchData.deaths ?? 0) / \(matchData.assists ?? 0)"
         spell1Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner1Id))
         spell2Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner2Id))
-//        rune1Image.sd_setImage(with: URL(string: Const.spell + "\(Spell(rawValue: matchData.summoner2Id ?? 1) ?? Spell.SummonerFlash).png"))
-        
+        rune1Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData.perks).first!)
+        rune2Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData.perks).last!)        
     }
 }

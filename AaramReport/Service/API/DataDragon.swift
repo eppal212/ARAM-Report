@@ -8,6 +8,7 @@ class DataDragon {
 
     private var version: String = ""
     private var spellMetadata: SpellMetadata?
+    private var runeMetadata: [RuneMetadata]?
 
     private let disposeBag = DisposeBag()
 
@@ -27,8 +28,14 @@ class DataDragon {
 
     // DDragon 메타데이터 세팅
     private func getMetadata() {
+        // 소환사 주문
         ApiClient.default.getSpellMetadata(version: version).subscribe(onNext: { [weak self] data in
             self?.spellMetadata = data
+        }).disposed(by: disposeBag)
+
+        // 룬
+        ApiClient.default.getRuneMetadata(version: version).subscribe(onNext: { [weak self] data in
+            self?.runeMetadata = data
         }).disposed(by: disposeBag)
     }
 
@@ -46,5 +53,35 @@ class DataDragon {
             path += data?.image?.full ?? ""
         }
         return URL(string: path)
+    }
+
+    // 룬 이미지 url 반환
+    func getRuneImageUrl(perks: PerksDto?) -> [URL?] {
+        var primaryId: Int?
+        var secondaryId: Int?
+        for perk in perks?.styles ?? [] {
+            if perk.description == "primaryStyle" {
+                primaryId = perk.selections?.first?.perk
+            } else {
+                secondaryId = perk.style
+            }
+        }
+
+        let path = Const.dataDragon + "cdn/img/"
+        var primaryUrl: URL?
+        var secondaryUrl: URL?
+        for rune in runeMetadata ?? []{
+            // 보조룬 분류
+            if rune.id == secondaryId {
+                secondaryUrl = URL(string: path + (rune.icon ?? ""))
+            }
+
+            // 메인룬 특정
+            for mainRune in rune.slots?.first?.runes ?? [] where mainRune.id == primaryId {
+                primaryUrl = URL(string: path + (mainRune.icon ?? ""))
+            }
+        }
+
+        return [primaryUrl, secondaryUrl]
     }
 }

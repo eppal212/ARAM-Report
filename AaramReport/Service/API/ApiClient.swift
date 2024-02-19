@@ -113,4 +113,14 @@ class ApiClient: ApiService {
 
         return self.dataDragon(apiRequest: apiRequest)
     }
+
+    // 룬 데이터 확인
+    // https://ddragon.leagueoflegends.com/cdn/14.3.1/data/ko_KR/runesReforged.json
+    func getRuneMetadata(version: String) -> Observable<[RuneMetadata]> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.path = "cdn/\(version)/data/ko_KR/runesReforged.json"
+
+        return self.dataDragon(apiRequest: apiRequest)
+    }
 }
