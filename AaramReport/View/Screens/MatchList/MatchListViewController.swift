@@ -42,6 +42,8 @@ class MatchListViewController: UIViewController {
         profileNick.text = viewModel.account?.gameName
         headerTag.text = "#\(viewModel.account?.tagLine ?? "")"
         profileTag.text = "#\(viewModel.account?.tagLine ?? "")"
+
+        tableView.tableHeaderView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.size.width, height: 0.1)))
     }
 
     private func initBinding() {
@@ -56,6 +58,7 @@ class MatchListViewController: UIViewController {
             .filter({ [weak self] data in
                 data.count == self?.viewModel.matchListCount
             })
+            .map({ $0.sorted(by: { $0.info?.gameStartTimestamp ?? 0 > $1.info?.gameStartTimestamp ?? 0 }) })
             .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { [weak self] index, item, cell in
                 guard let cell = cell as? MatchListCell else { return }
                 cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)
