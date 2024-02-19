@@ -44,6 +44,7 @@ class MatchListViewController: UIViewController {
         profileTag.text = "#\(viewModel.account?.tagLine ?? "")"
 
         tableView.tableHeaderView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.size.width, height: 0.1)))
+        tableView.rowHeight = 100
     }
 
     private func initBinding() {

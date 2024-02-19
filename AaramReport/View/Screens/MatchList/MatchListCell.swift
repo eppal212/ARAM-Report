@@ -17,18 +17,29 @@ class MatchListCell: UITableViewCell {
     @IBOutlet weak var item3Image: UIImageView!
     @IBOutlet weak var item4Image: UIImageView!
     @IBOutlet weak var item5Image: UIImageView!
+    @IBOutlet weak var item6Image: UIImageView!
     @IBOutlet weak var badgeView: UIStackView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
 
     var data: MatchDto? // 게임 정보
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        // TODO: 그라데이션 처리
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 4.0, left: 0, bottom: 0, right: 4)) // Cell 간격
+
+        // 그라데이션
+        let gradient = CAGradientLayer()
+        gradient.frame = gradientView.bounds
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradient.colors = [UIColor.black.withAlphaComponent(0.0).cgColor, UIColor.black.withAlphaComponent(1.0).cgColor]
+        gradientView.layer.addSublayer(gradient)
+
         // 이미지들 라운드
     }
 
+    // 데이터 세팅
     func setData(puuid: String, data: MatchDto) {
         self.data = data
         setupChampion(puuid: puuid)
@@ -39,7 +50,16 @@ class MatchListCell: UITableViewCell {
     // 게임 데이터 관련 처리
     private func setupChampion(puuid: String) {
         let matchData = data?.info?.participants?.filter({$0.puuid == puuid}).first
-        winView.backgroundColor = matchData?.win ?? false ? .blue : .red
+
+        // 승패뷰 그라데이션
+        let gradient = CAGradientLayer()
+        gradient.frame = winView.bounds
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        let color = matchData?.win ?? false ? UIColor.systemBlue : UIColor.systemRed
+        gradient.colors = [color.withAlphaComponent(1.0).cgColor, color.withAlphaComponent(0.0).cgColor]
+        winView.layer.addSublayer(gradient)
+
         winLabel.text = matchData?.win ?? false ? "승" : "패"
         champImage.sd_setImage(with: URL(string: Const.championSplash + "\(matchData?.championId ?? 1)/\(matchData?.championId ?? 1)000.jpg"))
         kdaLabel.text = "\(matchData?.kills ?? 0) / \(matchData?.deaths ?? 0) / \(matchData?.assists ?? 0)"
@@ -53,6 +73,7 @@ class MatchListCell: UITableViewCell {
         item3Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item3))
         item4Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item4))
         item5Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item5))
+        item6Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item6))
     }
 
     // 게임 내 업적 관련 처리
@@ -79,7 +100,7 @@ class MatchListCell: UITableViewCell {
             let badgeLabel = UILabel()
             badgeView.addArrangedSubview(badgeLabel)
             badgeLabel.text = badge
-            badgeLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 10.0)
+            badgeLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
             badgeLabel.textAlignment = .center
             badgeLabel.textColor = .white
         }
