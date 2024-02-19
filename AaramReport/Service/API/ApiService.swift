@@ -61,7 +61,7 @@ class ApiService {
     func dataDragon<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
         let baseUrl: URL? = URL(string: Const.dataDragon)
 
-        guard var url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
+        guard let url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
             print("URL creation is failed: \(apiRequest.path)")
             let error = ErrorResponse(message: "URL creation is failed", path: apiRequest.path)
             return Observable.error(error)

@@ -32,41 +32,69 @@ class MatchListCell: UITableViewCell {
     func setData(puuid: String, data: MatchDto) {
         self.data = data
         setupChampion(puuid: puuid)
-        setupBadge()
+        setupBadge(puuid: puuid)
         setupTime()
     }
 
     // 게임 데이터 관련 처리
     private func setupChampion(puuid: String) {
-        guard let matchData = data?.info?.participants?.filter({$0.puuid == puuid}).first else { return }
-        winView.backgroundColor = matchData.win ?? false ? .blue : .red
-        winLabel.text = matchData.win ?? false ? "승" : "패"
-        champImage.sd_setImage(with: URL(string: Const.championSplash + "\(matchData.championId ?? 1)/\(matchData.championId ?? 1)000.jpg"))
-        kdaLabel.text = "\(matchData.kills ?? 0) / \(matchData.deaths ?? 0) / \(matchData.assists ?? 0)"
-        spell1Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner1Id))
-        spell2Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner2Id))
-        rune1Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData.perks).first!)
-        rune2Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData.perks).last!)
-        item0Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item0))
-        item1Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item1))
-        item2Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item2))
-        item3Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item3))
-        item4Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item4))
-        item5Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item5))
+        let matchData = data?.info?.participants?.filter({$0.puuid == puuid}).first
+        winView.backgroundColor = matchData?.win ?? false ? .blue : .red
+        winLabel.text = matchData?.win ?? false ? "승" : "패"
+        champImage.sd_setImage(with: URL(string: Const.championSplash + "\(matchData?.championId ?? 1)/\(matchData?.championId ?? 1)000.jpg"))
+        kdaLabel.text = "\(matchData?.kills ?? 0) / \(matchData?.deaths ?? 0) / \(matchData?.assists ?? 0)"
+        spell1Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData?.summoner1Id))
+        spell2Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData?.summoner2Id))
+        rune1Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData?.perks).first!)
+        rune2Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData?.perks).last!)
+        item0Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item0))
+        item1Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item1))
+        item2Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item2))
+        item3Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item3))
+        item4Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item4))
+        item5Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item5))
     }
 
     // 게임 내 업적 관련 처리
-    private func setupBadge() {
+    private func setupBadge(puuid: String) {
+        let matchData = data?.info?.participants?.filter({$0.puuid == puuid}).first
 
+        var badgeArray: [String] = []
+        if matchData?.firstBloodKill ?? false {
+            badgeArray.append("퍼블")
+        }
+        switch matchData?.largestMultiKill {
+        case 1: badgeArray.append("더블킬")
+        case 2: badgeArray.append("트리플킬")
+        case 3: badgeArray.append("쿼드라킬")
+        case 4: badgeArray.append("펜타킬")
+        default: break
+        }
+        if data?.info?.participants?.sorted(by: { $0.totalDamageDealt ?? 0 > $1.totalDamageDealt ?? 0}).first?.puuid == puuid {
+            badgeArray.append("딜 1등")
+        }
+
+        badgeView.subviews.forEach { $0.removeFromSuperview() }
+        for badge in badgeArray {
+            let badgeLabel = UILabel()
+            badgeLabel.text = badge
+            badgeLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 10.0)
+            badgeLabel.textAlignment = .center
+            badgeLabel.textColor = .white
+            badgeView.addSubview(badgeLabel)
+        }
     }
 
     // 시간 관련 처리
     private func setupTime() {
         // 시간 변수 확인
-        guard var startTime = data?.info?.gameStartTimestamp else { return }
         var endStamp = data?.info?.gameEndTimestamp
         endStamp = endStamp == nil ? data?.info?.gameDuration : (endStamp ?? 0) / 1000
-        guard let endTime = endStamp else { return }
+        guard let endTime = endStamp, var startTime = data?.info?.gameStartTimestamp else {
+            dateLabel.text = ""
+            timeLabel.text = ""
+            return
+        }
 
         // 날짜
         let date = Date(timeIntervalSince1970: TimeInterval(startTime / 1000))
