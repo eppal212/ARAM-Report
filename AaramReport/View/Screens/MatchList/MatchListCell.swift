@@ -39,6 +39,9 @@ class MatchListCell: UITableViewCell {
         winLabel.text = matchData.win ?? false ? "승" : "패"
         champImage.sd_setImage(with: URL(string: Const.championSplash + "\(matchData.championId ?? 1)/\(matchData.championId ?? 1)000.jpg"))
         kdaLabel.text = "\(matchData.kills ?? 0) / \(matchData.deaths ?? 0) / \(matchData.assists ?? 0)"
-        spell1Image.sd_setImage(with: URL(string: Const.spell + "\(Spell(rawValue: matchData.summoner1Id ?? 1) ?? Spell.SummonerSnowball).png"))
+        spell1Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner1Id))
+        spell2Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner2Id))
+//        rune1Image.sd_setImage(with: URL(string: Const.spell + "\(Spell(rawValue: matchData.summoner2Id ?? 1) ?? Spell.SummonerFlash).png"))
+        
     }
 }

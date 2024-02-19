@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         initBinding()
         initLayout()
+        DataDragon.default
     }
 
     private func initBinding() {
