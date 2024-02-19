@@ -33,9 +33,10 @@ class DataDragon {
     }
 
     // MARK: - Data from ID
-    //
+    // 프로필 아이콘 url 반환
     func getProfileImageUrl(id: Int?) -> URL? {
-    https://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/588.png
+        let path = Const.dataDragon + "cdn/\(version)/img/profileicon/\(id ?? 0).png"
+            return URL(string: path)
     }
 
     // 소환사 주문 이미지 url 반환
