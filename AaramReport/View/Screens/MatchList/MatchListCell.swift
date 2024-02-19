@@ -11,13 +11,12 @@ class MatchListCell: UITableViewCell {
     @IBOutlet weak var spell2Image: UIImageView!
     @IBOutlet weak var rune1Image: UIImageView!
     @IBOutlet weak var rune2Image: UIImageView!
+    @IBOutlet weak var item0Image: UIImageView!
     @IBOutlet weak var item1Image: UIImageView!
     @IBOutlet weak var item2Image: UIImageView!
     @IBOutlet weak var item3Image: UIImageView!
     @IBOutlet weak var item4Image: UIImageView!
     @IBOutlet weak var item5Image: UIImageView!
-    @IBOutlet weak var item6Image: UIImageView!
-    @IBOutlet weak var item7Image: UIImageView!
     @IBOutlet weak var badgeView: UIStackView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -42,6 +41,12 @@ class MatchListCell: UITableViewCell {
         spell1Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner1Id))
         spell2Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData.summoner2Id))
         rune1Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData.perks).first!)
-        rune2Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData.perks).last!)        
+        rune2Image.sd_setImage(with: DataDragon.default.getRuneImageUrl(perks: matchData.perks).last!)
+        item0Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item0))
+        item1Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item1))
+        item2Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item2))
+        item3Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item3))
+        item4Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item4))
+        item5Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item5))
     }
 }

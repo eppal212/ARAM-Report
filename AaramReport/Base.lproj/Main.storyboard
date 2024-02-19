@@ -437,10 +437,10 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HXi-kJ-IjW">
-                                                                    <rect key="frame" x="225.66666666666663" y="16" width="64" height="32"/>
+                                                                    <rect key="frame" x="225.66666666666666" y="16" width="47.999999999999972" height="32"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gv-5y-LEd">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="64" height="16"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="48" height="16"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xbl-cY-qKk">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -461,21 +461,14 @@
                                                                                         <constraint firstAttribute="width" secondItem="0uz-cy-O4R" secondAttribute="height" multiplier="1:1" id="Wfl-NT-hMc"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zUr-yM-uX4">
-                                                                                    <rect key="frame" x="48.000000000000028" y="0.0" width="16" height="16"/>
-                                                                                    <constraints>
-                                                                                        <constraint firstAttribute="width" secondItem="zUr-yM-uX4" secondAttribute="height" multiplier="1:1" id="e6A-Qu-0gS"/>
-                                                                                    </constraints>
-                                                                                </imageView>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstItem="zUr-yM-uX4" firstAttribute="width" secondItem="0uz-cy-O4R" secondAttribute="width" id="829-HX-TmB"/>
                                                                                 <constraint firstItem="0uz-cy-O4R" firstAttribute="width" secondItem="dMN-Nz-UKH" secondAttribute="width" id="J0m-TU-ki4"/>
                                                                                 <constraint firstItem="dMN-Nz-UKH" firstAttribute="width" secondItem="xbl-cY-qKk" secondAttribute="width" id="v5y-ks-P32"/>
                                                                             </constraints>
                                                                         </stackView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l1k-Yt-8p6">
-                                                                            <rect key="frame" x="0.0" y="16" width="64" height="16"/>
+                                                                            <rect key="frame" x="0.0" y="16" width="48" height="16"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DSx-ua-ivH">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -495,15 +488,10 @@
                                                                                         <constraint firstAttribute="width" secondItem="Icj-Oz-nfa" secondAttribute="height" multiplier="1:1" id="qn9-7T-c16"/>
                                                                                     </constraints>
                                                                                 </imageView>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q1S-dW-q3B">
-                                                                                    <rect key="frame" x="48.000000000000028" y="0.0" width="16" height="16"/>
-                                                                                </imageView>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstItem="Icj-Oz-nfa" firstAttribute="width" secondItem="jF1-Cl-gkC" secondAttribute="width" id="Gcn-Mo-jvH"/>
-                                                                                <constraint firstItem="Q1S-dW-q3B" firstAttribute="width" secondItem="Q1S-dW-q3B" secondAttribute="height" multiplier="1:1" id="d79-cA-oyJ"/>
                                                                                 <constraint firstItem="jF1-Cl-gkC" firstAttribute="width" secondItem="DSx-ua-ivH" secondAttribute="width" id="sdT-7j-0QA"/>
-                                                                                <constraint firstItem="Q1S-dW-q3B" firstAttribute="width" secondItem="Icj-Oz-nfa" secondAttribute="width" id="xcT-tM-fS4"/>
                                                                             </constraints>
                                                                         </stackView>
                                                                     </subviews>
@@ -579,13 +567,12 @@
                                                             <outlet property="champImage" destination="Mhm-kR-nss" id="OGM-y3-i3M"/>
                                                             <outlet property="dateLabel" destination="ylT-3N-2co" id="9nA-ho-YXP"/>
                                                             <outlet property="gradientView" destination="LWE-hg-83R" id="EAb-lR-Fnk"/>
-                                                            <outlet property="item1Image" destination="xbl-cY-qKk" id="to4-be-edA"/>
-                                                            <outlet property="item2Image" destination="dMN-Nz-UKH" id="zHm-Db-peT"/>
-                                                            <outlet property="item3Image" destination="0uz-cy-O4R" id="kxo-LE-FEq"/>
-                                                            <outlet property="item4Image" destination="zUr-yM-uX4" id="wNi-So-WM5"/>
-                                                            <outlet property="item5Image" destination="DSx-ua-ivH" id="pQf-yl-fwV"/>
-                                                            <outlet property="item6Image" destination="jF1-Cl-gkC" id="MWA-gN-Kyk"/>
-                                                            <outlet property="item7Image" destination="Icj-Oz-nfa" id="81C-k9-sXA"/>
+                                                            <outlet property="item0Image" destination="xbl-cY-qKk" id="dZC-h9-UYV"/>
+                                                            <outlet property="item1Image" destination="dMN-Nz-UKH" id="tEx-GE-L6h"/>
+                                                            <outlet property="item2Image" destination="0uz-cy-O4R" id="muF-tZ-JXO"/>
+                                                            <outlet property="item3Image" destination="DSx-ua-ivH" id="aYj-Ne-dmM"/>
+                                                            <outlet property="item4Image" destination="jF1-Cl-gkC" id="zfR-we-miE"/>
+                                                            <outlet property="item5Image" destination="Icj-Oz-nfa" id="ftn-gU-pdN"/>
                                                             <outlet property="kdaLabel" destination="EP7-qe-wso" id="Q1s-vi-zIs"/>
                                                             <outlet property="rune1Image" destination="Aya-Rr-DkO" id="hvU-6s-53w"/>
                                                             <outlet property="rune2Image" destination="r4i-Eu-tAT" id="FPC-SQ-jvW"/>

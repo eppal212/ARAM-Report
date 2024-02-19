@@ -84,4 +84,10 @@ class DataDragon {
 
         return [primaryUrl, secondaryUrl]
     }
+
+    // 아이템 이미지 url 반환
+    func getItemImageUrl(id: Int?) -> URL? {
+        let path = Const.dataDragon + "cdn/\(version)/img/item/\(id ?? 0).png"
+            return URL(string: path)
+    }
 }
