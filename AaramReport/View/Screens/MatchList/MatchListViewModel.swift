@@ -4,19 +4,11 @@ import RxCocoa
 
 class MatchListViewModel {
     // 초기화 데이터
-    var account: AccountDto? {
-        didSet {
-            nickRelay.accept(account?.gameName ?? "")
-            tagRelay.accept(account?.tagLine ?? "")
-        }
-    }
+    var account: AccountDto?
     var server: RiotServer?
 
     // 프로필 부분
-    let profileRelay = PublishRelay<Int>()
-    let nickRelay = BehaviorRelay<String>(value: "")
-    let tagRelay = BehaviorRelay<String>(value: "")
-    let levelRelay = PublishRelay<String>()
+    let summonerRelay = PublishRelay<SummonerDto>()
 
     // 매치 목록 부분
     let matchListCount = 3
@@ -29,10 +21,8 @@ class MatchListViewModel {
     func getSummoner() {
         guard let puuid = account?.puuid, let serverId = server?.id else { return handleError()}
         ApiClient.default.getSummoner(serverId: serverId, puuid: puuid).subscribe(onNext: { [weak self] summoner in
-
-            self?.profileRelay.accept(summoner.profileIconId ?? 0)
-            self?.levelRelay.accept("Lv.\(summoner.summonerLevel ?? 0) I \(summoner.name ?? "0")")
-
+            self?.summonerRelay.accept(summoner)
+            self?.getMatchList()
         }, onError: { [weak self] error in
             self?.handleError(error: error)
         }).disposed(by: disposeBag)

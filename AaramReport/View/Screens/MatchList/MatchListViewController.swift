@@ -38,26 +38,28 @@ class MatchListViewController: UIViewController {
     private func initLayout() {
         profileImage.layer.cornerRadius = 16
 
+        headerNick.text = viewModel.account?.gameName
+        profileNick.text = viewModel.account?.gameName
+        headerTag.text = viewModel.account?.tagLine
+        profileTag.text = viewModel.account?.tagLine
+    }
+
+    private func initBinding() {
+        // 상단 프로필 파트
+        viewModel.summonerRelay.subscribe(onNext: { [weak self] summoner in
+            self?.profileImage.sd_setImage(with: DataDragon.default.getProfileImageUrl(id: summoner.profileIconId))
+            self?.profileLevel.text = "Lv.\(summoner.summonerLevel ?? 0) I \(summoner.name ?? "0")"
+        }).disposed(by: disposeBag)
+
         // TableView
         viewModel.matchListRelay
             .filter({ [weak self] data in
                 data.count == self?.viewModel.matchListCount
             })
-            .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { index, item, cell in
-            // TODO: cell 처리
+            .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { [weak self] index, item, cell in
+                guard let cell = cell as? MatchListCell else { return }
+                cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)
         }.disposed(by: disposeBag)
-    }
-
-    private func initBinding() {
-        // 상단 프로필 파트
-        viewModel.profileRelay.subscribe({ [weak self] iconId in
-            self?.profileImage.sd_setImage(with: URL(string: Const.profileIcon + "\(iconId.element ?? 0).jpg"))
-        }).disposed(by: disposeBag)
-        viewModel.nickRelay.bind(to: headerNick.rx.text).disposed(by: disposeBag)
-        viewModel.nickRelay.bind(to: profileNick.rx.text).disposed(by: disposeBag)
-        viewModel.tagRelay.map({"#\($0)"}).bind(to: headerTag.rx.text).disposed(by: disposeBag)
-        viewModel.tagRelay.map({"#\($0)"}).bind(to: profileTag.rx.text).disposed(by: disposeBag)
-        viewModel.levelRelay.bind(to: profileLevel.rx.text).disposed(by: disposeBag)
     }
 
     // 이동 전 호출되는 기본값 세팅 함수
