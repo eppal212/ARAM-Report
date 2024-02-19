@@ -21,12 +21,18 @@ class MatchListCell: UITableViewCell {
     @IBOutlet weak var badgeView: UIStackView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var tailView: UIView!
 
     var data: MatchDto? // 게임 정보
 
+
+    let itemRadius = 4.0
+    let winColor = UIColor.systemBlue
+    let loseColor = UIColor.systemRed
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 4.0, left: 0, bottom: 0, right: 4)) // Cell 간격
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 6)) // Cell 간격
 
         // 그라데이션
         let gradient = CAGradientLayer()
@@ -37,6 +43,15 @@ class MatchListCell: UITableViewCell {
         gradientView.layer.addSublayer(gradient)
 
         // 이미지들 라운드
+        spell1Image.layer.cornerRadius = itemRadius
+        spell2Image.layer.cornerRadius = itemRadius
+        item0Image.layer.cornerRadius = itemRadius
+        item1Image.layer.cornerRadius = itemRadius
+        item2Image.layer.cornerRadius = itemRadius
+        item3Image.layer.cornerRadius = itemRadius
+        item4Image.layer.cornerRadius = itemRadius
+        item5Image.layer.cornerRadius = itemRadius
+        item6Image.layer.cornerRadius = itemRadius
     }
 
     // 데이터 세팅
@@ -56,7 +71,7 @@ class MatchListCell: UITableViewCell {
         gradient.frame = winView.bounds
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        let color = matchData?.win ?? false ? UIColor.systemBlue : UIColor.systemRed
+        let color = matchData?.win ?? false ? winColor : loseColor
         gradient.colors = [color.withAlphaComponent(1.0).cgColor, color.withAlphaComponent(0.0).cgColor]
         winView.layer.addSublayer(gradient)
 
@@ -74,6 +89,7 @@ class MatchListCell: UITableViewCell {
         item4Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item4))
         item5Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item5))
         item6Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item6))
+        tailView.backgroundColor = matchData?.win ?? false ? winColor : loseColor
     }
 
     // 게임 내 업적 관련 처리

@@ -11,7 +11,7 @@ class MatchListViewModel {
     let summonerRelay = PublishRelay<SummonerDto>()
 
     // 매치 목록 부분
-    let matchListCount = 3
+    let matchListCount = 10
     let matchListRelay = BehaviorRelay<[MatchDto]>(value: [])
 
     private let disposeBag = DisposeBag()
