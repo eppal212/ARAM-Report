@@ -31,9 +31,14 @@ class MatchListCell: UITableViewCell {
 
     func setData(puuid: String, data: MatchDto) {
         self.data = data
-        // TODO: 시간 처리
+        setupChampion(puuid: puuid)
+        setupBadge()
+        setupTime()
+    }
 
-        guard let matchData = data.info?.participants?.filter({$0.puuid == puuid}).first else { return }
+    // 게임 데이터 관련 처리
+    private func setupChampion(puuid: String) {
+        guard let matchData = data?.info?.participants?.filter({$0.puuid == puuid}).first else { return }
         winView.backgroundColor = matchData.win ?? false ? .blue : .red
         winLabel.text = matchData.win ?? false ? "승" : "패"
         champImage.sd_setImage(with: URL(string: Const.championSplash + "\(matchData.championId ?? 1)/\(matchData.championId ?? 1)000.jpg"))
@@ -48,5 +53,33 @@ class MatchListCell: UITableViewCell {
         item3Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item3))
         item4Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item4))
         item5Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData.item5))
+    }
+
+    // 게임 내 업적 관련 처리
+    private func setupBadge() {
+
+    }
+
+    // 시간 관련 처리
+    private func setupTime() {
+        // 시간 변수 확인
+        guard var startTime = data?.info?.gameStartTimestamp else { return }
+        var endStamp = data?.info?.gameEndTimestamp
+        endStamp = endStamp == nil ? data?.info?.gameDuration : (endStamp ?? 0) / 1000
+        guard let endTime = endStamp else { return }
+
+        // 날짜
+        let date = Date(timeIntervalSince1970: TimeInterval(startTime / 1000))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.M.d"
+        dateLabel.text = dateFormatter.string(from: date)
+
+        // 시간 & 플레이타임
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        let playTime = endTime - (startTime / 1000)
+        let minute = playTime / 60
+        let second = playTime % 60
+        timeLabel.text = "\(timeFormatter.string(from: date)) I \(minute):\(second)"
     }
 }

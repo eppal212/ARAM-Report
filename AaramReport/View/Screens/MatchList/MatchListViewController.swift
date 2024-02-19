@@ -40,8 +40,8 @@ class MatchListViewController: UIViewController {
 
         headerNick.text = viewModel.account?.gameName
         profileNick.text = viewModel.account?.gameName
-        headerTag.text = viewModel.account?.tagLine
-        profileTag.text = viewModel.account?.tagLine
+        headerTag.text = "#\(viewModel.account?.tagLine ?? "")"
+        profileTag.text = "#\(viewModel.account?.tagLine ?? "")"
     }
 
     private func initBinding() {
