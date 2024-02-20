@@ -5,8 +5,6 @@ import RxCocoa
 import SDWebImage
 
 class MatchListViewController: UIViewController {
-    @IBOutlet weak var scrollView: UIScrollView! // 화면을 꽉채우는 스크롤뷰
-
     // 상단 탭 바
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerNick: UILabel!
@@ -21,7 +19,6 @@ class MatchListViewController: UIViewController {
     @IBOutlet weak var profileLevel: UILabel!
 
     @IBOutlet weak var tableView: UITableView! // 테이블뷰
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     private let tableViewObserverKey = "contentSize"
 
@@ -38,19 +35,6 @@ class MatchListViewController: UIViewController {
         viewModel.getSummoner() // 데이터 조회 API 호출
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.addObserver(self, forKeyPath: tableViewObserverKey, options: .new, context: nil)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        tableView.removeObserver(self, forKeyPath: tableViewObserverKey)
-    }
-
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard keyPath == tableViewObserverKey, let newValue = change?[.newKey], let newSize = newValue as? CGSize else { return }
-        tableViewHeight.constant = newSize.height // 동적으로 TableView height 세팅
-    }
-
     private func initLayout() {
         profileImage.layer.cornerRadius = 16
 
@@ -60,7 +44,6 @@ class MatchListViewController: UIViewController {
         profileTag.text = "#\(viewModel.account?.tagLine ?? "")"
 
         // TableView
-        tableView.tableHeaderView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.size.width, height: 0.1)))
         tableView.rowHeight = 100
     }
 
