@@ -3,6 +3,7 @@ import UIKit
 
 @IBDesignable
 class StretchTableViewHeader: UIView {
+
     let imageView = UIImageView()
 
     private var imageViewHeight = NSLayoutConstraint()
@@ -24,10 +25,11 @@ class StretchTableViewHeader: UIView {
         NSLayoutConstraint.activate([ imageViewBottom, imageViewHeight, self.widthAnchor.constraint(equalTo: imageView.widthAnchor) ])
     }
 
+    // scrollView.contentOffest, scrollView.contentInset을 받아옴
     func scrollViewDidScroll(offset: CGPoint, inset: UIEdgeInsets) {
-        let offsetY = -(offset.y + inset.top)
-        self.clipsToBounds = offsetY <= 0
-        imageViewBottom.constant = offsetY >= 0 ? 0 : -offsetY / 2
-        imageViewHeight.constant = max(offsetY, 0)
+        let offsetY = offset.y + inset.top
+        self.clipsToBounds = offsetY > 0
+        imageViewBottom.constant = offsetY > 0 ? offsetY / 2 : 0
+        imageViewHeight.constant = max(-offsetY, 0)
     }
 }
