@@ -23,6 +23,7 @@ class MatchListViewController: UIViewController {
     private let tableViewObserverKey = "contentSize"
 
     private let viewModel = MatchListViewModel()
+    private var isShowHeaderBg = false
 
     private let disposeBag = DisposeBag()
 
@@ -42,7 +43,6 @@ class MatchListViewController: UIViewController {
     }
 
     private func initLayout() {
-
         // 그라데이션
         let gradient = CAGradientLayer()
         gradient.frame = gradientView.bounds
@@ -83,11 +83,20 @@ class MatchListViewController: UIViewController {
 
         // Scroll 처리
         profileSplash.imageView.sd_setImage(with: URL(string: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"))
-        tableView.rx.contentOffset.subscribe { [weak self] offset in
+        tableView.rx.contentOffset.subscribe{ [weak self] offset in
             guard let self = self else { return }
-            self.profileSplash.scrollViewDidScroll(offset: offset, inset: self.tableView.contentInset)
+            profileSplash.scrollViewDidScroll(offset: offset, inset: tableView.contentInset) // 스플래시아트 스크롤 처리
 
-//            if offset > 
+            // 헤더 처리
+            let scrollEnough = offset.y > (gradientView.frame.origin.y - view.safeAreaInsets.top / 2)
+            if isShowHeaderBg != scrollEnough {
+                isShowHeaderBg = scrollEnough
+                UIView.animate(withDuration: 0.1) { [weak self] in
+                    self?.headerView.backgroundColor = scrollEnough ? .black : .clear
+                    self?.headerNick.isHidden = !scrollEnough
+                    self?.headerTag.isHidden = !scrollEnough
+                }
+            }
         }.disposed(by: disposeBag)
     }
 
