@@ -295,6 +295,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="430" height="322.66666666666669"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hez-mm-HHC">
+                                            <rect key="frame" x="0.0" y="222.66666666666663" width="430" height="100"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="9jH-Y9-enk"/>
+                                            </constraints>
+                                        </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mX6-Sz-MKx">
                                             <rect key="frame" x="16" y="226.66666666666663" width="80" height="80"/>
                                             <constraints>
@@ -335,10 +342,13 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FQx-Wq-eda" secondAttribute="trailing" constant="16" id="4P0-N3-bgn"/>
                                         <constraint firstItem="FQx-Wq-eda" firstAttribute="leading" secondItem="mX6-Sz-MKx" secondAttribute="trailing" constant="8" id="4bw-5F-AfK"/>
+                                        <constraint firstAttribute="bottom" secondItem="hez-mm-HHC" secondAttribute="bottom" id="AAe-Yf-h6p"/>
                                         <constraint firstItem="mX6-Sz-MKx" firstAttribute="leading" secondItem="s7v-Ws-FUn" secondAttribute="leading" constant="16" id="E8L-sU-f0q"/>
                                         <constraint firstAttribute="bottom" secondItem="mX6-Sz-MKx" secondAttribute="bottom" constant="16" id="J9K-dJ-W0P"/>
                                         <constraint firstItem="3Vz-E1-Ijh" firstAttribute="top" secondItem="s7v-Ws-FUn" secondAttribute="top" id="QP8-S8-P2f"/>
+                                        <constraint firstItem="hez-mm-HHC" firstAttribute="leading" secondItem="s7v-Ws-FUn" secondAttribute="leading" id="SoX-w5-l88"/>
                                         <constraint firstAttribute="bottom" secondItem="3Vz-E1-Ijh" secondAttribute="bottom" id="bfy-Tb-5f8"/>
+                                        <constraint firstAttribute="trailing" secondItem="hez-mm-HHC" secondAttribute="trailing" id="dN8-cy-oav"/>
                                         <constraint firstItem="3Vz-E1-Ijh" firstAttribute="leading" secondItem="s7v-Ws-FUn" secondAttribute="leading" id="l20-43-t9g"/>
                                         <constraint firstAttribute="trailing" secondItem="3Vz-E1-Ijh" secondAttribute="trailing" id="mdv-ef-G0b"/>
                                         <constraint firstItem="FQx-Wq-eda" firstAttribute="centerY" secondItem="mX6-Sz-MKx" secondAttribute="centerY" id="mxS-no-rdn"/>
@@ -622,6 +632,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="VbA-w5-dHL"/>
                     <connections>
+                        <outlet property="gradientView" destination="hez-mm-HHC" id="qRx-KV-evt"/>
                         <outlet property="headerNick" destination="cYV-qw-r3k" id="dph-dV-S32"/>
                         <outlet property="headerTag" destination="RHO-SN-11t" id="LEA-Kb-wi6"/>
                         <outlet property="headerView" destination="ZZr-MS-Jjh" id="6hv-Jt-3ef"/>

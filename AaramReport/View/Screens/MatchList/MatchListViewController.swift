@@ -12,6 +12,7 @@ class MatchListViewController: UIViewController {
 
     // 프로필 부분
     @IBOutlet weak var profileSplash: StretchTableViewHeader! // 상단 챔피언 스플래시 아트
+    @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileNick: UILabel!
     @IBOutlet weak var profileTag: UILabel!
@@ -41,6 +42,15 @@ class MatchListViewController: UIViewController {
     }
 
     private func initLayout() {
+
+        // 그라데이션
+        let gradient = CAGradientLayer()
+        gradient.frame = gradientView.bounds
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.colors = [UIColor.black.withAlphaComponent(1.0).cgColor, UIColor.black.withAlphaComponent(0.0).cgColor]
+        gradientView.layer.addSublayer(gradient)
+
         profileImage.layer.cornerRadius = 16
 
         headerNick.text = viewModel.account?.gameName
@@ -71,10 +81,13 @@ class MatchListViewController: UIViewController {
                 cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)
             }.disposed(by: disposeBag)
 
+        // Scroll 처리
         profileSplash.imageView.sd_setImage(with: URL(string: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"))
         tableView.rx.contentOffset.subscribe { [weak self] offset in
             guard let self = self else { return }
             self.profileSplash.scrollViewDidScroll(offset: offset, inset: self.tableView.contentInset)
+
+//            if offset > 
         }.disposed(by: disposeBag)
     }
 
