@@ -3,36 +3,18 @@ import Foundation
 struct SpellMetadata: Codable {
     var type: String?
     var version: String?
-    var data: SpellList?
-}
+    var data: [String:SpellData]?
 
-struct SpellList: Codable {
-    var SummonerBarrier: SpellData?
-    var SummonerBoost: SpellData?
-    var SummonerCherryFlash: SpellData?
-    var SummonerCherryHold: SpellData?
-    var SummonerDot: SpellData?
-    var SummonerExhaust: SpellData?
-    var SummonerFlash: SpellData?
-    var SummonerHaste: SpellData?
-    var SummonerHeal: SpellData?
-    var SummonerMana: SpellData?
-    var SummonerPoroRecall: SpellData?
-    var SummonerPoroThrow: SpellData?
-    var SummonerSmite: SpellData?
-    var SummonerSnowURFSnowball_Mark: SpellData?
-    var SummonerSnowball: SpellData?
-    var SummonerTeleport: SpellData?
-    var Summoner_UltBookPlaceholder: SpellData?
-    var Summoner_UltBookSmitePlaceholder: SpellData?
+    private enum CodingKeys: String, CodingKey {
+        case type, version, data
+    }
 
-    var asDictionary : [String:SpellData?] {
-        let mirror = Mirror(reflecting: self)
-        let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label: String?, value: Any) -> (String, SpellData?)? in
-            guard let label = label, let value = value as? SpellData? else { return nil }
-            return (label, value)
-        }).compactMap { $0 })
-        return dict
+    // Decodable 프로토콜의 초기화 메서드를 오버라이드하여 동적 필드를 처리
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        type = try container.decode(String.self, forKey: .type)
+        version = try container.decode(String.self, forKey: .version)
+        data = try container.decodeIfPresent([String: SpellData].self, forKey: .data) ?? [:] // data 필드는 동적으로 디코딩
     }
 }
 

@@ -8,7 +8,7 @@ class MatchListViewModel {
     var server: RiotServer?
 
     let summonerRelay = PublishRelay<SummonerDto>() // 프로필 부분
-    let splashSkinList = PublishRelay<[String]>()
+    let splashSkinList = PublishRelay<[String]>() // 챔피언 스킨 ID 배열
     let masteryRelay = PublishRelay<[ChampionMasteryDto]>() // 숙련도
 
     // 매치 목록 부분
@@ -41,16 +41,16 @@ class MatchListViewModel {
         }).disposed(by: disposeBag)
     }
 
+    // 챔피언 스킨 목록 가져오기
     private func getChampionSkins(id: Int?) {
         let version = DataDragon.default.version
         let name = DataDragon.default.getChampionName(id: id)
         ApiClient.default.getChampionDetailMetadata(version: version, name: name).subscribe(onNext: { [weak self] detail in
             var skinList: [String] = []
-            for (_, data) in detail.data where data.key == String(id ?? 0) {
+            for (_, data) in detail.data ?? [:] where data.key == String(id ?? 0) {
                 let name = data.id ?? ""
                 data.skins?.forEach({ skinList.append("\(name)_\($0.num ?? 0)") })
             }
-
             self?.splashSkinList.accept(skinList)
         }, onError: { [weak self] error in
             self?.handleError(error: error)

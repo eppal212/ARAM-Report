@@ -4,7 +4,7 @@ struct ChampionDetailMetadata: Codable {
     var type: String?
     var format: String?
     var version: String?
-    var data: [String:ChampionDetailData]
+    var data: [String:ChampionDetailData]?
 
     private enum CodingKeys: String, CodingKey {
         case type, format, version, data

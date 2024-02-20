@@ -75,8 +75,8 @@ class DataDragon {
     // 소환사 주문 이미지 url 반환
     func getSpellImageUrl(id: Int?) -> URL? {
         var path = Const.dataDragon + "cdn/\(version)/img/spell/"
-        for (_, data) in spellMetadata?.data?.asDictionary ?? [:] where data?.key == String(id ?? 0) {
-            path += data?.image?.full ?? ""
+        for (_, data) in spellMetadata?.data ?? [:] where data.key == String(id ?? 0) {
+            path += data.image?.full ?? ""
         }
         return URL(string: path)
     }
