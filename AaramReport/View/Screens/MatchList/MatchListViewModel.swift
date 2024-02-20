@@ -35,7 +35,7 @@ class MatchListViewModel {
         guard let puuid = account?.puuid, let serverId = server?.id else { return handleError()}
         ApiClient.default.getMastery(serverId: serverId, puuid: puuid).subscribe(onNext: { [weak self] mastery in
             self?.masteryRelay.accept(mastery)
-            //self?.getChampionSkins(id: mastery.first?.championId)
+            self?.getChampionSkins(id: mastery.first?.championId)
         }, onError: { [weak self] error in
             self?.handleError(error: error)
         }).disposed(by: disposeBag)
@@ -46,10 +46,11 @@ class MatchListViewModel {
         let name = DataDragon.default.getChampionName(id: id)
         ApiClient.default.getChampionDetailMetadata(version: version, name: name).subscribe(onNext: { [weak self] detail in
             var skinList: [String] = []
-            for (_, data) in detail.data?.asDictionary ?? [:] where data?.key == String(id ?? 0) {
-                let name = data?.id ?? ""
-                data?.skins?.forEach({ skinList.append("\(name)_\($0.num ?? 0)") })
+            for (_, data) in detail.data where data.key == String(id ?? 0) {
+                let name = data.id ?? ""
+                data.skins?.forEach({ skinList.append("\(name)_\($0.num ?? 0)") })
             }
+
             self?.splashSkinList.accept(skinList)
         }, onError: { [weak self] error in
             self?.handleError(error: error)

@@ -4,21 +4,23 @@ struct ChampionDetailMetadata: Codable {
     var type: String?
     var format: String?
     var version: String?
-    var data: ChampionDetailData?
-}
+    var data: [String:ChampionDetailData]
 
-struct ChampionDetailData: Codable {
-    var asDictionary : [String:ChampionDetailInfo?] {
-        let mirror = Mirror(reflecting: self)
-        let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label: String?, value: Any) -> (String, ChampionDetailInfo?)? in
-            guard let label = label, let value = value as? ChampionDetailInfo? else { return nil }
-            return (label, value)
-        }).compactMap { $0 })
-        return dict
+    private enum CodingKeys: String, CodingKey {
+        case type, format, version, data
+    }
+
+    // Decodable 프로토콜의 초기화 메서드를 오버라이드하여 동적 필드를 처리
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        type = try container.decode(String.self, forKey: .type)
+        format = try container.decode(String.self, forKey: .format)
+        version = try container.decode(String.self, forKey: .version)
+        data = try container.decodeIfPresent([String: ChampionDetailData].self, forKey: .data) ?? [:] // data 필드는 동적으로 디코딩
     }
 }
 
-struct ChampionDetailInfo: Codable {
+struct ChampionDetailData: Codable {
     var id: String?
     var key: String?
     var name: String?
@@ -52,12 +54,12 @@ struct ChampionSpell: Codable {
     var tooltip: String?
     var leveltip: Leveltip?
     var maxrank: Int?
-    var cooldown: [Int]?
+    var cooldown: [CGFloat]?
     var cooldownBurn: String?
     var cost: [Int]?
     var costBurn: String?
     //var datavalues:
-    var effect: [[Int]?]?
+    var effect: [[CGFloat]?]?
     var effectBurn: [String?]?
     //var vars: []
     var costType: String?

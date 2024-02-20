@@ -55,8 +55,8 @@ class DataDragon {
     // 챔피언 id로 이름 반환
     func getChampionName(id: Int?) -> String {
         var champId = ""
-        for (_, data) in championMetadata?.data?.asDictionary ?? [:] where data?.key == String(id ?? 0) {
-            champId = data?.id ?? ""
+        for (_, data) in championMetadata?.data ?? [:] where data.key == String(id ?? 0) {
+            champId = data.id ?? ""
         }
         return champId
     }

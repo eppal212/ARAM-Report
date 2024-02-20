@@ -4,17 +4,19 @@ struct ChampionMetadata: Codable {
     var type: String?
     var format: String?
     var version: String?
-    var data: ChampionList?
-}
+    var data: [String:ChampionData]?
 
-struct ChampionList: Codable {
-    var asDictionary : [String:ChampionData?] {
-        let mirror = Mirror(reflecting: self)
-        let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label: String?, value: Any) -> (String, ChampionData?)? in
-            guard let label = label, let value = value as? ChampionData? else { return nil }
-            return (label, value)
-        }).compactMap { $0 })
-        return dict
+    private enum CodingKeys: String, CodingKey {
+        case type, format, version, data
+    }
+
+    // Decodable 프로토콜의 초기화 메서드를 오버라이드하여 동적 필드를 처리
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        type = try container.decode(String.self, forKey: .type)
+        format = try container.decode(String.self, forKey: .format)
+        version = try container.decode(String.self, forKey: .version)
+        data = try container.decodeIfPresent([String: ChampionData].self, forKey: .data) ?? [:] // data 필드는 동적으로 디코딩
     }
 }
 
