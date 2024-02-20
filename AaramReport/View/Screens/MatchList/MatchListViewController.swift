@@ -26,6 +26,12 @@ class MatchListViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     // MARK: - Override & Init
+    // 이동 전 호출되는 기본값 세팅 함수
+    func setAccountData(accountData: AccountDto, server: RiotServer?) {
+        viewModel.account = accountData
+        viewModel.server = server
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initLayout()
@@ -44,6 +50,7 @@ class MatchListViewController: UIViewController {
 
         // TableView
         tableView.rowHeight = 100
+        tableView.showsVerticalScrollIndicator = false
     }
 
     private func initBinding() {
@@ -69,12 +76,6 @@ class MatchListViewController: UIViewController {
             guard let self = self else { return }
             self.profileSplash.scrollViewDidScroll(offset: offset, inset: self.tableView.contentInset)
         }.disposed(by: disposeBag)
-    }
-
-    // 이동 전 호출되는 기본값 세팅 함수
-    func setAccountData(accountData: AccountDto, server: RiotServer?) {
-        viewModel.account = accountData
-        viewModel.server = server
     }
 
     // MARK: -
