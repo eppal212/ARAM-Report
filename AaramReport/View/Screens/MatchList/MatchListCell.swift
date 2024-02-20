@@ -118,7 +118,7 @@ class MatchListCell: UITableViewCell {
             badgeLabel.text = badge
             badgeLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
             badgeLabel.textAlignment = .center
-            badgeLabel.textColor = .white
+            badgeLabel.textColor = .lightGray
         }
     }
 
