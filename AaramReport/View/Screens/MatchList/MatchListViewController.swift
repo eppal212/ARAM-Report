@@ -70,6 +70,10 @@ class MatchListViewController: UIViewController {
             self?.profileLevel.text = "Lv.\(summoner.summonerLevel ?? 0) I \(summoner.name ?? "0")"
         }).disposed(by: disposeBag)
 
+        viewModel.splashSkinList.subscribe(onNext: { [weak self] skinList in
+            self?.profileSplash.imageView.sd_setImage(with: DataDragon.default.getSplashArt(skinList: skinList))
+        }).disposed(by: disposeBag)
+
         // TableView
         viewModel.matchListRelay
             .filter({ [weak self] data in
@@ -82,7 +86,6 @@ class MatchListViewController: UIViewController {
             }.disposed(by: disposeBag)
 
         // Scroll 처리
-        profileSplash.imageView.sd_setImage(with: URL(string: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"))
         tableView.rx.contentOffset.subscribe{ [weak self] offset in
             guard let self = self else { return }
             profileSplash.scrollViewDidScroll(offset: offset, inset: tableView.contentInset) // 스플래시아트 스크롤 처리

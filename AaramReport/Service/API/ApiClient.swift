@@ -83,7 +83,7 @@ class ApiClient: ApiService {
 
     // 챔피언별 숙련도 조회
     // https://developer.riotgames.com/apis#champion-mastery-v4/GET_getAllChampionMasteriesByPUUID
-    func getSummonerTier(serverId: RiotServerId, puuid: String) -> Observable<ChampionMasteryDto> {
+    func getMastery(serverId: RiotServerId, puuid: String) -> Observable<[ChampionMasteryDto]> {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
         apiRequest.prefix = .server(serverId)
@@ -100,6 +100,26 @@ class ApiClient: ApiService {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
         apiRequest.path = "api/versions.json"
+
+        return self.dataDragon(apiRequest: apiRequest)
+    }
+
+    // 챔피언 데이터 확인
+    // https://ddragon.leagueoflegends.com/cdn/14.3.1/data/en_US/champion.json
+    func getChampionMetadata(version: String) -> Observable<ChampionMetadata> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.path = "cdn/\(version)/data/ko_KR/champion.json"
+
+        return self.dataDragon(apiRequest: apiRequest)
+    }
+
+    // 챔피언 데이터 확인
+    // https://ddragon.leagueoflegends.com/cdn/14.3.1/data/en_US/champion/Aatrox.json
+    func getChampionDetailMetadata(version: String, name: String) -> Observable<ChampionDetailMetadata> {
+        var apiRequest = ApiRequest()
+        apiRequest.method = .get
+        apiRequest.path = "cdn/\(version)/data/ko_KR/champion/\(name).json"
 
         return self.dataDragon(apiRequest: apiRequest)
     }

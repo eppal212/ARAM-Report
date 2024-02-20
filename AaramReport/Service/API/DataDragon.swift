@@ -6,7 +6,8 @@ class DataDragon {
         return DataDragon()
     }()
 
-    private var version: String = ""
+    var version: String = ""
+    private var championMetadata: ChampionMetadata?
     private var spellMetadata: SpellMetadata?
     private var runeMetadata: [RuneMetadata]?
 
@@ -28,6 +29,11 @@ class DataDragon {
 
     // DDragon 메타데이터 세팅
     private func getMetadata() {
+        // 챔피언 스플래시 아트
+        ApiClient.default.getChampionMetadata(version: version).subscribe(onNext: { [weak self] data in
+            self?.championMetadata = data
+        }).disposed(by: disposeBag)
+
         // 소환사 주문
         ApiClient.default.getSpellMetadata(version: version).subscribe(onNext: { [weak self] data in
             self?.spellMetadata = data
@@ -43,7 +49,27 @@ class DataDragon {
     // 프로필 아이콘 url 반환
     func getProfileImageUrl(id: Int?) -> URL? {
         let path = Const.dataDragon + "cdn/\(version)/img/profileicon/\(id ?? 0).png"
-            return URL(string: path)
+        return URL(string: path)
+    }
+
+    // 챔피언 id로 이름 반환
+    func getChampionName(id: Int?) -> String {
+        var champId = ""
+        for (_, data) in championMetadata?.data?.asDictionary ?? [:] where data?.key == String(id ?? 0) {
+            champId = data?.id ?? ""
+        }
+        return champId
+    }
+
+    func getSplashArt(skinList: [String]) -> URL? {
+        let path = Const.dataDragon + "cdn/img/champion/splash/\(skinList.randomElement() ?? "").jpg"
+        return URL(string: path)
+    }
+
+    // 챔피언 기본일러 url 반환
+    func getDefaultSplashArt(id: Int?) -> URL? {
+        let path = Const.championSplash + "\(id ?? 1)/\(id ?? 1)000.jpg"
+        return URL(string: path)
     }
 
     // 소환사 주문 이미지 url 반환
@@ -88,6 +114,6 @@ class DataDragon {
     // 아이템 이미지 url 반환
     func getItemImageUrl(id: Int?) -> URL? {
         let path = Const.dataDragon + "cdn/\(version)/img/item/\(id ?? 0).png"
-            return URL(string: path)
+        return URL(string: path)
     }
 }

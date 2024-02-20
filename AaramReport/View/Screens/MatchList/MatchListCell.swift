@@ -78,7 +78,7 @@ class MatchListCell: UITableViewCell {
         winView.layer.addSublayer(gradient)
 
         winLabel.text = matchData?.win ?? false ? "승" : "패"
-        champImage.sd_setImage(with: URL(string: Const.championSplash + "\(matchData?.championId ?? 1)/\(matchData?.championId ?? 1)000.jpg"))
+        champImage.sd_setImage(with: DataDragon.default.getDefaultSplashArt(id: matchData?.championId))
         kdaLabel.text = "\(matchData?.kills ?? 0) / \(matchData?.deaths ?? 0) / \(matchData?.assists ?? 0)"
         spell1Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData?.summoner1Id))
         spell2Image.sd_setImage(with: DataDragon.default.getSpellImageUrl(id: matchData?.summoner2Id))

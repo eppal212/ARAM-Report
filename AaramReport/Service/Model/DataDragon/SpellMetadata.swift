@@ -57,11 +57,11 @@ struct SpellData: Codable {
     var maxammo: String?
     var range: [Int]?
     var rangeBurn: String?
-    var image: SpellImage?
+    var image: RiotImage?
     var resource: String?
 }
 
-struct SpellImage: Codable {
+struct RiotImage: Codable {
     var full: String?
     var sprite: String?
     var group: String?

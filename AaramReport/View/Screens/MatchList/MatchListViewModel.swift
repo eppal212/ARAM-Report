@@ -7,8 +7,9 @@ class MatchListViewModel {
     var account: AccountDto?
     var server: RiotServer?
 
-    // 프로필 부분
-    let summonerRelay = PublishRelay<SummonerDto>()
+    let summonerRelay = PublishRelay<SummonerDto>() // 프로필 부분
+    let splashSkinList = PublishRelay<[String]>()
+    let masteryRelay = PublishRelay<[ChampionMasteryDto]>() // 숙련도
 
     // 매치 목록 부분
     let matchListCount = 10
@@ -22,10 +23,38 @@ class MatchListViewModel {
         guard let puuid = account?.puuid, let serverId = server?.id else { return handleError()}
         ApiClient.default.getSummoner(serverId: serverId, puuid: puuid).subscribe(onNext: { [weak self] summoner in
             self?.summonerRelay.accept(summoner)
+            self?.getMastery()
             self?.getMatchList()
         }, onError: { [weak self] error in
             self?.handleError(error: error)
         }).disposed(by: disposeBag)
+    }
+
+    // 숙련도 정보 가져오기
+    private func getMastery() {
+        guard let puuid = account?.puuid, let serverId = server?.id else { return handleError()}
+        ApiClient.default.getMastery(serverId: serverId, puuid: puuid).subscribe(onNext: { [weak self] mastery in
+            self?.masteryRelay.accept(mastery)
+            //self?.getChampionSkins(id: mastery.first?.championId)
+        }, onError: { [weak self] error in
+            self?.handleError(error: error)
+        }).disposed(by: disposeBag)
+    }
+
+    private func getChampionSkins(id: Int?) {
+        let version = DataDragon.default.version
+        let name = DataDragon.default.getChampionName(id: id)
+        ApiClient.default.getChampionDetailMetadata(version: version, name: name).subscribe(onNext: { [weak self] detail in
+            var skinList: [String] = []
+            for (_, data) in detail.data?.asDictionary ?? [:] where data?.key == String(id ?? 0) {
+                let name = data?.id ?? ""
+                data?.skins?.forEach({ skinList.append("\(name)_\($0.num ?? 0)") })
+            }
+            self?.splashSkinList.accept(skinList)
+        }, onError: { [weak self] error in
+            self?.handleError(error: error)
+        }).disposed(by: disposeBag)
+
     }
 
     // 매치 목록 가져오기

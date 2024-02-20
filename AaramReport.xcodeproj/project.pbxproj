@@ -21,6 +21,8 @@
 		129AA41D2B7A57BD00F8FE62 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA41C2B7A57BD00F8FE62 /* Toast */; };
 		129AA4222B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */; };
 		129BE9A92B847CB6003D6840 /* StretchTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BE9A82B847CB6003D6840 /* StretchTableViewHeader.swift */; };
+		129BE9AD2B84C9ED003D6840 /* ChampionMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BE9AC2B84C9ED003D6840 /* ChampionMetadata.swift */; };
+		129BE9AF2B84D39D003D6840 /* ChampionDetailMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BE9AE2B84D39D003D6840 /* ChampionDetailMetadata.swift */; };
 		12A02B8D2B831D8A002BE599 /* DataDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B8C2B831D8A002BE599 /* DataDragon.swift */; };
 		12A02B902B8325E7002BE599 /* SpellMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */; };
 		12A02B942B8353F0002BE599 /* RuneMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B932B8353F0002BE599 /* RuneMetadata.swift */; };
@@ -66,6 +68,8 @@
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectBottomSheet.swift; sourceTree = "<group>"; };
 		129BE9A82B847CB6003D6840 /* StretchTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewHeader.swift; sourceTree = "<group>"; };
+		129BE9AC2B84C9ED003D6840 /* ChampionMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionMetadata.swift; sourceTree = "<group>"; };
+		129BE9AE2B84D39D003D6840 /* ChampionDetailMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailMetadata.swift; sourceTree = "<group>"; };
 		12A02B8C2B831D8A002BE599 /* DataDragon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDragon.swift; sourceTree = "<group>"; };
 		12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellMetadata.swift; sourceTree = "<group>"; };
 		12A02B932B8353F0002BE599 /* RuneMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuneMetadata.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 			children = (
 				12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */,
 				12A02B932B8353F0002BE599 /* RuneMetadata.swift */,
+				129BE9AC2B84C9ED003D6840 /* ChampionMetadata.swift */,
+				129BE9AE2B84D39D003D6840 /* ChampionDetailMetadata.swift */,
 			);
 			path = DataDragon;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12C8EA4C2B7B7F060008F402 /* UIViewController+Extension.swift in Sources */,
+				129BE9AD2B84C9ED003D6840 /* ChampionMetadata.swift in Sources */,
 				12A66F192B7E2A8F001FDC45 /* Bundle+Extension.swift in Sources */,
 				12A66F1B2B7E31C3001FDC45 /* Log.swift in Sources */,
 				12A0B7802B7F2437008FDA9C /* CurrentGameInto.swift in Sources */,
@@ -388,6 +395,7 @@
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
 				12A0B77E2B7F1753008FDA9C /* MatchDto.swift in Sources */,
 				12A02B902B8325E7002BE599 /* SpellMetadata.swift in Sources */,
+				129BE9AF2B84D39D003D6840 /* ChampionDetailMetadata.swift in Sources */,
 				129BE9A92B847CB6003D6840 /* StretchTableViewHeader.swift in Sources */,
 				12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */,
 				12CD220D2B6E6A4900244152 /* SceneDelegate.swift in Sources */,
