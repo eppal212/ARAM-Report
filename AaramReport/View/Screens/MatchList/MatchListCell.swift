@@ -40,6 +40,7 @@ class MatchListCell: UITableViewCell {
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         gradient.colors = [UIColor.black.withAlphaComponent(0.0).cgColor, UIColor.black.withAlphaComponent(1.0).cgColor]
+        gradientView.layer.sublayers?.forEach({ $0.removeFromSuperlayer() })
         gradientView.layer.addSublayer(gradient)
 
         // 이미지들 라운드
@@ -73,6 +74,7 @@ class MatchListCell: UITableViewCell {
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         let color = matchData?.win ?? false ? winColor : loseColor
         gradient.colors = [color.withAlphaComponent(1.0).cgColor, color.withAlphaComponent(0.0).cgColor]
+        winView.layer.sublayers?.forEach({ $0.removeFromSuperlayer() })
         winView.layer.addSublayer(gradient)
 
         winLabel.text = matchData?.win ?? false ? "승" : "패"

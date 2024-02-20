@@ -10,16 +10,15 @@ class MatchListViewController: UIViewController {
     @IBOutlet weak var headerNick: UILabel!
     @IBOutlet weak var headerTag: UILabel!
 
-    @IBOutlet weak var splashImage: UIImageView! // 상단 챔피언 스플래시 아트
-
     // 프로필 부분
+    @IBOutlet weak var profileSplash: StretchTableViewHeader! // 상단 챔피언 스플래시 아트
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileNick: UILabel!
     @IBOutlet weak var profileTag: UILabel!
     @IBOutlet weak var profileLevel: UILabel!
 
     @IBOutlet weak var tableView: UITableView! // 테이블뷰
-    
+
     private let tableViewObserverKey = "contentSize"
 
     private let viewModel = MatchListViewModel()
@@ -63,6 +62,12 @@ class MatchListViewController: UIViewController {
             .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { [weak self] index, item, cell in
                 guard let cell = cell as? MatchListCell else { return }
                 cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)
+            }.disposed(by: disposeBag)
+
+        profileSplash.imageView.sd_setImage(with: URL(string: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"))
+        tableView.rx.contentOffset.subscribe { [weak self] offset in
+            guard let self = self else { return }
+            self.profileSplash.scrollViewDidScroll(offset: offset, inset: self.tableView.contentInset)
         }.disposed(by: disposeBag)
     }
 

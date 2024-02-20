@@ -284,19 +284,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SGd-vH-xoR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SGd-vH-xoR">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="s7v-Ws-FUn" userLabel="ProfileView">
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="322.66666666666669"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e7T-Wn-RBv">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Vz-E1-Ijh" customClass="StretchTableViewHeader" customModule="AaramReport" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="430" height="322.66666666666669"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="e7T-Wn-RBv" secondAttribute="height" multiplier="960:720" id="MYj-a7-ZgP"/>
-                                            </constraints>
-                                        </imageView>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mX6-Sz-MKx">
                                             <rect key="frame" x="16" y="226.66666666666663" width="80" height="80"/>
                                             <constraints>
@@ -337,13 +335,13 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FQx-Wq-eda" secondAttribute="trailing" constant="16" id="4P0-N3-bgn"/>
                                         <constraint firstItem="FQx-Wq-eda" firstAttribute="leading" secondItem="mX6-Sz-MKx" secondAttribute="trailing" constant="8" id="4bw-5F-AfK"/>
-                                        <constraint firstAttribute="bottom" secondItem="e7T-Wn-RBv" secondAttribute="bottom" id="9bY-Is-3cz"/>
                                         <constraint firstItem="mX6-Sz-MKx" firstAttribute="leading" secondItem="s7v-Ws-FUn" secondAttribute="leading" constant="16" id="E8L-sU-f0q"/>
                                         <constraint firstAttribute="bottom" secondItem="mX6-Sz-MKx" secondAttribute="bottom" constant="16" id="J9K-dJ-W0P"/>
-                                        <constraint firstItem="e7T-Wn-RBv" firstAttribute="leading" secondItem="s7v-Ws-FUn" secondAttribute="leading" id="itM-kn-TXK"/>
+                                        <constraint firstItem="3Vz-E1-Ijh" firstAttribute="top" secondItem="s7v-Ws-FUn" secondAttribute="top" id="QP8-S8-P2f"/>
+                                        <constraint firstAttribute="bottom" secondItem="3Vz-E1-Ijh" secondAttribute="bottom" id="bfy-Tb-5f8"/>
+                                        <constraint firstItem="3Vz-E1-Ijh" firstAttribute="leading" secondItem="s7v-Ws-FUn" secondAttribute="leading" id="l20-43-t9g"/>
+                                        <constraint firstAttribute="trailing" secondItem="3Vz-E1-Ijh" secondAttribute="trailing" id="mdv-ef-G0b"/>
                                         <constraint firstItem="FQx-Wq-eda" firstAttribute="centerY" secondItem="mX6-Sz-MKx" secondAttribute="centerY" id="mxS-no-rdn"/>
-                                        <constraint firstAttribute="trailing" secondItem="e7T-Wn-RBv" secondAttribute="trailing" id="oxc-is-k80"/>
-                                        <constraint firstItem="e7T-Wn-RBv" firstAttribute="top" secondItem="s7v-Ws-FUn" secondAttribute="top" id="u7F-t6-Oqg"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -630,8 +628,8 @@
                         <outlet property="profileImage" destination="mX6-Sz-MKx" id="Ccu-Ch-sJI"/>
                         <outlet property="profileLevel" destination="s18-hA-MdX" id="B1P-px-4Xq"/>
                         <outlet property="profileNick" destination="B5h-3a-xlc" id="0Cg-6h-GVO"/>
+                        <outlet property="profileSplash" destination="3Vz-E1-Ijh" id="haF-4k-BEP"/>
                         <outlet property="profileTag" destination="Vzl-X0-BGx" id="eDa-Rn-VNo"/>
-                        <outlet property="splashImage" destination="e7T-Wn-RBv" id="2gs-9N-fOH"/>
                         <outlet property="tableView" destination="SGd-vH-xoR" id="4Wu-lf-vEl"/>
                     </connections>
                 </viewController>
