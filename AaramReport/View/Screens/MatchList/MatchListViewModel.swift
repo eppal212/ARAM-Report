@@ -13,12 +13,15 @@ class MatchListViewModel {
     var account: AccountDto?
     var server: RiotServer?
 
+    let isLoading = BehaviorRelay<Bool>(value: true)
     let summonerRelay = PublishRelay<SummonerDto>() // 프로필 부분
     let splashSkinList = PublishRelay<[String]>() // 챔피언 스킨 ID 배열
     let masteryRelay = PublishRelay<[ChampionMasteryDto]>() // 숙련도
 
     // 매치 목록 부분
-    let matchListCount = 10
+    let listCount = 10 // 한 번에 불러올 갯수
+    let maxListCount = 30 // 최대 목록 갯수
+    var targetListCount = 0 // 한 싸이클에 목표로 할 목록 갯수 (매치상세를 반복호출 해야해서 비교할 값이 필요)
     let matchListRelay = BehaviorRelay<[MatchDto]>(value: [])
 
     private let disposeBag = DisposeBag()
@@ -65,9 +68,16 @@ class MatchListViewModel {
     }
 
     // 매치 목록 가져오기
-    private func getMatchList() {
+    func getMatchList() {
         guard let puuid = account?.puuid else { return handleError()}
-        ApiClient.default.getMatchList(puuid: puuid, count: matchListCount).subscribe(onNext: { [weak self] matchList in
+        if matchListRelay.value.count >= maxListCount { return } // 이미 한계치까지 호출했으면 더이상 목록을 가져오지 않음
+
+        // 조회할 목록 갯수 계산
+        let callCount = targetListCount == 0 ? listCount : listCount / 2
+        let startCount = matchListRelay.value.count
+        targetListCount += callCount
+
+        ApiClient.default.getMatchList(puuid: puuid, start: startCount, count: callCount).subscribe(onNext: { [weak self] matchList in
             for matchId in matchList {
                 self?.getMatchDetail(matchId: matchId) // 매치 상세 조회
             }
@@ -79,11 +89,10 @@ class MatchListViewModel {
     // 매치 상세 가져오기
     private func getMatchDetail(matchId: String) {
         ApiClient.default.getMatchDetail(matchId: matchId).subscribe(onNext: { [weak self] matchData in
-
-            guard var arr = self?.matchListRelay.value else { return }
+            guard let self = self else { return }
+            var arr = matchListRelay.value
             arr.append(matchData)
-            self?.matchListRelay.accept(arr)
-
+            matchListRelay.accept(arr)
         }, onError: { [weak self] error in
             self?.handleError(error: error)
         }).disposed(by: disposeBag)

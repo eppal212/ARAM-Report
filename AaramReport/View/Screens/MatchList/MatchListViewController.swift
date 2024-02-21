@@ -22,7 +22,7 @@ class MatchListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let viewModel = MatchListViewModel()
-    private var loadingView = LoadingView()
+    private let loadingView = LoadingView()
 
     private let tableViewObserverKey = "contentSize"
     private var isShowHeaderBg = false
@@ -39,8 +39,6 @@ class MatchListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-
-        showLoading(isShow: true)
 
         initLayout()
         initBinding()
@@ -70,12 +68,13 @@ class MatchListViewController: UIViewController {
     }
 
     private func initBinding() {
-        // 상단 프로필 파트
+        // 상단 프로필 정보
         viewModel.summonerRelay.subscribe(onNext: { [weak self] summoner in
             self?.profileImage.sd_setImage(with: DataDragon.default.getProfileImageUrl(id: summoner.profileIconId))
             self?.profileLevel.text = "Lv.\(summoner.summonerLevel ?? 0) I \(summoner.name ?? "0")"
         }).disposed(by: disposeBag)
 
+        // 상단 스플래시 아트
         viewModel.splashSkinList.subscribe(onNext: { [weak self] skinList in
             self?.profileSplash.imageView.sd_setImage(with: DataDragon.default.getSplashArt(skinList: skinList))
         }).disposed(by: disposeBag)
@@ -83,7 +82,7 @@ class MatchListViewController: UIViewController {
         // TableView
         viewModel.matchListRelay
             .filter { [weak self] data in
-                data.count == self?.viewModel.matchListCount
+                data.count == self?.viewModel.targetListCount
             }
             .map { $0.sorted(by: { $0.info?.gameStartTimestamp ?? 0 > $1.info?.gameStartTimestamp ?? 0 }) }
             .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { [weak self] index, item, cell in
@@ -92,9 +91,10 @@ class MatchListViewController: UIViewController {
             }.disposed(by: disposeBag)
 
         // Scroll 처리
-        tableView.rx.contentOffset.subscribe{ [weak self] offset in
+        tableView.rx.contentOffset.subscribe(onNext: { [weak self] offset in
             guard let self = self else { return }
-            profileSplash.scrollViewDidScroll(offset: offset, inset: tableView.contentInset) // 스플래시아트 스크롤 처리
+            // 스플래시아트 스크롤 처리
+            profileSplash.scrollViewDidScroll(offset: offset, inset: tableView.contentInset)
 
             // 헤더 처리
             let scrollEnough = offset.y > (profileSplash.frame.height / 2)
@@ -106,28 +106,39 @@ class MatchListViewController: UIViewController {
                     self?.headerTag.isHidden = !scrollEnough
                 }
             }
-        }.disposed(by: disposeBag)
 
-        viewModel.matchListRelay
-            .filter{ [weak self] data in
-                data.count >= self?.viewModel.matchListCount ?? 0
+            // 무한 스크롤 처리
+            if offset.y > tableView.contentSize.height - tableView.bounds.size.height, !viewModel.isLoading.value {
+                viewModel.getMatchList()
             }
-            .subscribe { [weak self] _ in
-                self?.showLoading(isShow: false)
-            }.disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
+
+        // 로딩 처리
+        viewModel.isLoading.subscribe(onNext: { [weak self] isLoading in
+            self?.showLoading(isShow: isLoading)
+        }).disposed(by: disposeBag)
+
+        // 로딩 여부 판단
+        viewModel.matchListRelay.subscribe { [weak self] data in
+            if data.count > 0, data.count >= self?.viewModel.targetListCount ?? 0 {
+                self?.viewModel.isLoading.accept(false)
+            }
+        }.disposed(by: disposeBag)
     }
 
     // MARK: - Function
     private func showLoading(isShow: Bool) {
         if isShow {
-            self.view.addSubview(loadingView)
-            loadingView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                loadingView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                loadingView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                loadingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                loadingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-            ])
+            if !self.view.subviews.contains(where: { $0 == loadingView}) {
+                self.view.addSubview(loadingView)
+                loadingView.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    loadingView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                    loadingView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                    loadingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                    loadingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+                ])
+            }
         } else {
             loadingView.remove()
         }

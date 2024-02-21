@@ -34,13 +34,13 @@ class ApiClient: ApiService {
 
     // 매치 목록 조회
     // https://developer.riotgames.com/apis#match-v5/GET_getMatchIdsByPUUID
-    func getMatchList(puuid: String, count: Int) -> Observable<[String]> {
+    func getMatchList(puuid: String, start: Int, count: Int) -> Observable<[String]> {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
         apiRequest.prefix = .asia
         apiRequest.path = "lol/match/v5/matches/by-puuid"
         apiRequest.pathParam = [puuid, "ids"]
-        apiRequest.parameters = ["queueId": 450, "count": count]
+        apiRequest.parameters = ["queueId": 450, "start": start, "count": count]
 
         return self.riotApi(apiRequest: apiRequest)
     }
