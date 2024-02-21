@@ -2,7 +2,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+protocol RiotApiDelegate {
+    func handleError(code: ErrorStatusCode)
+}
+
 class MatchListViewModel {
+    var delegate: RiotApiDelegate?
+
     // 초기화 데이터
     var account: AccountDto?
     var server: RiotServer?
@@ -86,6 +92,6 @@ class MatchListViewModel {
     // API 처리 도중 발생하는 error 대응
     private func handleError(error: Any? = nil, code: ErrorStatusCode = .badGateway) {
         let errorCode: ErrorStatusCode = (error as? ErrorResponse)?.statusCode ?? code
-        // TODO:
+        delegate?.handleError(code: errorCode)
     }
 }

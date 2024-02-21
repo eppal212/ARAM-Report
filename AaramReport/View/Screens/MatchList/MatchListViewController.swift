@@ -38,6 +38,8 @@ class MatchListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
+
         showLoading(isShow: true)
 
         initLayout()
@@ -134,5 +136,20 @@ class MatchListViewController: UIViewController {
     // MARK: - IBAction
     @IBAction func onClickBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - RiotApiDelegate
+extension MatchListViewController: RiotApiDelegate {
+    func handleError(code: ErrorStatusCode) {
+        switch code {
+        case .dataNotFound:
+            showToast("소환사 정보를 찾을 수 없습니다.\n서버를 확인해주세요.")
+        case .rateLimitExceeded:
+            showToast("현재 사용량이 많아 이용이 불가능합니다.\n잠시 후 다시 시도해 주세요.")
+        default:
+            showToast("Riot API 통신에 문제가 발생했습니다.\n이용에 불편을 드려 죄송합니다.")
+        }
+        navigationController?.popToRootViewController(animated: true)
     }
 }

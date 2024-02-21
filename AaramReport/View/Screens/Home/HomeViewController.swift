@@ -1,7 +1,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Toast
 import FloatingPanel
 
 class HomeViewController: UIViewController {
@@ -19,6 +18,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
         initBinding()
         initLayout()
     }
@@ -107,15 +108,15 @@ class HomeViewController: UIViewController {
                 matchListVC.setAccountData(accountData: account, server: self?.serverRelay.value)
                 self?.navigationController?.pushViewController(matchListVC, animated: true)
 
-            }, onError: { [weak self] _ in
-                self?.view.makeToast("올바른 서버, 닉네임, 태그를 입력해 주세요.")
+            }, onError: { _ in
+                showToast("올바른 서버, 닉네임, 태그를 입력해 주세요.")
             }).disposed(by: disposeBag)
 
             // 검색 닉네임 저장
             UserDefaults.standard.set(nickname, forKey: Const.savedNicknameKey)
             UserDefaults.standard.set(tag, forKey: Const.savedTagKey)
         } else {
-            self.view.makeToast("닉네임과 태그를 입력해주세요.")
+            showToast("닉네임과 태그를 입력해주세요.")
         }
     }
 }

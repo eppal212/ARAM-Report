@@ -2,7 +2,6 @@ import Foundation
 import FloatingPanel
 import UIKit
 import SDWebImage
-import SDWebImageSVGCoder
 
 class ServerSelectBottomSheet: UIViewController {
 
@@ -22,12 +21,6 @@ class ServerSelectBottomSheet: UIViewController {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let SVGCoder = SDImageSVGCoder.shared
-        SDImageCodersManager.shared.addCoder(SVGCoder)
     }
 }
 

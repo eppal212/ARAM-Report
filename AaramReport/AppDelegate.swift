@@ -1,4 +1,5 @@
 import UIKit
+import SDWebImageSVGCoder
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,6 +11,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 exit(0)
             }
         }
+
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+        
         return true
     }
 
