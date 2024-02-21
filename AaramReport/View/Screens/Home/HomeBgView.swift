@@ -5,7 +5,7 @@ import AVFoundation
 @IBDesignable
 class HomeBgView: UIView {
 
-    private var thumbnailImage = UIImageView() // 동영상 재생 전 검은 화면을 대신할 썸네일
+    private let thumbnailImage = UIImageView() // 동영상 재생 전 검은 화면을 대신할 썸네일
     private let ovelayDim = UIView()
 
     @IBInspectable var overlayOpacity: CGFloat = 0 { // 동영상 위에 오버레이 되는 Dim 투명도
