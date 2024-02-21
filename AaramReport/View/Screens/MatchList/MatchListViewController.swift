@@ -91,7 +91,7 @@ class MatchListViewController: UIViewController {
             profileSplash.scrollViewDidScroll(offset: offset, inset: tableView.contentInset) // 스플래시아트 스크롤 처리
 
             // 헤더 처리
-            let scrollEnough = offset.y > (gradientView.frame.origin.y - view.safeAreaInsets.top / 2)
+            let scrollEnough = offset.y > (profileSplash.frame.height / 2)
             if isShowHeaderBg != scrollEnough {
                 isShowHeaderBg = scrollEnough
                 UIView.animate(withDuration: 0.1) { [weak self] in
