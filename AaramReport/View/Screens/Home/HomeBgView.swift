@@ -5,7 +5,9 @@ import AVFoundation
 @IBDesignable
 class HomeBgView: UIView {
 
+    private var thumbnailImage = UIImageView() // 동영상 재생 전 검은 화면을 대신할 썸네일
     private let ovelayDim = UIView()
+
     @IBInspectable var overlayOpacity: CGFloat = 0 { // 동영상 위에 오버레이 되는 Dim 투명도
         didSet {
             ovelayDim.backgroundColor = UIColor(white: 0, alpha: overlayOpacity)
@@ -18,12 +20,6 @@ class HomeBgView: UIView {
     private var playerLooper: AVPlayerLooper? // 동영상 반복
 
     private let disposeBag = DisposeBag()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initLayout()
-        initBinding()
-    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -40,6 +36,23 @@ class HomeBgView: UIView {
     private func initLayout() {
         // 동영상 세팅
         guard let videoFile = Bundle.main.url(forResource: videoName, withExtension: videoExtension) else { return }
+
+        // 썸네일
+        let imageGenerator = AVAssetImageGenerator(asset: AVAsset(url: videoFile))
+        if let imageRef = try? imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 1), actualTime: nil) {
+            let thumbnail = UIImage(cgImage:imageRef)
+            thumbnailImage.image = thumbnail
+            self.addSubview(thumbnailImage)
+            thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                thumbnailImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
+                thumbnailImage.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
+                thumbnailImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
+                thumbnailImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0)
+            ])
+        }
+
+        // AVPlayer
         let playerItem = AVPlayerItem(url: videoFile)
         let queuePlayer = AVQueuePlayer(playerItem: playerItem)
         playerLayer.player = queuePlayer
@@ -56,7 +69,8 @@ class HomeBgView: UIView {
             ovelayDim.topAnchor.constraint(equalTo: self.topAnchor, constant: 0),
             ovelayDim.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
             ovelayDim.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-            ovelayDim.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0)])
+            ovelayDim.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0)
+        ])
     }
 
     // 백/포그라운드 전환시 동영상 처리
