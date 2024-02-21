@@ -18,11 +18,13 @@ class MatchListViewController: UIViewController {
     @IBOutlet weak var profileTag: UILabel!
     @IBOutlet weak var profileLevel: UILabel!
 
-    @IBOutlet weak var tableView: UITableView! // 테이블뷰
-
-    private let tableViewObserverKey = "contentSize"
+    // 테이블뷰
+    @IBOutlet weak var tableView: UITableView!
 
     private let viewModel = MatchListViewModel()
+    private var loadingView = LoadingView()
+
+    private let tableViewObserverKey = "contentSize"
     private var isShowHeaderBg = false
 
     private let disposeBag = DisposeBag()
@@ -36,6 +38,8 @@ class MatchListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoading(isShow: true)
+
         initLayout()
         initBinding()
 
@@ -46,9 +50,9 @@ class MatchListViewController: UIViewController {
         // 그라데이션
         let gradient = CAGradientLayer()
         gradient.frame = gradientView.bounds
-        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
-        gradient.colors = [UIColor.black.withAlphaComponent(1.0).cgColor, UIColor.black.withAlphaComponent(0.0).cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0)
+        gradient.colors = [UIColor.black.withAlphaComponent(1).cgColor, UIColor.black.withAlphaComponent(0).cgColor]
         gradientView.layer.addSublayer(gradient)
 
         profileImage.layer.cornerRadius = 16
@@ -76,10 +80,10 @@ class MatchListViewController: UIViewController {
 
         // TableView
         viewModel.matchListRelay
-            .filter({ [weak self] data in
+            .filter { [weak self] data in
                 data.count == self?.viewModel.matchListCount
-            })
-            .map({ $0.sorted(by: { $0.info?.gameStartTimestamp ?? 0 > $1.info?.gameStartTimestamp ?? 0 }) })
+            }
+            .map { $0.sorted(by: { $0.info?.gameStartTimestamp ?? 0 > $1.info?.gameStartTimestamp ?? 0 }) }
             .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { [weak self] index, item, cell in
                 guard let cell = cell as? MatchListCell else { return }
                 cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)
@@ -101,9 +105,31 @@ class MatchListViewController: UIViewController {
                 }
             }
         }.disposed(by: disposeBag)
+
+        viewModel.matchListRelay
+            .filter{ [weak self] data in
+                data.count >= self?.viewModel.matchListCount ?? 0
+            }
+            .subscribe { [weak self] _ in
+                self?.showLoading(isShow: false)
+            }.disposed(by: disposeBag)
     }
 
-    // MARK: -
+    // MARK: - Function
+    private func showLoading(isShow: Bool) {
+        if isShow {
+            self.view.addSubview(loadingView)
+            loadingView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                loadingView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                loadingView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                loadingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                loadingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+            ])
+        } else {
+            loadingView.remove()
+        }
+    }
 
     // MARK: - IBAction
     @IBAction func onClickBack(_ sender: UIButton) {

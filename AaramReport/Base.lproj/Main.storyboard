@@ -646,21 +646,6 @@
             </objects>
             <point key="canvasLocation" x="1516.7441860465117" y="-675.32188841201719"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="DvU-Mh-InF">
-            <objects>
-                <viewController id="Nio-xV-Cex" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AZ0-SI-fzS">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="X84-Ap-7b1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="40t-2l-Exf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1517" y="21"/>
-        </scene>
     </scenes>
     <designables>
         <designable name="oTO-Us-JFC">

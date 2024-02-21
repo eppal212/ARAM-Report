@@ -37,9 +37,9 @@ class MatchListCell: UITableViewCell {
         // 그라데이션
         let gradient = CAGradientLayer()
         gradient.frame = gradientView.bounds
-        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        gradient.colors = [UIColor.black.withAlphaComponent(0.0).cgColor, UIColor.black.withAlphaComponent(1.0).cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        gradient.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(1).cgColor]
         gradientView.layer.sublayers?.forEach({ $0.removeFromSuperlayer() })
         gradientView.layer.addSublayer(gradient)
 
@@ -70,10 +70,10 @@ class MatchListCell: UITableViewCell {
         // 승패뷰 그라데이션
         let gradient = CAGradientLayer()
         gradient.frame = winView.bounds
-        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradient.startPoint = CGPoint(x: 0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1, y: 0.5)
         let color = matchData?.win ?? false ? winColor : loseColor
-        gradient.colors = [color.withAlphaComponent(1.0).cgColor, color.withAlphaComponent(0.0).cgColor]
+        gradient.colors = [color.withAlphaComponent(1).cgColor, color.withAlphaComponent(0).cgColor]
         winView.layer.sublayers?.forEach({ $0.removeFromSuperlayer() })
         winView.layer.addSublayer(gradient)
 
