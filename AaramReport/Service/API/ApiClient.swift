@@ -74,6 +74,7 @@ class ApiClient: ApiService {
     func getSummonerTier(serverId: RiotServerId, encryptedSummonerId: String) -> Observable<LeagueEntryDto> {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
+        apiRequest.header = ApiRequestHeader.tier
         apiRequest.prefix = .server(serverId)
         apiRequest.path = "lol/league/v4/entries/by-summoner"
         apiRequest.pathParam = [encryptedSummonerId]

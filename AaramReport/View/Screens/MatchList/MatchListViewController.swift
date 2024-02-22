@@ -89,7 +89,7 @@ class MatchListViewController: UIViewController {
             .bind(to: currentGameButton.rx.isEnabled)
             .disposed(by: disposeBag)
 
-        // TableView
+        // TableView cellForRowAt
         viewModel.matchListRelay
             .filter { [weak self] data in
                 data.count == self?.viewModel.targetListCount
@@ -99,6 +99,12 @@ class MatchListViewController: UIViewController {
                 guard let cell = cell as? MatchListCell else { return }
                 cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)
             }.disposed(by: disposeBag)
+
+        // TableView didSelectRowAt
+        tableView.rx.itemSelected.subscribe(onNext: { [weak self] indexPath in
+            let data = self?.viewModel.matchListRelay.value[indexPath.row]
+            // TODO:
+        }).disposed(by: disposeBag)
 
         // Scroll 처리
         tableView.rx.contentOffset.subscribe(onNext: { [weak self] offset in

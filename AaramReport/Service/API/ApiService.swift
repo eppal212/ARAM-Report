@@ -25,9 +25,20 @@ struct ApiRequest {
     var pathParam: [String]?
     var parameters: [String: Any]?
     var encoding: ParameterEncoding = URLEncoding.queryString // JSONEncoding.default
-    var header: HTTPHeaders {
-        ["Content-Type": "application/json; charset=utf-8",
-         "X-Riot-Token": Bundle.main.RIOT_API_KEY]
+    var header = ApiRequestHeader.riot
+}
+
+struct ApiRequestHeader {
+    static var riot: HTTPHeaders {
+        var header: HTTPHeaders = ["Content-Type": "application/json; charset=utf-8",
+                                   "X-Riot-Token": Bundle.main.RIOT_API_KEY]
+        return header
+    }
+
+    static var tier: HTTPHeaders {
+        var header: HTTPHeaders = ["Content-Type": "application/json; charset=utf-8",
+                                   "X-Riot-Token": Bundle.main.TIER_API_KEY]
+        return header
     }
 }
 

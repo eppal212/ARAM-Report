@@ -8,4 +8,12 @@ extension Bundle {
         guard let key = resource["RIOT_API_KEY"] as? String else { return "" } // 값 탐색
         return key
     }
+
+    // TIER 조회 전용 API KEY 획득
+    var TIER_API_KEY: String {
+        guard let file = self.path(forResource: "Key", ofType: "plist") else { return "" }
+        guard let resource = NSDictionary(contentsOfFile: file) else { return "" }
+        guard let key = resource["TIER_API_KEY"] as? String else { return "" }
+        return key
+    }
 }
