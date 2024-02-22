@@ -18,8 +18,10 @@ class MatchListViewController: UIViewController {
     @IBOutlet weak var profileTag: UILabel!
     @IBOutlet weak var profileLevel: UILabel!
 
-    // 테이블뷰
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var currentGameButton: UIButton! // 현재 게임 버튼
+    @IBOutlet weak var tierGuessButton: UIButton! // 티어 추측 버튼
+
+    @IBOutlet weak var tableView: UITableView! // 테이블뷰
 
     private let viewModel = MatchListViewModel()
     private let loadingView = LoadingView()
@@ -62,6 +64,9 @@ class MatchListViewController: UIViewController {
         headerTag.text = "#\(viewModel.account?.tagLine ?? "")"
         profileTag.text = "#\(viewModel.account?.tagLine ?? "")"
 
+        currentGameButton.setTitleColor(.lightGray, for: .disabled)
+        tierGuessButton.setTitleColor(.lightGray, for: .disabled)
+
         // TableView
         tableView.rowHeight = 100
         tableView.showsVerticalScrollIndicator = false
@@ -78,6 +83,11 @@ class MatchListViewController: UIViewController {
         viewModel.splashSkinList.subscribe(onNext: { [weak self] skinList in
             self?.profileSplash.imageView.sd_setImage(with: DataDragon.default.getSplashArt(skinList: skinList))
         }).disposed(by: disposeBag)
+
+        // 현재 게임 버튼 활성화 유무 처리
+        viewModel.currentGame.map { $0 != nil }
+            .bind(to: currentGameButton.rx.isEnabled)
+            .disposed(by: disposeBag)
 
         // TableView
         viewModel.matchListRelay
@@ -138,8 +148,24 @@ class MatchListViewController: UIViewController {
     }
 
     // MARK: - IBAction
+    // 뒤로가기 버튼 클릭
     @IBAction func onClickBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+
+    // 현재 게임 버튼 클릭
+    @IBAction func onClickCurrentGame(_ sender: UIButton) {
+        // TODO:
+    }
+
+    // 숙련도 버튼 클릭
+    @IBAction func onClickMastery(_ sender: UIButton) {
+        // TODO:
+    }
+
+    // 티어 추측 버튼 클릭
+    @IBAction func onClickTierGuess(_ sender: UIButton) {
+        // TODO:
     }
 }
 

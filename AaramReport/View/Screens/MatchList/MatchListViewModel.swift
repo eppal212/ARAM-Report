@@ -17,6 +17,7 @@ class MatchListViewModel {
     let summonerRelay = PublishRelay<SummonerDto>() // 프로필 부분
     let splashSkinList = PublishRelay<[String]>() // 챔피언 스킨 ID 배열
     let masteryRelay = PublishRelay<[ChampionMasteryDto]>() // 숙련도
+    let currentGame = BehaviorRelay<CurrentGameInfo?>(value: nil) // 진행중인 게임
 
     // 매치 목록 부분
     let listCount = 10 // 한 번에 불러올 갯수
@@ -38,11 +39,12 @@ class MatchListViewModel {
     // MARK: - API
     // 소환사 정보 가져오기
     func getSummoner() {
-        guard let puuid = account?.puuid, let serverId = server?.id else { return handleError()}
+        guard let puuid = account?.puuid, let serverId = server?.id else { return handleError() }
         isLoading.accept(true)
         ApiClient.default.getSummoner(serverId: serverId, puuid: puuid).subscribe(onNext: { [weak self] summoner in
             self?.summonerRelay.accept(summoner)
             self?.getMastery()
+            self?.getCurrentGame(id: summoner.id)
             self?.getMatchList()
         }, onError: { [weak self] error in
             self?.handleError(error: error)
@@ -51,7 +53,7 @@ class MatchListViewModel {
 
     // 숙련도 정보 가져오기
     private func getMastery() {
-        guard let puuid = account?.puuid, let serverId = server?.id else { return handleError()}
+        guard let puuid = account?.puuid, let serverId = server?.id else { return handleError() }
         ApiClient.default.getMastery(serverId: serverId, puuid: puuid).subscribe(onNext: { [weak self] mastery in
             self?.masteryRelay.accept(mastery)
             self?.getChampionSkins(id: mastery.first?.championId)
@@ -74,12 +76,21 @@ class MatchListViewModel {
         }, onError: { [weak self] error in
             self?.handleError(error: error)
         }).disposed(by: disposeBag)
+    }
 
+    // 현재 게임 정보 가져오기
+    private func getCurrentGame(id: String?) {
+        guard let serverId = server?.id, let id = id else { return currentGame.accept(nil) }
+        ApiClient.default.getCurrentGame(serverId: serverId, encryptedSummonerId: id).subscribe(onNext: { [weak self] current in
+            self?.currentGame.accept(current)
+        }, onError: { [weak self] _ in
+            self?.currentGame.accept(nil)
+        }).disposed(by: disposeBag)
     }
 
     // 매치 목록 가져오기
     func getMatchList() {
-        guard let puuid = account?.puuid else { return handleError()}
+        guard let puuid = account?.puuid else { return handleError() }
         if matchListRelay.value.count >= maxListCount { return } // 이미 한계치까지 호출했으면 더이상 목록을 가져오지 않음
         isLoading.accept(true)
 
@@ -110,8 +121,8 @@ class MatchListViewModel {
     }
 
     // API 처리 도중 발생하는 error 대응
-    private func handleError(error: Any? = nil, code: ErrorStatusCode = .badGateway) {
-        let errorCode: ErrorStatusCode = (error as? ErrorResponse)?.statusCode ?? code
+    private func handleError(error: Any? = nil) {
+        let errorCode: ErrorStatusCode = (error as? ErrorResponse)?.statusCode ?? .badGateway
         delegate?.handleError(code: errorCode)
     }
 }
