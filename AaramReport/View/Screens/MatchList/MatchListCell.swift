@@ -109,8 +109,8 @@ class MatchListCell: UITableViewCell {
         case 5: badgeArray.append("펜타킬")
         default: break
         }
-        if data?.info?.participants?.sorted(by: { $0.totalDamageDealt ?? 0 > $1.totalDamageDealt ?? 0}).first?.puuid == puuid {
-            badgeArray.append("딜 1등")
+        if data?.info?.participants?.sorted(by: { $0.totalDamageDealtToChampions ?? 0 > $1.totalDamageDealtToChampions ?? 0}).first?.puuid == puuid {
+            badgeArray.append("딜1등")
         }
 
         badgeView.subviews.forEach { $0.removeFromSuperview() }
@@ -138,15 +138,13 @@ class MatchListCell: UITableViewCell {
         // 날짜
         let date = Date(timeIntervalSince1970: TimeInterval(startTime / 1000))
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy.M.d"
-        dateLabel.text = dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "yy.M.d HH:mm"
+        dateLabel.text = "'" + dateFormatter.string(from: date)
 
         // 시간 & 플레이타임
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
         let playTime = endTime - (startTime / 1000)
         let minute = playTime / 60
         let second = playTime % 60
-        timeLabel.text = "\(timeFormatter.string(from: date)) I \(minute):\(second)"
+        timeLabel.text = "플레이타임 \(minute):\(second)"
     }
 }
