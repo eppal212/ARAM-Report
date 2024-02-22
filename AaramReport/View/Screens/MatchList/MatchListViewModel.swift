@@ -26,10 +26,20 @@ class MatchListViewModel {
 
     private let disposeBag = DisposeBag()
 
+    init() {
+        // 로딩 여부 판단
+        matchListRelay.subscribe { [weak self] data in
+            if data.count > 0, data.count >= self?.targetListCount ?? 0 {
+                self?.isLoading.accept(false)
+            }
+        }.disposed(by: disposeBag)
+    }
+
     // MARK: - API
     // 소환사 정보 가져오기
     func getSummoner() {
         guard let puuid = account?.puuid, let serverId = server?.id else { return handleError()}
+        isLoading.accept(true)
         ApiClient.default.getSummoner(serverId: serverId, puuid: puuid).subscribe(onNext: { [weak self] summoner in
             self?.summonerRelay.accept(summoner)
             self?.getMastery()
@@ -71,6 +81,7 @@ class MatchListViewModel {
     func getMatchList() {
         guard let puuid = account?.puuid else { return handleError()}
         if matchListRelay.value.count >= maxListCount { return } // 이미 한계치까지 호출했으면 더이상 목록을 가져오지 않음
+        isLoading.accept(true)
 
         // 조회할 목록 갯수 계산
         let callCount = targetListCount == 0 ? listCount : listCount / 2

@@ -117,13 +117,6 @@ class MatchListViewController: UIViewController {
         viewModel.isLoading.subscribe(onNext: { [weak self] isLoading in
             self?.showLoading(isShow: isLoading)
         }).disposed(by: disposeBag)
-
-        // 로딩 여부 판단
-        viewModel.matchListRelay.subscribe { [weak self] data in
-            if data.count > 0, data.count >= self?.viewModel.targetListCount ?? 0 {
-                self?.viewModel.isLoading.accept(false)
-            }
-        }.disposed(by: disposeBag)
     }
 
     // MARK: - Function
@@ -161,6 +154,10 @@ extension MatchListViewController: RiotApiDelegate {
         default:
             showToast("Riot API 통신에 문제가 발생했습니다.\n이용에 불편을 드려 죄송합니다.")
         }
-        navigationController?.popToRootViewController(animated: true)
+
+        // 초기 로딩일 경우에만 실패시 돌아감
+        if viewModel.targetListCount == viewModel.listCount {
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
