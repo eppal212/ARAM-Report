@@ -26,7 +26,6 @@ class MatchListViewController: UIViewController {
     private let viewModel = MatchListViewModel()
     private let loadingView = LoadingView()
 
-    private let tableViewObserverKey = "contentSize"
     private var isShowHeaderBg = false
 
     private let disposeBag = DisposeBag()
@@ -171,7 +170,10 @@ class MatchListViewController: UIViewController {
 
     // 티어 추측 버튼 클릭
     @IBAction func onClickTierGuess(_ sender: UIButton) {
-        // TODO:
+        // TierGuessViewController로 이동
+        guard let tierGuessVC = self.storyboard?.instantiateViewController(withIdentifier: "TierGuessViewController") as? TierGuessViewController else { return }
+        tierGuessVC.viewModel = viewModel
+        self.navigationController?.pushViewController(tierGuessVC, animated: true)
     }
 }
 
