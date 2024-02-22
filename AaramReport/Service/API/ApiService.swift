@@ -41,6 +41,7 @@ class ApiService {
 
         return Session(configuration: configuration)
     }()
+    var riotApiCallCount = 0
 
     func riotApi<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
         let baseUrl: URL? = URL(string: "https://" + apiRequest.prefix.getValue() + Const.riotUrl)
@@ -54,6 +55,9 @@ class ApiService {
         for param in apiRequest.pathParam ?? [] {
             url.appendPathComponent(param)
         }
+
+        riotApiCallCount += 1
+        print("RiotApiCallCount : \(riotApiCallCount)")
 
         return request(apiRequest: apiRequest, url: url)
     }

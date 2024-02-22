@@ -7,8 +7,6 @@ class ApiClient: ApiService {
         return ApiClient()
     }()
 
-    var zzz = 0
-
     // MARK: - RIOT API
     // 계정 정보 조회
     // https://developer.riotgames.com/apis#account-v1/GET_getByRiotId
@@ -18,8 +16,6 @@ class ApiClient: ApiService {
         apiRequest.prefix = .asia
         apiRequest.path = "riot/account/v1/accounts/by-riot-id"
         apiRequest.pathParam = [gameName, tagLine]
-        zzz += 1
-        print("zzz getAccount \(zzz)")
 
         return self.riotApi(apiRequest: apiRequest)
     }
@@ -32,8 +28,6 @@ class ApiClient: ApiService {
         apiRequest.prefix = .server(serverId)
         apiRequest.path = "lol/summoner/v4/summoners/by-puuid"
         apiRequest.pathParam = [puuid]
-        zzz += 1
-        print("zzz getSummoner \(zzz)")
 
         return self.riotApi(apiRequest: apiRequest)
     }
@@ -47,8 +41,6 @@ class ApiClient: ApiService {
         apiRequest.path = "lol/match/v5/matches/by-puuid"
         apiRequest.pathParam = [puuid, "ids"]
         apiRequest.parameters = ["queueId": 450, "start": start, "count": count]
-        zzz += 1
-        print("zzz getMatchList \(zzz)")
 
         return self.riotApi(apiRequest: apiRequest)
     }
@@ -61,8 +53,6 @@ class ApiClient: ApiService {
         apiRequest.prefix = .asia
         apiRequest.path = "lol/match/v5/matches"
         apiRequest.pathParam = [matchId]
-        zzz += 1
-        print("zzz getMatchDetail \(zzz)")
 
         return self.riotApi(apiRequest: apiRequest)
     }
@@ -75,8 +65,6 @@ class ApiClient: ApiService {
         apiRequest.prefix = .server(serverId)
         apiRequest.path = "lol/spectator/v4/active-games/by-summoner"
         apiRequest.pathParam = [encryptedSummonerId]
-        zzz += 1
-        print("zzz getCurrentGame \(zzz)")
 
         return self.riotApi(apiRequest: apiRequest)
     }
@@ -89,8 +77,6 @@ class ApiClient: ApiService {
         apiRequest.prefix = .server(serverId)
         apiRequest.path = "lol/league/v4/entries/by-summoner"
         apiRequest.pathParam = [encryptedSummonerId]
-        zzz += 1
-        print("zzz getSummonerTier \(zzz)")
 
         return self.riotApi(apiRequest: apiRequest)
     }
@@ -103,8 +89,6 @@ class ApiClient: ApiService {
         apiRequest.prefix = .server(serverId)
         apiRequest.path = "lol/champion-mastery/v4/champion-masteries/by-puuid"
         apiRequest.pathParam = [puuid]
-        zzz += 1
-        print("zzz getMastery \(zzz)")
 
         return self.riotApi(apiRequest: apiRequest)
     }

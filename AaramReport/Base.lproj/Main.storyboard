@@ -489,10 +489,10 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pvo-6D-GUy">
-                                                    <rect key="frame" x="286.66666666666669" y="40.666666666666664" width="45" height="18.666666666666664"/>
+                                                    <rect key="frame" x="286.66666666666669" y="42.333333333333336" width="45" height="15.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쿼드라킬" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPN-EH-UPs">
-                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="18.666666666666668"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="15.666666666666666"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -545,7 +545,6 @@
                                                 <constraint firstItem="LWE-hg-83R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w3d-26-TrO" secondAttribute="trailing" id="pWc-hP-jaA"/>
                                                 <constraint firstAttribute="bottom" secondItem="3Hk-2L-4E8" secondAttribute="bottom" id="pgg-3h-V1g"/>
                                                 <constraint firstItem="LWE-hg-83R" firstAttribute="top" secondItem="OQD-7y-ft8" secondAttribute="top" id="pze-nB-JFS"/>
-                                                <constraint firstItem="pvo-6D-GUy" firstAttribute="height" secondItem="OQD-7y-ft8" secondAttribute="height" multiplier="0.1875" id="rIb-V2-hRc"/>
                                                 <constraint firstItem="3Hk-2L-4E8" firstAttribute="leading" secondItem="OQD-7y-ft8" secondAttribute="leading" id="s8F-E1-LzW"/>
                                                 <constraint firstItem="rwF-Je-yDh" firstAttribute="centerY" secondItem="OQD-7y-ft8" secondAttribute="centerY" id="shu-LM-y6V"/>
                                                 <constraint firstAttribute="bottom" secondItem="Mhm-kR-nss" secondAttribute="bottom" id="uOe-Ga-t04"/>
