@@ -4,7 +4,7 @@ import Lottie
 
 class LoadingView: UIView {
 
-    private let gradientView = UIView()
+    private let bgImage = UIImageView()
     private let animationView = LottieAnimationView(name: "loading")
 
     override init(frame: CGRect) {
@@ -17,26 +17,16 @@ class LoadingView: UIView {
         initLayout()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        let gradient = CAGradientLayer()
-        gradient.frame = gradientView.bounds
-        gradient.startPoint = CGPoint(x: 0, y: 1)
-        gradient.endPoint = CGPoint(x: 1, y: 0)
-        gradient.colors = [UIColor(hexCode: "048ed1"), UIColor(hexCode: "0a133b")]
-        gradientView.layer.addSublayer(gradient)
-    }
-
     private func initLayout() {
-        // 배경 그라데이션
-        self.addSubview(gradientView)
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        // 배경 이미지
+        self.addSubview(bgImage)
+        bgImage.image = UIImage(named: "clientBg")
+        bgImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            gradientView.topAnchor.constraint(equalTo: self.topAnchor),
-            gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            gradientView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            bgImage.topAnchor.constraint(equalTo: self.topAnchor),
+            bgImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            bgImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            bgImage.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
 
         // 로티 애니메이션
@@ -54,10 +44,12 @@ class LoadingView: UIView {
     }
 
     func remove() {
-        UIView.animate(withDuration: 0.3) {
-            self.alpha = 0
-        } completion: { _ in
-            self.removeFromSuperview()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] in
+            UIView.animate(withDuration: 0.3) {
+                self?.alpha = 0
+            } completion: { _ in
+                self?.removeFromSuperview()
+            }
         }
     }
 }
