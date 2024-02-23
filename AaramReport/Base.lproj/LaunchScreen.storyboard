@@ -16,15 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VOO-60-0yA">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="snapshot" translatesAutoresizingMaskIntoConstraints="NO" id="VOO-60-0yA">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xGs-u0-wyf">
-                                <rect key="frame" x="76.666666666666686" y="318.66666666666669" width="240" height="240.00000000000006"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="xGs-u0-wyf" secondAttribute="height" id="os8-uV-Wy0"/>
-                                    <constraint firstAttribute="width" constant="240" id="sv7-ol-lIP"/>
-                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -33,8 +26,6 @@
                             <constraint firstItem="VOO-60-0yA" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="2rt-Jc-VPR"/>
                             <constraint firstItem="VOO-60-0yA" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="771-qV-iem"/>
                             <constraint firstAttribute="bottom" secondItem="VOO-60-0yA" secondAttribute="bottom" id="Bw7-U7-Yda"/>
-                            <constraint firstItem="xGs-u0-wyf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Ocj-Y4-djK"/>
-                            <constraint firstItem="xGs-u0-wyf" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="PU4-vX-wje"/>
                             <constraint firstAttribute="trailing" secondItem="VOO-60-0yA" secondAttribute="trailing" id="Tmt-pe-cxh"/>
                         </constraints>
                     </view>
@@ -47,4 +38,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="snapshot" width="332" height="720"/>
+    </resources>
 </document>

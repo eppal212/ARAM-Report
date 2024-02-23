@@ -24,7 +24,7 @@ class LoadingView: UIView {
         gradient.frame = gradientView.bounds
         gradient.startPoint = CGPoint(x: 0, y: 1)
         gradient.endPoint = CGPoint(x: 1, y: 0)
-        gradient.colors = [UIColor.systemBlue.cgColor, UIColor.black.cgColor]
+        gradient.colors = [UIColor(hexCode: "048ed1"), UIColor(hexCode: "0a133b")]
         gradientView.layer.addSublayer(gradient)
     }
 

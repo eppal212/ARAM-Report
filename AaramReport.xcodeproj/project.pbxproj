@@ -11,6 +11,7 @@
 		121A56E02B6F7A20006ED02D /* home_bg.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121A56DC2B6F5F52006ED02D /* home_bg.mp4 */; };
 		121A56E32B6FB2DA006ED02D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */; };
 		121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */; };
+		123D2F732B8881B3007C56FF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D2F722B8881B3007C56FF /* UIColor+Extension.swift */; };
 		125049C62B878E09009A6EE4 /* TierGuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125049C52B878E09009A6EE4 /* TierGuessViewController.swift */; };
 		129A42D12B824047007B8DF0 /* MatchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A42D02B824047007B8DF0 /* MatchListCell.swift */; };
 		129AA4092B790F3F00F8FE62 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA4082B790F3F00F8FE62 /* RxBlocking */; };
@@ -68,6 +69,7 @@
 		121A56DE2B6F6496006ED02D /* HomeBgView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBgView.swift; sourceTree = "<group>"; };
 		121A56E22B6FB2DA006ED02D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
+		123D2F722B8881B3007C56FF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		125049C52B878E09009A6EE4 /* TierGuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierGuessViewController.swift; sourceTree = "<group>"; };
 		129A42D02B824047007B8DF0 /* MatchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListCell.swift; sourceTree = "<group>"; };
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */,
 				12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */,
 				12A66F182B7E2A8F001FDC45 /* Bundle+Extension.swift */,
+				123D2F722B8881B3007C56FF /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				12CD220B2B6E6A4900244152 /* AppDelegate.swift in Sources */,
 				12A9E0282B85CF090059B974 /* LoadingView.swift in Sources */,
 				12A0B7842B7F3669008FDA9C /* ChampionMasteryDto.swift in Sources */,
+				123D2F732B8881B3007C56FF /* UIColor+Extension.swift in Sources */,
 				12BEBFB72B7CFF350000BC0B /* MatchListViewModel.swift in Sources */,
 				12B1E0CA2B711E0500D48EE0 /* MaskingLabel.swift in Sources */,
 				12A0B77E2B7F1753008FDA9C /* MatchDto.swift in Sources */,
