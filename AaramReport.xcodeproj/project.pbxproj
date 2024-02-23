@@ -13,6 +13,7 @@
 		121A56E52B6FB575006ED02D /* NSAttributedString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */; };
 		123D2F732B8881B3007C56FF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123D2F722B8881B3007C56FF /* UIColor+Extension.swift */; };
 		125049C62B878E09009A6EE4 /* TierGuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125049C52B878E09009A6EE4 /* TierGuessViewController.swift */; };
+		125324872B890155009BF9E7 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 125324862B890154009BF9E7 /* loading.json */; };
 		129A42D12B824047007B8DF0 /* MatchListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A42D02B824047007B8DF0 /* MatchListCell.swift */; };
 		129AA4092B790F3F00F8FE62 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA4082B790F3F00F8FE62 /* RxBlocking */; };
 		129AA40B2B790F3F00F8FE62 /* RxBlocking-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 129AA40A2B790F3F00F8FE62 /* RxBlocking-Dynamic */; };
@@ -46,7 +47,6 @@
 		12BEBFB52B7CFF230000BC0B /* MatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB42B7CFF230000BC0B /* MatchListViewController.swift */; };
 		12BEBFB72B7CFF350000BC0B /* MatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB62B7CFF350000BC0B /* MatchListViewModel.swift */; };
 		12BEBFB92B7D094B0000BC0B /* SummonerDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BEBFB82B7D094B0000BC0B /* SummonerDto.swift */; };
-		12C8EA3B2B7B118E0008F402 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 12C8EA3A2B7B118E0008F402 /* loading.json */; };
 		12C8EA402B7B48040008F402 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 12C8EA3F2B7B48040008F402 /* FloatingPanel */; };
 		12C8EA442B7B53010008F402 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA432B7B53010008F402 /* BottomSheetView.swift */; };
 		12C8EA4A2B7B78920008F402 /* RiotServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C8EA492B7B78920008F402 /* RiotServer.swift */; };
@@ -71,6 +71,7 @@
 		121A56E42B6FB575006ED02D /* NSAttributedString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extension.swift"; sourceTree = "<group>"; };
 		123D2F722B8881B3007C56FF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		125049C52B878E09009A6EE4 /* TierGuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierGuessViewController.swift; sourceTree = "<group>"; };
+		125324862B890154009BF9E7 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../loading.json; sourceTree = "<group>"; };
 		129A42D02B824047007B8DF0 /* MatchListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListCell.swift; sourceTree = "<group>"; };
 		129AA4192B7A3E6400F8FE62 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		129AA4212B7A5F3800F8FE62 /* ServerSelectBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectBottomSheet.swift; sourceTree = "<group>"; };
@@ -97,7 +98,6 @@
 		12BEBFB42B7CFF230000BC0B /* MatchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListViewController.swift; sourceTree = "<group>"; };
 		12BEBFB62B7CFF350000BC0B /* MatchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListViewModel.swift; sourceTree = "<group>"; };
 		12BEBFB82B7D094B0000BC0B /* SummonerDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonerDto.swift; sourceTree = "<group>"; };
-		12C8EA3A2B7B118E0008F402 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		12C8EA432B7B53010008F402 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		12C8EA492B7B78920008F402 /* RiotServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiotServer.swift; sourceTree = "<group>"; };
 		12C8EA4B2B7B7F050008F402 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		121A56DB2B6F5F43006ED02D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				12C8EA3A2B7B118E0008F402 /* loading.json */,
+				125324862B890154009BF9E7 /* loading.json */,
 				121A56DC2B6F5F52006ED02D /* home_bg.mp4 */,
 				12CD22132B6E6A4B00244152 /* Assets.xcassets */,
 			);
@@ -383,8 +383,8 @@
 				12CD22172B6E6A4B00244152 /* LaunchScreen.storyboard in Resources */,
 				12A66F172B7E24B6001FDC45 /* Key.plist in Resources */,
 				12CD22142B6E6A4B00244152 /* Assets.xcassets in Resources */,
+				125324872B890155009BF9E7 /* loading.json in Resources */,
 				12CD22122B6E6A4900244152 /* Main.storyboard in Resources */,
-				12C8EA3B2B7B118E0008F402 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

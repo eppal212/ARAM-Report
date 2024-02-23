@@ -37,7 +37,6 @@ class HomeViewController: UIViewController {
                                   range: NSMakeRange(0, attr.length))
             }
             self?.nickRememberButton.setAttributedTitle(attr, for: .normal)
-
         }).disposed(by: disposeBag)
 
         // 서버 버튼 바인딩

@@ -35,7 +35,7 @@ class LoadingView: UIView {
         NSLayoutConstraint.activate([
             animationView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             animationView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            animationView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            animationView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75),
         ])
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop
