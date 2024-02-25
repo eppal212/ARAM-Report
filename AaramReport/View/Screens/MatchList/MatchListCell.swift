@@ -141,10 +141,10 @@ class MatchListCell: UITableViewCell {
         dateFormatter.dateFormat = "yy.M.d HH:mm"
         dateLabel.text = "'" + dateFormatter.string(from: date)
 
-        // 시간 & 플레이타임
+        // 플레이타임
         let playTime = endTime - (startTime / 1000)
         let minute = playTime / 60
         let second = playTime % 60
-        timeLabel.text = "플레이타임 \(minute):\(second)"
+        timeLabel.text = "\(minute)분 \(second)초"
     }
 }
