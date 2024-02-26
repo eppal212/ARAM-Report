@@ -26,6 +26,7 @@
 		129BE9A92B847CB6003D6840 /* StretchTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BE9A82B847CB6003D6840 /* StretchTableViewHeader.swift */; };
 		129BE9AD2B84C9ED003D6840 /* ChampionMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BE9AC2B84C9ED003D6840 /* ChampionMetadata.swift */; };
 		129BE9AF2B84D39D003D6840 /* ChampionDetailMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BE9AE2B84D39D003D6840 /* ChampionDetailMetadata.swift */; };
+		129FE98D2B8C6FF4003DAB9E /* TierGuessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129FE98C2B8C6FF4003DAB9E /* TierGuessCell.swift */; };
 		12A02B8D2B831D8A002BE599 /* DataDragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B8C2B831D8A002BE599 /* DataDragon.swift */; };
 		12A02B902B8325E7002BE599 /* SpellMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */; };
 		12A02B942B8353F0002BE599 /* RuneMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A02B932B8353F0002BE599 /* RuneMetadata.swift */; };
@@ -78,6 +79,7 @@
 		129BE9A82B847CB6003D6840 /* StretchTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewHeader.swift; sourceTree = "<group>"; };
 		129BE9AC2B84C9ED003D6840 /* ChampionMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionMetadata.swift; sourceTree = "<group>"; };
 		129BE9AE2B84D39D003D6840 /* ChampionDetailMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionDetailMetadata.swift; sourceTree = "<group>"; };
+		129FE98C2B8C6FF4003DAB9E /* TierGuessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TierGuessCell.swift; sourceTree = "<group>"; };
 		12A02B8C2B831D8A002BE599 /* DataDragon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDragon.swift; sourceTree = "<group>"; };
 		12A02B8F2B8325E7002BE599 /* SpellMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellMetadata.swift; sourceTree = "<group>"; };
 		12A02B932B8353F0002BE599 /* RuneMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuneMetadata.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				125049C52B878E09009A6EE4 /* TierGuessViewController.swift */,
+				129FE98C2B8C6FF4003DAB9E /* TierGuessCell.swift */,
 			);
 			path = TierGuess;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				129AA41A2B7A3E6400F8FE62 /* Constants.swift in Sources */,
 				12A0B7822B7F30C8008FDA9C /* LeagueEntryDto.swift in Sources */,
 				12C8EA4E2B7B83F50008F402 /* ServerSelectCell.swift in Sources */,
+				129FE98D2B8C6FF4003DAB9E /* TierGuessCell.swift in Sources */,
 				12A02B942B8353F0002BE599 /* RuneMetadata.swift in Sources */,
 				12BEBFA92B7CCEE10000BC0B /* ApiClient.swift in Sources */,
 			);
