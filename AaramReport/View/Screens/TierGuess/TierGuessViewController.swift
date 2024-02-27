@@ -52,12 +52,13 @@ class TierGuessViewController: UIViewController {
             .filter { [weak self] data in
                 data.count == self?.viewModel?.targetListCount
             }
-            .bind(to: tableView.rx.items(cellIdentifier: "TierGuessCell")) { [weak self] index, item, cell in
-                guard let self = self, let cell = cell as? TierGuessCell else { return }
+            .map { $0.sorted(by: { $0.gameStartTimestamp ?? 0 > $1.gameStartTimestamp ?? 0 }) }
+            .bind(to: tableView.rx.items(cellIdentifier: "TierGuessCell")) { index, item, cell in
+                guard let cell = cell as? TierGuessCell else { return }
                 cell.setData(puuid: viewModel.account?.puuid ?? "",
                              summonerId: viewModel.summonerRelay.value?.id ?? "",
                              data: viewModel.matchListRelay.value[index],
-                             player: item)
+                             player: item.leagueEntry ?? [])
             }.disposed(by: disposeBag)
 
         // 로딩 처리

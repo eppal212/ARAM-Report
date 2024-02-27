@@ -26,7 +26,7 @@ class MatchListViewModel {
     let matchListRelay = BehaviorRelay<[MatchDto]>(value: [])
 
     // 티어추측 부분
-    let playerDetailRelay = BehaviorRelay<[[LeagueEntryDto]]>(value: [])
+    let playerDetailRelay = BehaviorRelay<[LeagueEntry]>(value: [])
 
     private let disposeBag = DisposeBag()
 
@@ -150,9 +150,9 @@ class MatchListViewModel {
 
                         var arr = playerDetailRelay.value
                         if arr.count > index {
-                            arr[index].append(data)
+                            arr[index].leagueEntry?.append(data)
                         } else {
-                            arr.append([data])
+                            arr.append(LeagueEntry(gameStartTimestamp: match.info?.gameStartTimestamp, leagueEntry: [data]))
                         }
                         playerDetailRelay.accept(arr)
                     }, onError: {  [weak self] error in

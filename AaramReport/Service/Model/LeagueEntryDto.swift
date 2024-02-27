@@ -1,5 +1,10 @@
 import Foundation
 
+struct LeagueEntry: Codable {
+    var gameStartTimestamp: Int?
+    var leagueEntry: [LeagueEntryDto]?
+}
+
 struct LeagueEntryDto: Codable {
     var leagueId: String?
     var summonerId: String? // 암호화된 summonerId.
