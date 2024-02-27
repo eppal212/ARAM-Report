@@ -71,10 +71,9 @@ class ApiClient: ApiService {
 
     // 소환사 티어 조회
     // https://developer.riotgames.com/apis#league-v4/GET_getLeagueEntriesForSummoner
-    func getSummonerTier(serverId: RiotServerId, encryptedSummonerId: String) -> Observable<LeagueEntryDto> {
+    func getSummonerTier(serverId: RiotServerId, encryptedSummonerId: String) -> Observable<[LeagueEntryDto]> {
         var apiRequest = ApiRequest()
         apiRequest.method = .get
-        apiRequest.header = ApiRequestHeader.tier
         apiRequest.prefix = .server(serverId)
         apiRequest.path = "lol/league/v4/entries/by-summoner"
         apiRequest.pathParam = [encryptedSummonerId]

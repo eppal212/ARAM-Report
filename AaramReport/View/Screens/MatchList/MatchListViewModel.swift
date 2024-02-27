@@ -14,7 +14,7 @@ class MatchListViewModel {
     var server: RiotServer?
 
     let isLoading = BehaviorRelay<Bool>(value: true)
-    let summonerRelay = PublishRelay<SummonerDto>() // 프로필 부분
+    let summonerRelay = BehaviorRelay<SummonerDto?>(value: nil) // 프로필 부분
     let splashSkinList = PublishRelay<[String]>() // 챔피언 스킨 ID 배열
     let masteryRelay = PublishRelay<[ChampionMasteryDto]>() // 숙련도
     let currentGame = BehaviorRelay<CurrentGameInfo?>(value: nil) // 진행중인 게임
@@ -28,19 +28,25 @@ class MatchListViewModel {
     // 티어추측 부분
     let playerDetailRelay = BehaviorRelay<[[LeagueEntryDto]]>(value: [])
 
-
     private let disposeBag = DisposeBag()
 
     init() {
-        // 로딩 여부 판단
+        // 매치목록 로딩 여부 판단
         matchListRelay.subscribe { [weak self] data in
+            if data.count > 0, data.count >= self?.targetListCount ?? 0 {
+                self?.isLoading.accept(false)
+            }
+        }.disposed(by: disposeBag)
+
+        // 티어추측 로딩 여부 판단
+        playerDetailRelay.subscribe { [weak self] data in
             if data.count > 0, data.count >= self?.targetListCount ?? 0 {
                 self?.isLoading.accept(false)
             }
         }.disposed(by: disposeBag)
     }
 
-    // MARK: - API
+    // MARK: - 매치 목록 API
     // 소환사 정보 가져오기
     func getSummoner() {
         guard let puuid = account?.puuid, let serverId = server?.id else { return handleError() }
@@ -124,6 +130,40 @@ class MatchListViewModel {
         }).disposed(by: disposeBag)
     }
 
+    // MARK: - 티어 추측 API
+    //
+    func getTiers() {
+        guard let serverId = server?.id else { return handleError() }
+
+        isLoading.accept(true)
+
+        for (index, match) in matchListRelay.value.enumerated() {
+            let teamId = match.info?.participants?.filter{ $0.puuid == account?.puuid }.first?.teamId
+            guard let teamId = teamId else { return handleError() }
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + (CGFloat(index) * 0.5)) { [weak self] in
+                guard let self = self else { return self?.handleError() ?? () }
+
+                for enemy in match.info?.participants ?? [] where (enemy.teamId != teamId) && (enemy.summonerId != nil) {
+                    ApiClient.default.getSummonerTier(serverId: serverId, encryptedSummonerId: enemy.summonerId!).subscribe(onNext: { [weak self] enemyDetail in
+                        guard let self = self, let data = enemyDetail.first else { return }
+
+                        var arr = playerDetailRelay.value
+                        if arr.count > index {
+                            arr[index].append(data)
+                        } else {
+                            arr.append([data])
+                        }
+                        playerDetailRelay.accept(arr)
+                    }, onError: {  [weak self] error in
+                        self?.handleError(error: error)
+                    }).disposed(by: disposeBag)
+                }
+            }
+        }
+    }
+
+    // MARK: - 에러 처리
     // API 처리 도중 발생하는 error 대응
     private func handleError(error: Any? = nil) {
         let errorCode: ErrorStatusCode = (error as? ErrorResponse)?.statusCode ?? .badGateway

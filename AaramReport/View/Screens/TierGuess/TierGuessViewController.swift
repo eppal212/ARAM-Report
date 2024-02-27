@@ -32,7 +32,6 @@ class TierGuessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.delegate = self
-        viewModel?.isLoading.accept(true)
         viewModel?.getTiers() // 참가자 티어 조회
 
         initLayout()
