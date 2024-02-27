@@ -52,7 +52,19 @@ class ApiService {
 
         return Session(configuration: configuration)
     }()
+    let maxRiotApiCallCount = 100 // 2분에 100번
     var riotApiCallCount = 0
+
+    // Riot API 호출 제한 계산
+    private func addRiotApiCallCount() {
+        riotApiCallCount += 1
+        print("RiotApiCallCount : \(riotApiCallCount)")
+
+        // 2분 뒤 증가치 감산
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 120) { [weak self] in
+            self?.riotApiCallCount -= 1
+        }
+    }
 
     func riotApi<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
         let baseUrl: URL? = URL(string: "https://" + apiRequest.prefix.getValue() + Const.riotUrl)
@@ -67,8 +79,7 @@ class ApiService {
             url.appendPathComponent(param)
         }
 
-        riotApiCallCount += 1
-        print("RiotApiCallCount : \(riotApiCallCount)")
+        addRiotApiCallCount()
 
         return request(apiRequest: apiRequest, url: url)
     }

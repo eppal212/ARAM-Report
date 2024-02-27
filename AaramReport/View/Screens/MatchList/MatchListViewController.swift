@@ -171,6 +171,12 @@ class MatchListViewController: UIViewController {
 
     // 티어 추측 버튼 클릭
     @IBAction func onClickTierGuess(_ sender: UIButton) {
+        // API 호출 허용량 확인
+        guard ApiClient.default.riotApiCallCount <= ApiClient.default.maxRiotApiCallCount - (viewModel.targetListCount * 5) else {
+            showToast("현재 사용량이 많아 이용이 불가능합니다.\n잠시 후 다시 시도해 주세요.")
+            return
+        }
+
         // TierGuessViewController로 이동
         guard let tierGuessVC = self.storyboard?.instantiateViewController(withIdentifier: "TierGuessViewController") as? TierGuessViewController else { return }
         tierGuessVC.viewModel = viewModel

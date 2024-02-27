@@ -97,6 +97,12 @@ class HomeViewController: UIViewController {
 
     // 검색 버튼 클릭
     @IBAction func onClickSearch(_ sender: UIButton) {
+        // API 호출 허용량 확인
+        guard ApiClient.default.riotApiCallCount <= ApiClient.default.maxRiotApiCallCount - 15 else {
+            showToast("현재 사용량이 많아 이용이 불가능합니다.\n잠시 후 다시 시도해 주세요.")
+            return
+        }
+
         // 입력 정보 확인
         if let nickname =  nicknameInput.text, !nickname.isEmpty, let tag = tagInput.text, !tag.isEmpty {
             // 계정 확인
