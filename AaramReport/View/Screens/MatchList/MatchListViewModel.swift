@@ -27,6 +27,7 @@ class MatchListViewModel {
 
     // 티어추측 부분
     let playerDetailRelay = BehaviorRelay<[LeagueEntry]>(value: [])
+    let averageMmrRelay = PublishRelay<Int>() // 전체 매치 평균 MMR
 
     private let disposeBag = DisposeBag()
 
@@ -166,6 +167,8 @@ class MatchListViewModel {
     // 티어 데이터 분석
     private func calcTierData() {
         var data = playerDetailRelay.value
+        var allTotalMmr = 0// 매치목록 전체 MMR
+        var allCount = 0
 
         for (index, match) in data.enumerated() {
             var totalMmr = 0
@@ -179,11 +182,19 @@ class MatchListViewModel {
                 }
             }
 
+            // 매치 단위 계산
             let average = count == 0 ? 0 : totalMmr / count
             data[index].mmrAverage = average
+
+            // 전체 계산
+            if average != 0 {
+                allTotalMmr += average
+                allCount += 1
+            }
         }
 
         isLoading.accept(false)
+        averageMmrRelay.accept(allCount == 0 ? 0 : allTotalMmr / allCount)
         playerDetailRelay.accept(data)
     }
 

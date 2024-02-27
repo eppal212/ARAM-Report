@@ -72,6 +72,12 @@ class TierGuessViewController: UIViewController {
             profileLevel.text = "Lv.\(summoner.summonerLevel ?? 0) I \(summoner.name ?? "0")"
         }).disposed(by: disposeBag)
 
+        viewModel.averageMmrRelay.subscribe(onNext: { [weak self] average in
+            guard let self = self, average > 0 else { return }
+            tierImage.image = UIImage(named: getTierFromMmr(mmr: average, skipRank: true))
+            tierLabel.text = getTierFromMmr(mmr: average, skipRank: false)
+        }).disposed(by: disposeBag)
+
         // TableView cellForRowAt
         viewModel.playerDetailRelay
             .filter { [weak self] data in

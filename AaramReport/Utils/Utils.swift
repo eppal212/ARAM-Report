@@ -23,5 +23,6 @@ func getMmr(tier: String?, rank: String?) -> Int {
 func getTierFromMmr(mmr: Int, skipRank: Bool) -> String {
     let value = round(CGFloat(mmr) / 100.0) * 100
     let key = Mmr.allKeys(forValue: Int(value)).first
-    return key ?? ""
+    let tier = skipRank ? key?.components(separatedBy: " ").first : key
+    return tier ?? ""
 }
