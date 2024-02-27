@@ -40,8 +40,8 @@ class MatchListViewModel {
 
         // 티어추측 로딩 여부 판단
         playerDetailRelay.subscribe { [weak self] data in
-            if data.count > 0, data.count >= self?.targetListCount ?? 0 {
-                self?.isLoading.accept(false)
+            if data.count > 0, data.count >= self?.targetListCount ?? 0, self?.isLoading.value ?? true{
+                self?.calcTierData()
             }
         }.disposed(by: disposeBag)
     }
@@ -131,7 +131,7 @@ class MatchListViewModel {
     }
 
     // MARK: - 티어 추측 API
-    //
+    // 소환사 티어 정보 가져오기
     func getTiers() {
         guard let serverId = server?.id else { return handleError() }
 
@@ -161,6 +161,30 @@ class MatchListViewModel {
                 }
             }
         }
+    }
+
+    // 티어 데이터 분석
+    private func calcTierData() {
+        var data = playerDetailRelay.value
+
+        for (index, match) in data.enumerated() {
+            var totalMmr = 0
+            var count = 0
+
+            for player in match.leagueEntry ?? [] {
+                let mmr = getMmr(tier: player.tier, rank: player.rank)
+                if mmr != -1 {
+                    totalMmr += mmr
+                    count += 1
+                }
+            }
+
+            let average = count == 0 ? 0 : totalMmr / count
+            data[index].mmrAverage = average
+        }
+
+        isLoading.accept(false)
+        playerDetailRelay.accept(data)
     }
 
     // MARK: - 에러 처리

@@ -939,7 +939,7 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="ak5-gI-ro0"/>
+                                                        <constraint firstAttribute="width" constant="100" id="ak5-gI-ro0"/>
                                                     </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgA-7I-DqV">
@@ -1099,7 +1099,7 @@
                                             <constraints>
                                                 <constraint firstItem="cgA-7I-DqV" firstAttribute="leading" secondItem="nji-ld-H8i" secondAttribute="trailing" constant="8" id="52J-WR-mBg"/>
                                                 <constraint firstItem="nji-ld-H8i" firstAttribute="leading" secondItem="BJz-eL-1ZB" secondAttribute="trailing" id="6BS-rY-gLa"/>
-                                                <constraint firstItem="y1V-1a-HGW" firstAttribute="leading" secondItem="fMK-rM-Nmg" secondAttribute="trailing" constant="8" id="6Bd-dr-ipY"/>
+                                                <constraint firstItem="y1V-1a-HGW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fMK-rM-Nmg" secondAttribute="trailing" constant="8" id="6Bd-dr-ipY"/>
                                                 <constraint firstAttribute="bottom" secondItem="BJz-eL-1ZB" secondAttribute="bottom" id="CZq-Js-oHA"/>
                                                 <constraint firstItem="fMK-rM-Nmg" firstAttribute="leading" secondItem="cgA-7I-DqV" secondAttribute="trailing" id="Jid-uC-DI3"/>
                                                 <constraint firstItem="BJz-eL-1ZB" firstAttribute="top" secondItem="nQa-V6-zAa" secondAttribute="top" id="MVY-Wa-gyq"/>
@@ -1120,6 +1120,7 @@
                                             <outlet property="enemyDivider" destination="cgA-7I-DqV" id="aKx-Vh-PIu"/>
                                             <outlet property="enemyStack" destination="fMK-rM-Nmg" id="lbo-RP-7vC"/>
                                             <outlet property="enemyTierImage" destination="xBk-l5-4VG" id="hpg-RA-LXx"/>
+                                            <outlet property="enemyTierStack" destination="y1V-1a-HGW" id="OLS-28-dc0"/>
                                             <outlet property="teamStack" destination="nji-ld-H8i" id="ElK-WQ-Ilz"/>
                                             <outlet property="winLabel" destination="DhW-VZ-jpa" id="oPA-rc-4XW"/>
                                             <outlet property="winView" destination="BJz-eL-1ZB" id="GBW-z3-NOc"/>

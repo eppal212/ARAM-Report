@@ -58,7 +58,7 @@ class TierGuessViewController: UIViewController {
         profileTag.text = "#\(viewModel.account?.tagLine ?? "")"
 
         // TableView
-        tableView.rowHeight = 100
+        tableView.rowHeight = 110
         tableView.showsVerticalScrollIndicator = false
     }
 
@@ -77,7 +77,7 @@ class TierGuessViewController: UIViewController {
             .filter { [weak self] data in
                 data.count == self?.viewModel?.targetListCount
             }
-            .map { $0.sorted(by: { $0.gameStartTimestamp ?? 0 > $1.gameStartTimestamp ?? 0 }) }
+            .map { $0.sorted(by: { $0.gameStartTimestamp ?? 0 > $1.gameStartTimestamp ?? 0 }) } // TODO: 정렬 오류
             .bind(to: tableView.rx.items(cellIdentifier: "TierGuessCell")) { index, item, cell in
                 guard let cell = cell as? TierGuessCell else { return }
                 cell.setData(puuid: viewModel.account?.puuid ?? "",
@@ -138,18 +138,14 @@ class TierGuessViewController: UIViewController {
 // MARK: - RiotApiDelegate
 extension TierGuessViewController: RiotApiDelegate {
     func handleError(code: ErrorStatusCode) {
-//        switch code {
-//        case .dataNotFound:
-//            showToast("소환사 정보를 찾을 수 없습니다.\n서버를 확인해주세요.")
-//        case .rateLimitExceeded:
-//            showToast("현재 사용량이 많아 이용이 불가능합니다.\n잠시 후 다시 시도해 주세요.")
-//        default:
-//            showToast("Riot API 통신에 문제가 발생했습니다.\n이용에 불편을 드려 죄송합니다.")
-//        }
-//
-//        // 초기 로딩일 경우에만 실패시 돌아감
-//        if viewModel.targetListCount == viewModel.listCount {
-//            navigationController?.popToRootViewController(animated: true)
-//        }
+        switch code {
+        case .rateLimitExceeded:
+            showToast("현재 사용량이 많아 이용이 불가능합니다.\n잠시 후 다시 시도해 주세요.")
+        default:
+            showToast("Riot API 통신에 문제가 발생했습니다.\n이용에 불편을 드려 죄송합니다.")
+        }
+
+        viewModel?.isLoading.accept(false)
+        navigationController?.popViewController(animated: true)
     }
 }

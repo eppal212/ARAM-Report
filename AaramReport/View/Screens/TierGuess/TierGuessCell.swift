@@ -7,6 +7,7 @@ class TierGuessCell: UITableViewCell {
     @IBOutlet weak var teamStack: UIStackView!
     @IBOutlet weak var enemyDivider: UIView!
     @IBOutlet weak var enemyStack: UIStackView!
+    @IBOutlet weak var enemyTierStack: UIStackView!
     @IBOutlet weak var enemyTierImage: UIImageView!
 
     var match: MatchDto? // 게임 정보
@@ -21,11 +22,12 @@ class TierGuessCell: UITableViewCell {
     func setData(puuid: String, summonerId: String, match: MatchDto, enemy: LeagueEntry) {
         self.match = match
         self.enemy = enemy
-        setupChampion(puuid: puuid)
+        setupMatch(puuid: puuid)
+        setupTierAverage()
     }
 
     // 게임 데이터 관련 처리
-    private func setupChampion(puuid: String) {
+    private func setupMatch(puuid: String) {
         let matchData = match?.info?.participants?.filter({$0.puuid == puuid}).first
 
         // 승패뷰 그라데이션
@@ -45,6 +47,8 @@ class TierGuessCell: UITableViewCell {
         enemyStack.subviews.forEach{ $0.removeFromSuperview() }
         enemyDivider.backgroundColor = matchData?.win ?? false ? Const.loseColor : Const.winColor
         for player in match?.info?.participants ?? [] {
+            let isMe = player.puuid == puuid
+
             // 챔피언 썸네일
             let champ = UIImageView()
             champ.sd_setImage(with: DataDragon.default.getChampionFaceUrl(id: player.championId))
@@ -58,7 +62,7 @@ class TierGuessCell: UITableViewCell {
             // 닉네임
             let nickname = UILabel()
             nickname.text = player.summonerName
-            nickname.font = UIFont(name: player.puuid == puuid ? "HelveticaNeue-Bold" : "HelveticaNeue", size: 12.0)
+            nickname.font = UIFont(name: isMe ? "HelveticaNeue-Bold" : "HelveticaNeue", size: 12.0)
             nickname.textColor = .white
 
             let content = UIStackView()
@@ -69,19 +73,24 @@ class TierGuessCell: UITableViewCell {
 
             if player.teamId == match?.info?.participants?.filter({ $0.puuid == puuid }).first?.teamId {
                 // 아군일 경우
-                teamStack.addArrangedSubview(content)
+                isMe ? teamStack.insertArrangedSubview(content, at: 0) : teamStack.addArrangedSubview(content)
             } else {
                 // 적군일 경우 티어 정보 추가
-                let tierData = enemy?.leagueEntry?.filter({ $0.summonerId == player.summonerId}).first
-
-                let tierLabel = UILabel()
-                tierLabel.text = (tierData?.tier ?? "") + (tierData?.rank ?? "")
-                tierLabel.font = UIFont(name: "HelveticaNeue", size: 12.0)
-                tierLabel.textColor = .white
-                content.addArrangedSubview(tierLabel)
-
+                if let tierData = enemy?.leagueEntry?.filter({ $0.summonerId == player.summonerId}).first {
+                    let tierLabel = UILabel()
+                    tierLabel.text = (tierData.tier ?? "") + " " + (tierData.rank ?? "")
+                    tierLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
+                    tierLabel.textColor = .white
+                    content.addArrangedSubview(tierLabel)
+                }
                 enemyStack.addArrangedSubview(content)
             }
         }
+    }
+
+    // 평균 티어 관련 처리
+    private func setupTierAverage() {
+        enemyTierStack.isHidden = enemy?.mmrAverage == nil
+        enemyTierImage.image = UIImage(named: getTierFromMmr(mmr: enemy?.mmrAverage ?? 0, skipRank: true))
     }
 }
