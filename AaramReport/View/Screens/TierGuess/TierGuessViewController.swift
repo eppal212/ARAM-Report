@@ -32,6 +32,8 @@ class TierGuessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.delegate = self
+        viewModel?.isLoading.accept(true)
+        viewModel?.getTiers() // 참가자 티어 조회
 
         initLayout()
         initBinding()
@@ -39,23 +41,25 @@ class TierGuessViewController: UIViewController {
 
     private func initLayout() {
         // TableView
-//        tableView.rowHeight = 100
-//        tableView.showsVerticalScrollIndicator = false
+        tableView.rowHeight = 100
+        tableView.showsVerticalScrollIndicator = false
     }
 
     private func initBinding() {
         guard let viewModel = viewModel else { return }
 
         // TableView cellForRowAt
-//        viewModel.matchListRelay
-//            .filter { [weak self] data in
-//                data.count == self?.viewModel.targetListCount
-//            }
-//            .map { $0.sorted(by: { $0.info?.gameStartTimestamp ?? 0 > $1.info?.gameStartTimestamp ?? 0 }) }
-//            .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { [weak self] index, item, cell in
-//                guard let cell = cell as? MatchListCell else { return }
-//                cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)
-//            }.disposed(by: disposeBag)
+        viewModel.playerDetailRelay
+            .filter { [weak self] data in
+                data.count == self?.viewModel?.targetListCount
+            }
+            .bind(to: tableView.rx.items(cellIdentifier: "TierGuessCell")) { [weak self] index, item, cell in
+                guard let self = self, let cell = cell as? TierGuessCell else { return }
+                cell.setData(puuid: viewModel.account?.puuid ?? "",
+                             summonerId: viewModel.summonerRelay.value?.id ?? "",
+                             data: viewModel.matchListRelay.value[index],
+                             player: item)
+            }.disposed(by: disposeBag)
 
         // 로딩 처리
         viewModel.isLoading.subscribe(onNext: { [weak self] isLoading in

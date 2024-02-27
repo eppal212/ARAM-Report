@@ -74,8 +74,9 @@ class MatchListViewController: UIViewController {
     private func initBinding() {
         // 상단 프로필 정보
         viewModel.summonerRelay.subscribe(onNext: { [weak self] summoner in
-            self?.profileImage.sd_setImage(with: DataDragon.default.getProfileImageUrl(id: summoner.profileIconId))
-            self?.profileLevel.text = "Lv.\(summoner.summonerLevel ?? 0) I \(summoner.name ?? "0")"
+            guard let self = self, let summoner = summoner else { return }
+            profileImage.sd_setImage(with: DataDragon.default.getProfileImageUrl(id: summoner.profileIconId))
+            profileLevel.text = "Lv.\(summoner.summonerLevel ?? 0) I \(summoner.name ?? "0")"
         }).disposed(by: disposeBag)
 
         // 상단 스플래시 아트

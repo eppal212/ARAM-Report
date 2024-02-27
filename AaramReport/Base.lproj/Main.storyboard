@@ -1191,7 +1191,6 @@
                         <outlet property="tableView" destination="i4O-Sk-yRd" id="DCs-UL-Tto"/>
                         <outlet property="tierImage" destination="uId-d6-UCX" id="aFp-0F-uNo"/>
                         <outlet property="tierLabel" destination="GTB-Bp-BGF" id="yPu-g7-RJL"/>
-                        <outlet property="tierName" destination="GTB-Bp-BGF" id="JWM-cN-RL1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yh-1u-zGe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
