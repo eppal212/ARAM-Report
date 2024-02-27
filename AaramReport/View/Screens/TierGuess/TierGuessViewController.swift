@@ -5,12 +5,27 @@ import RxCocoa
 import SDWebImage
 
 class TierGuessViewController: UIViewController {
+    // 상단 탭 바
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerNick: UILabel!
+    @IBOutlet weak var headerTag: UILabel!
+    
+    // 프로필 부분
+    @IBOutlet weak var profileSplash: StretchTableViewHeader! // 상단 챔피언 스플래시 아트
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var tierImage: UIImageView!
+    @IBOutlet weak var tierLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileNick: UILabel!
+    @IBOutlet weak var profileTag: UILabel!
+    @IBOutlet weak var profileLevel: UILabel!
 
     @IBOutlet weak var tableView: UITableView! // 테이블뷰
 
     var viewModel: MatchListViewModel?
-
     private let loadingView = LoadingView()
+
+    private var isShowHeaderBg = false
 
     private let disposeBag = DisposeBag()
 

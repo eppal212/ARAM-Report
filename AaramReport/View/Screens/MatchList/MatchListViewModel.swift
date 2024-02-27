@@ -25,6 +25,10 @@ class MatchListViewModel {
     var targetListCount = 0 // 한 싸이클에 목표로 할 목록 갯수 (매치상세를 반복호출 해야해서 비교할 값이 필요)
     let matchListRelay = BehaviorRelay<[MatchDto]>(value: [])
 
+    // 티어추측 부분
+    let playerDetailRelay = BehaviorRelay<[[LeagueEntryDto]]>(value: [])
+
+
     private let disposeBag = DisposeBag()
 
     init() {

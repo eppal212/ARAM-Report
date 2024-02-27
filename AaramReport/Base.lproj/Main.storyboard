@@ -1117,7 +1117,10 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="tailView" destination="cgA-7I-DqV" id="aKx-Vh-PIu"/>
+                                            <outlet property="enemyDivider" destination="cgA-7I-DqV" id="aKx-Vh-PIu"/>
+                                            <outlet property="enemyStack" destination="fMK-rM-Nmg" id="lbo-RP-7vC"/>
+                                            <outlet property="enemyTierImage" destination="xBk-l5-4VG" id="hpg-RA-LXx"/>
+                                            <outlet property="teamStack" destination="nji-ld-H8i" id="ElK-WQ-Ilz"/>
                                             <outlet property="winLabel" destination="DhW-VZ-jpa" id="oPA-rc-4XW"/>
                                             <outlet property="winView" destination="BJz-eL-1ZB" id="GBW-z3-NOc"/>
                                         </connections>
@@ -1175,6 +1178,21 @@
                             <constraint firstItem="i4O-Sk-yRd" firstAttribute="leading" secondItem="aiv-NI-8VH" secondAttribute="leading" id="wxK-9s-KcY"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gradientView" destination="UKQ-vQ-cFU" id="f4k-cN-cby"/>
+                        <outlet property="headerNick" destination="IXw-Gb-ZZC" id="TLg-d6-m6a"/>
+                        <outlet property="headerTag" destination="217-RV-3mb" id="zhu-uQ-N1j"/>
+                        <outlet property="headerView" destination="esP-XD-mRX" id="Hrx-aK-948"/>
+                        <outlet property="profileImage" destination="Bcv-6R-PD0" id="0eL-ra-7j7"/>
+                        <outlet property="profileLevel" destination="AIg-aK-ZpZ" id="foM-dH-QY3"/>
+                        <outlet property="profileNick" destination="iTU-PY-jqf" id="cb1-Kf-T9w"/>
+                        <outlet property="profileSplash" destination="keE-IM-kJ7" id="5HD-ZT-82B"/>
+                        <outlet property="profileTag" destination="fnl-MN-Of5" id="PfL-fi-isq"/>
+                        <outlet property="tableView" destination="i4O-Sk-yRd" id="DCs-UL-Tto"/>
+                        <outlet property="tierImage" destination="uId-d6-UCX" id="aFp-0F-uNo"/>
+                        <outlet property="tierLabel" destination="GTB-Bp-BGF" id="yPu-g7-RJL"/>
+                        <outlet property="tierName" destination="GTB-Bp-BGF" id="JWM-cN-RL1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Yh-1u-zGe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
