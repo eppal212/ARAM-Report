@@ -61,6 +61,7 @@ class DataDragon {
         return champId
     }
 
+    // 스플래시 아트에 쓸 랜덤 이미지 반환
     func getSplashArt(skinList: [String]) -> URL? {
         let path = Const.dataDragon + "cdn/img/champion/splash/\(skinList.randomElement() ?? "").jpg"
         return URL(string: path)
@@ -114,6 +115,13 @@ class DataDragon {
     // 아이템 이미지 url 반환
     func getItemImageUrl(id: Int?) -> URL? {
         let path = Const.dataDragon + "cdn/\(version)/img/item/\(id ?? 0).png"
+        return URL(string: path)
+    }
+
+    // 챔피언 얼굴 이미지 반환
+    func getChampionFaceUrl(id: Int?) -> URL? {
+        let champName = getChampionName(id: id)
+        var path = Const.dataDragon + "cdn/\(version)/img/champion/\(champName).png"
         return URL(string: path)
     }
 }

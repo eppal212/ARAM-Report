@@ -27,8 +27,6 @@ class MatchListCell: UITableViewCell {
 
 
     let itemRadius = 4.0
-    let winColor = UIColor.systemBlue
-    let loseColor = UIColor.systemRed
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -72,7 +70,7 @@ class MatchListCell: UITableViewCell {
         gradient.frame = winView.bounds
         gradient.startPoint = CGPoint(x: 0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1, y: 0.5)
-        let color = matchData?.win ?? false ? winColor : loseColor
+        let color = matchData?.win ?? false ? Const.winColor : Const.loseColor
         gradient.colors = [color.withAlphaComponent(1).cgColor, color.withAlphaComponent(0).cgColor]
         winView.layer.sublayers?.forEach({ $0.removeFromSuperlayer() })
         winView.layer.addSublayer(gradient)
@@ -91,7 +89,7 @@ class MatchListCell: UITableViewCell {
         item4Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item4))
         item5Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item5))
         item6Image.sd_setImage(with: DataDragon.default.getItemImageUrl(id: matchData?.item6))
-        tailView.backgroundColor = matchData?.win ?? false ? winColor : loseColor
+        tailView.backgroundColor = matchData?.win ?? false ? Const.winColor : Const.loseColor
     }
 
     // 게임 내 업적 관련 처리
