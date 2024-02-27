@@ -25,21 +25,7 @@ struct ApiRequest {
     var pathParam: [String]?
     var parameters: [String: Any]?
     var encoding: ParameterEncoding = URLEncoding.queryString // JSONEncoding.default
-    var header = ApiRequestHeader.riot
-}
-
-struct ApiRequestHeader {
-    static var riot: HTTPHeaders {
-        let header: HTTPHeaders = ["Content-Type": "application/json; charset=utf-8",
-                                   "X-Riot-Token": Bundle.main.RIOT_API_KEY]
-        return header
-    }
-
-    static var tier: HTTPHeaders {
-        let header: HTTPHeaders = ["Content-Type": "application/json; charset=utf-8",
-                                   "X-Riot-Token": Bundle.main.TIER_API_KEY]
-        return header
-    }
+    var header: HTTPHeaders = ["Content-Type": "application/json; charset=utf-8"]
 }
 
 
@@ -52,6 +38,7 @@ class ApiService {
 
         return Session(configuration: configuration)
     }()
+    let apiKey = Bundle.main.RIOT_API_KEY
     let maxRiotApiCallCount = 100 // 2분에 100번
     var riotApiCallCount = 0
 
@@ -67,8 +54,9 @@ class ApiService {
     }
 
     func riotApi<T: Codable>(apiRequest: ApiRequest) -> Observable<T> {
-        let baseUrl: URL? = URL(string: "https://" + apiRequest.prefix.getValue() + Const.riotUrl)
+        var apiRequest = apiRequest
 
+        let baseUrl: URL? = URL(string: "https://" + apiRequest.prefix.getValue() + Const.riotUrl)
         guard var url = URL(string: apiRequest.path, relativeTo: baseUrl) else {
             print("URL creation is failed: \(apiRequest.path)")
             let error = ErrorResponse(message: "URL creation is failed", path: apiRequest.path)
@@ -78,6 +66,8 @@ class ApiService {
         for param in apiRequest.pathParam ?? [] {
             url.appendPathComponent(param)
         }
+
+        apiRequest.header["X-Riot-Token"] = apiKey
 
         addRiotApiCallCount()
 
