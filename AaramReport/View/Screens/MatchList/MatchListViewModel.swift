@@ -193,6 +193,8 @@ class MatchListViewModel {
             }
         }
 
+        print("zzz : \(allTotalMmr), \(allCount) | \(data) ")
+
         isLoading.accept(false)
         averageMmrRelay.accept(allCount == 0 ? 0 : allTotalMmr / allCount)
         playerDetailRelay.accept(data)
