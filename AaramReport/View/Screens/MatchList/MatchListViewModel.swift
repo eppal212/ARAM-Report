@@ -26,7 +26,7 @@ class MatchListViewModel {
     let matchListRelay = BehaviorRelay<[MatchDto]>(value: [])
 
     // 티어추측 부분
-    let playerDetailRelay = BehaviorRelay<[LeagueEntry]>(value: [])
+    let enemyEntryRelay = BehaviorRelay<[LeagueEntryDto]>(value: [])
     let averageMmrRelay = PublishRelay<Int>() // 전체 매치 평균 MMR
 
     private let disposeBag = DisposeBag()
@@ -40,9 +40,10 @@ class MatchListViewModel {
         }.disposed(by: disposeBag)
 
         // 티어추측 로딩 여부 판단
-        playerDetailRelay.subscribe { [weak self] data in
-            if data.count > 0, data.count >= self?.targetListCount ?? 0, self?.isLoading.value ?? true{
+        enemyEntryRelay.subscribe { [weak self] data in
+            if data.count > 0, data.count / 5 >= self?.targetListCount ?? 0 {
                 self?.calcTierData()
+                self?.isLoading.accept(false)
             }
         }.disposed(by: disposeBag)
     }
@@ -125,6 +126,12 @@ class MatchListViewModel {
             guard let self = self else { return }
             var arr = matchListRelay.value
             arr.append(matchData)
+
+            // 최후 정렬
+            if arr.count == targetListCount {
+                arr = arr.sorted(by: { $0.info?.gameStartTimestamp ?? 0 > $1.info?.gameStartTimestamp ?? 0 })
+            }
+
             matchListRelay.accept(arr)
         }, onError: { [weak self] error in
             self?.handleError(error: error)
@@ -147,15 +154,13 @@ class MatchListViewModel {
 
                 for enemy in match.info?.participants ?? [] where (enemy.teamId != teamId) && (enemy.summonerId != nil) {
                     ApiClient.default.getSummonerTier(serverId: serverId, encryptedSummonerId: enemy.summonerId!).subscribe(onNext: { [weak self] enemyDetail in
-                        guard let self = self, let data = enemyDetail.first else { return }
+                        guard let self = self else { return }
 
-                        var arr = playerDetailRelay.value
-                        if arr.count > index {
-                            arr[index].leagueEntry?.append(data)
-                        } else {
-                            arr.append(LeagueEntry(gameStartTimestamp: match.info?.gameStartTimestamp, leagueEntry: [data]))
-                        }
-                        playerDetailRelay.accept(arr)
+                        var arr = enemyEntryRelay.value
+                        let rankData = enemyDetail.filter { $0.queueType == "RANKED_SOLO_5x5" }.first ?? enemyDetail.first // 솔랭 우선
+                        arr.append(rankData ?? LeagueEntryDto(summonerId: ""))
+
+                        enemyEntryRelay.accept(arr)
                     }, onError: {  [weak self] error in
                         self?.handleError(error: error)
                     }).disposed(by: disposeBag)
@@ -166,38 +171,16 @@ class MatchListViewModel {
 
     // 티어 데이터 분석
     private func calcTierData() {
-        var data = playerDetailRelay.value
-        var allTotalMmr = 0// 매치목록 전체 MMR
-        var allCount = 0
+        var data = enemyEntryRelay.value
+        var totalMmr = 0// 매치목록 전체 MMR
+        var count = 0
 
-        for (index, match) in data.enumerated() {
-            var totalMmr = 0
-            var count = 0
-
-            for player in match.leagueEntry ?? [] {
-                let mmr = getMmr(tier: player.tier, rank: player.rank)
-                if mmr != -1 {
-                    totalMmr += mmr
-                    count += 1
-                }
-            }
-
-            // 매치 단위 계산
-            let average = count == 0 ? 0 : totalMmr / count
-            data[index].mmrAverage = average
-
-            // 전체 계산
-            if average != 0 {
-                allTotalMmr += average
-                allCount += 1
-            }
+        for (index, item) in data.enumerated() where !item.summonerId!.isEmpty {
+            totalMmr += getMmr(tier: item.tier, rank: item.rank)
+            count += 1
         }
 
-        print("zzz : \(allTotalMmr), \(allCount) | \(data) ")
-
-        isLoading.accept(false)
-        averageMmrRelay.accept(allCount == 0 ? 0 : allTotalMmr / allCount)
-        playerDetailRelay.accept(data)
+        averageMmrRelay.accept(count == 0 ? 0 : totalMmr / count)
     }
 
     // MARK: - 에러 처리

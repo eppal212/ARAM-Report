@@ -79,17 +79,17 @@ class TierGuessViewController: UIViewController {
         }).disposed(by: disposeBag)
 
         // TableView cellForRowAt
-        viewModel.playerDetailRelay
-            .filter { [weak self] data in
-                data.count == self?.viewModel?.targetListCount
+        Observable.combineLatest(viewModel.matchListRelay, viewModel.enemyEntryRelay)
+            .filter { [weak self] match, entry in
+                entry.count / 5 == self?.viewModel?.targetListCount
             }
-            .map { $0.sorted(by: { $0.gameStartTimestamp ?? 0 > $1.gameStartTimestamp ?? 0 }) } // TODO: 정렬 오류
-            .bind(to: tableView.rx.items(cellIdentifier: "TierGuessCell")) { index, item, cell in
+            .map { $0.0 }
+            .bind(to: tableView.rx.items(cellIdentifier: "TierGuessCell")) { [weak self] index, item, cell in
                 guard let cell = cell as? TierGuessCell else { return }
-                cell.setData(puuid: viewModel.account?.puuid ?? "",
-                             summonerId: viewModel.summonerRelay.value?.id ?? "",
-                             match: viewModel.matchListRelay.value[index],
-                             enemy: item)
+                cell.setData(puuid: self?.viewModel?.account?.puuid ?? "",
+                             summonerId: self?.viewModel?.summonerRelay.value?.id ?? "",
+                             match: item,
+                             enemyEntry: self?.viewModel?.enemyEntryRelay.value ?? [])
             }.disposed(by: disposeBag)
 
         // Scroll 처리

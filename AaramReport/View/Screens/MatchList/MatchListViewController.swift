@@ -94,7 +94,6 @@ class MatchListViewController: UIViewController {
             .filter { [weak self] data in
                 data.count == self?.viewModel.targetListCount
             }
-            .map { $0.sorted(by: { $0.info?.gameStartTimestamp ?? 0 > $1.info?.gameStartTimestamp ?? 0 }) }
             .bind(to: tableView.rx.items(cellIdentifier: "MatchListCell")) { [weak self] index, item, cell in
                 guard let cell = cell as? MatchListCell else { return }
                 cell.setData(puuid: self?.viewModel.account?.puuid ?? "", data: item)

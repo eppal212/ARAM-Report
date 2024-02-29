@@ -96,7 +96,7 @@ struct ParticipantDto: Codable {
     var profileIcon: Int?
     var puuid: String?
     var quadraKills: Int?
-    var riotIdName: String?
+    var riotIdGameName: String?
     var riotIdTagline: String?
     var role: String?
     var sightWardsBoughtInGame: Int?
