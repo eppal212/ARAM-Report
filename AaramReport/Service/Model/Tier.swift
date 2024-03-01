@@ -31,37 +31,3 @@ let Mmr: [String: Int] = [
     "GRANDMASTER": 3000,
     "CHALLENGER": 3100,
 ]
-
-//enum Mmr: Int {
-//    case Iron4 = 100
-//    case Iron3 = 200
-//    case Iron2 = 300
-//    case Iron1 = 400
-//    case Bronze4 = 500
-//    case Bronze3 = 600
-//    case Bronze2 = 700
-//    case Bronze1 = 800
-//    case Silver4 = 900
-//    case Silver3 = 1000
-//    case Silver2 = 1100
-//    case Silver1 = 1200
-//    case Gold4 = 1300
-//    case Gold3 = 1400
-//    case Gold2 = 1500
-//    case Gold1 = 1600
-//    case Platinum4 = 1700
-//    case Platinum3 = 1800
-//    case Platinum2 = 1900
-//    case Platinum1 = 2000
-//    case Emerald4 = 2100
-//    case Emerald3 = 2200
-//    case Emerald2 = 2300
-//    case Emerald1 = 2400
-//    case Diamond4 = 2500
-//    case Diamond3 = 2600
-//    case Diamond2 = 2700
-//    case Diamond1 = 2800
-//    case Master = 2900
-//    case GrandMaster = 3100
-//    case Challenger = 3500
-//}

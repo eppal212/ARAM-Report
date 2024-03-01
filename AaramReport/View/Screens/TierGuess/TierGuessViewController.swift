@@ -139,6 +139,15 @@ class TierGuessViewController: UIViewController {
     @IBAction func onClickBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+
+    // 정보 버튼 클릭
+    @IBAction func onClickInfo(_ sender: UIButton) {
+        let alert = UIAlertController(title: "티어 추측이란?", message: "조회한 최근 대전 안에서 만난\n적팀의 평균 티어를 계산한 값입니다.\n파티 유무, 적의 랭겜 여부에 따라\n매우 민감하게 변하는 추정치이기 때문에 재미로만 봐주세요~\n(솔랭 티어 우선 계산하며,\n진한 글씨가 솔랭입니다.)", preferredStyle: .alert)
+        alert.overrideUserInterfaceStyle = .dark
+        let dismissAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(dismissAction)
+        present(alert, animated: true, completion:  nil)
+    }
 }
 
 // MARK: - RiotApiDelegate
